@@ -5,7 +5,9 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/fan_driver.c \
 ../Core/Src/main.c \
+../Core/Src/peristaltic_driver.c \
 ../Core/Src/stm32f2xx_hal_msp.c \
 ../Core/Src/stm32f2xx_it.c \
 ../Core/Src/syscalls.c \
@@ -13,7 +15,9 @@ C_SRCS += \
 ../Core/Src/system_stm32f2xx.c 
 
 OBJS += \
+./Core/Src/fan_driver.o \
 ./Core/Src/main.o \
+./Core/Src/peristaltic_driver.o \
 ./Core/Src/stm32f2xx_hal_msp.o \
 ./Core/Src/stm32f2xx_it.o \
 ./Core/Src/syscalls.o \
@@ -21,7 +25,9 @@ OBJS += \
 ./Core/Src/system_stm32f2xx.o 
 
 C_DEPS += \
+./Core/Src/fan_driver.d \
 ./Core/Src/main.d \
+./Core/Src/peristaltic_driver.d \
 ./Core/Src/stm32f2xx_hal_msp.d \
 ./Core/Src/stm32f2xx_it.d \
 ./Core/Src/syscalls.d \
@@ -36,7 +42,7 @@ Core/Src/%.o: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/stm32f2xx_hal_msp.d ./Core/Src/stm32f2xx_hal_msp.o ./Core/Src/stm32f2xx_it.d ./Core/Src/stm32f2xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32f2xx.d ./Core/Src/system_stm32f2xx.o
+	-$(RM) ./Core/Src/fan_driver.d ./Core/Src/fan_driver.o ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/peristaltic_driver.d ./Core/Src/peristaltic_driver.o ./Core/Src/stm32f2xx_hal_msp.d ./Core/Src/stm32f2xx_hal_msp.o ./Core/Src/stm32f2xx_it.d ./Core/Src/stm32f2xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32f2xx.d ./Core/Src/system_stm32f2xx.o
 
 .PHONY: clean-Core-2f-Src
 

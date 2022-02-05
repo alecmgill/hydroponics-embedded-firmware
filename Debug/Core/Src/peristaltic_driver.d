@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/peristaltic_driver.o: ../Core/Src/peristaltic_driver.c \
+ ../Core/Inc/peristaltic_driver.h ../Core/Inc/main.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h \
  ../Core/Inc/stm32f2xx_hal_conf.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rcc.h \
@@ -27,7 +28,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
- ../Core/Inc/peristaltic_driver.h ../Core/Inc/main.h
+ ../Core/Inc/main.h
+
+../Core/Inc/peristaltic_driver.h:
 
 ../Core/Inc/main.h:
 
@@ -86,7 +89,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h:
-
-../Core/Inc/peristaltic_driver.h:
 
 ../Core/Inc/main.h:

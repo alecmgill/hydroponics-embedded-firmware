@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "peristaltic_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,7 +50,7 @@ TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 
 /* USER CODE BEGIN PV */
-
+GPIO_InitTypeDef GPIO_InitStruct;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -109,6 +109,12 @@ int main(void)
   MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
 
+
+   //HAL_TIM_Base_Start(&htim4);
+
+   HAL_TIM_Base_Start(&htim4);
+   int  runOnce = 1;
+   double miliLiters = 30;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -116,6 +122,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  fanOn(htim3,htim10,htim1); // turn fan control on (sys_fan,plant_fan,heat_cool_fan)
 
     /* USER CODE BEGIN 3 */
   }
