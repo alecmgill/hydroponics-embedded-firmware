@@ -1,5 +1,6 @@
 "./Core/Src/fan_driver.o"
 "./Core/Src/main.o"
+"./Core/Src/nutrient_pH_driver.o"
 "./Core/Src/peristaltic_driver.o"
 "./Core/Src/stm32f2xx_hal_msp.o"
 "./Core/Src/stm32f2xx_it.o"

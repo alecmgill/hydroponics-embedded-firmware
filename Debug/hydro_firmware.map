@@ -198,6 +198,115 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x4c ./Core/Src/main.o
  .debug_macro   0x0000000000000000      0x12d ./Core/Src/main.o
  .debug_macro   0x0000000000000000       0xc4 ./Core/Src/main.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .group         0x0000000000000000        0xc ./Core/Src/nutrient_pH_driver.o
+ .text          0x0000000000000000        0x0 ./Core/Src/nutrient_pH_driver.o
+ .data          0x0000000000000000        0x0 ./Core/Src/nutrient_pH_driver.o
+ .bss           0x0000000000000000        0x0 ./Core/Src/nutrient_pH_driver.o
+ .text.doseWater
+                0x0000000000000000       0x18 ./Core/Src/nutrient_pH_driver.o
+ .text.calcPhUpDose
+                0x0000000000000000       0x10 ./Core/Src/nutrient_pH_driver.o
+ .text.calcPhDownDose
+                0x0000000000000000       0x10 ./Core/Src/nutrient_pH_driver.o
+ .text.calcNutrientDose
+                0x0000000000000000       0x10 ./Core/Src/nutrient_pH_driver.o
+ .debug_info    0x0000000000000000      0x209 ./Core/Src/nutrient_pH_driver.o
+ .debug_abbrev  0x0000000000000000       0xe3 ./Core/Src/nutrient_pH_driver.o
+ .debug_aranges
+                0x0000000000000000       0x38 ./Core/Src/nutrient_pH_driver.o
+ .debug_ranges  0x0000000000000000       0x28 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x1e9 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0xa9c ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x23e ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x2e ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x22 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x22 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x8e ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x51 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x103 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x6a ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x1df ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x1c ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x22 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0xc3 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0xe49 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x11f ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000    0x14fe1 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x43 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000     0x358e ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x174 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x55 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000     0x1057 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x153 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x170 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x116 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x108 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0xa5 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x16a ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x287 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x5f ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x236 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x37c ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x16f ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0xf9 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x126 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x216 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x2e ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x113 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x22 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x82 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x8d1 ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0x4c ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000      0x12d ./Core/Src/nutrient_pH_driver.o
+ .debug_macro   0x0000000000000000       0xca ./Core/Src/nutrient_pH_driver.o
+ .debug_line    0x0000000000000000      0x707 ./Core/Src/nutrient_pH_driver.o
+ .debug_str     0x0000000000000000    0xbdf51 ./Core/Src/nutrient_pH_driver.o
+ .comment       0x0000000000000000       0x54 ./Core/Src/nutrient_pH_driver.o
+ .debug_frame   0x0000000000000000       0x98 ./Core/Src/nutrient_pH_driver.o
+ .ARM.attributes
+                0x0000000000000000       0x2d ./Core/Src/nutrient_pH_driver.o
  .group         0x0000000000000000        0xc ./Core/Src/peristaltic_driver.o
  .group         0x0000000000000000        0xc ./Core/Src/peristaltic_driver.o
  .group         0x0000000000000000        0xc ./Core/Src/peristaltic_driver.o
@@ -246,14 +355,15 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 ./Core/Src/peristaltic_driver.o
  .text.delay_Stepper
                 0x0000000000000000       0x36 ./Core/Src/peristaltic_driver.o
- .text.Step     0x0000000000000000       0x98 ./Core/Src/peristaltic_driver.o
- .text.Dose     0x0000000000000000      0x314 ./Core/Src/peristaltic_driver.o
+ .text.step     0x0000000000000000      0x130 ./Core/Src/peristaltic_driver.o
+ .text.calc_dose_steps
+                0x0000000000000000      0x314 ./Core/Src/peristaltic_driver.o
  .text.disablePump
                 0x0000000000000000       0x18 ./Core/Src/peristaltic_driver.o
  .text.enablePump
                 0x0000000000000000       0x18 ./Core/Src/peristaltic_driver.o
- .debug_info    0x0000000000000000      0x8f3 ./Core/Src/peristaltic_driver.o
- .debug_abbrev  0x0000000000000000      0x1e1 ./Core/Src/peristaltic_driver.o
+ .debug_info    0x0000000000000000      0x928 ./Core/Src/peristaltic_driver.o
+ .debug_abbrev  0x0000000000000000      0x1fb ./Core/Src/peristaltic_driver.o
  .debug_aranges
                 0x0000000000000000       0x40 ./Core/Src/peristaltic_driver.o
  .debug_ranges  0x0000000000000000       0x30 ./Core/Src/peristaltic_driver.o
@@ -301,10 +411,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x4c ./Core/Src/peristaltic_driver.o
  .debug_macro   0x0000000000000000      0x12d ./Core/Src/peristaltic_driver.o
  .debug_macro   0x0000000000000000       0xc4 ./Core/Src/peristaltic_driver.o
- .debug_line    0x0000000000000000      0x81e ./Core/Src/peristaltic_driver.o
- .debug_str     0x0000000000000000    0xbe4b7 ./Core/Src/peristaltic_driver.o
+ .debug_line    0x0000000000000000      0x8a4 ./Core/Src/peristaltic_driver.o
+ .debug_str     0x0000000000000000    0xbe4e5 ./Core/Src/peristaltic_driver.o
  .comment       0x0000000000000000       0x54 ./Core/Src/peristaltic_driver.o
- .debug_frame   0x0000000000000000       0xdc ./Core/Src/peristaltic_driver.o
+ .debug_frame   0x0000000000000000       0xd8 ./Core/Src/peristaltic_driver.o
  .ARM.attributes
                 0x0000000000000000       0x2d ./Core/Src/peristaltic_driver.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32f2xx_hal_msp.o
@@ -3036,6 +3146,7 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
 LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
 LOAD ./Core/Src/fan_driver.o
 LOAD ./Core/Src/main.o
+LOAD ./Core/Src/nutrient_pH_driver.o
 LOAD ./Core/Src/peristaltic_driver.o
 LOAD ./Core/Src/stm32f2xx_hal_msp.o
 LOAD ./Core/Src/stm32f2xx_it.o
