@@ -109,12 +109,10 @@ int main(void)
   MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
 
+  TIM_HandleTypeDef system_fan    = htim3;		// define fan speed timers.
+  TIM_HandleTypeDef plant_fan     = htim10;
+  TIM_HandleTypeDef heat_cool_fan = htim1;
 
-   //HAL_TIM_Base_Start(&htim4);
-
-   HAL_TIM_Base_Start(&htim4);
-   int  runOnce = 1;
-   double miliLiters = 30;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,7 +120,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  fanOn(htim3,htim10,htim1); // turn fan control on (sys_fan,plant_fan,heat_cool_fan)
+	  fanOn(system_fan,plant_fan,heat_cool_fan); // turn fan control on (sys_fan,plant_fan,heat_cool_fan)
 
     /* USER CODE BEGIN 3 */
   }
