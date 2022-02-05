@@ -23,6 +23,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "peristaltic_driver.h"
+#include "nutrient_pH_driver.h"
+#include "fan_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,7 +52,9 @@ TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 
 /* USER CODE BEGIN PV */
-GPIO_InitTypeDef GPIO_InitStruct;
+
+GPIO_InitTypeDef  GPIO_InitStruct;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -108,19 +112,22 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
-
-  TIM_HandleTypeDef system_fan    = htim3;		// define fan speed timers.
-  TIM_HandleTypeDef plant_fan     = htim10;
-  TIM_HandleTypeDef heat_cool_fan = htim1;
-
+int runOnce = 1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
+	  if(runOnce != 0)
+		  {
+		  	  fanOn(htim3,htim10,htim1); 	// turn fan control on (sys_fan,plant_fan,heat_cool_fan)
+			  doseWater(5.0, 5.0, 5.0);		// step the pump motor
+			  runOnce = 0;
+		  }
+
     /* USER CODE END WHILE */
-	  fanOn(system_fan,plant_fan,heat_cool_fan); // turn fan control on (sys_fan,plant_fan,heat_cool_fan)
 
     /* USER CODE BEGIN 3 */
   }
@@ -222,7 +229,6 @@ static void MX_ADC1_Init(void)
   * @param None
   * @retval None
   */
-
 static void MX_ADC2_Init(void)
 {
 
@@ -241,14 +247,14 @@ static void MX_ADC2_Init(void)
   hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
   hadc2.Init.Resolution = ADC_RESOLUTION_12B;
   hadc2.Init.ScanConvMode = ENABLE;
-  hadc2.Init.ContinuousConvMode = ENABLE;
+  hadc2.Init.ContinuousConvMode = DISABLE;
   hadc2.Init.DiscontinuousConvMode = DISABLE;
   hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc2.Init.NbrOfConversion = 1;
   hadc2.Init.DMAContinuousRequests = DISABLE;
-  hadc2.Init.EOCSelection = ADC_EOC_SEQ_CONV;
+  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc2) != HAL_OK)
   {
     Error_Handler();
@@ -555,14 +561,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, ph_up_pump_Pin|ph_down_pump_Pin|nutrient_pump_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, ph_up_enable_Pin|ph_down_enable_Pin|nutrient_enable_Pin|water_heat_cool_Pin
-                          |grow_light_Pin|water_pump_enable_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOE, ph_up_pump_Pin|ph_down_pump_Pin|nutrient_pump_Pin|ph_up_enable_Pin
+                          |ph_down_enable_Pin|nutrient_enable_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(water_temp_GPIO_Port, water_temp_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, water_heat_cool_Pin|grow_light_Pin|water_pump_enable_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : ph_up_pump_Pin ph_down_pump_Pin nutrient_pump_Pin ph_up_enable_Pin
                            ph_down_enable_Pin nutrient_enable_Pin water_heat_cool_Pin */

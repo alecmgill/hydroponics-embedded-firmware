@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : Stepper.c
+  * @file           : peristaltic_driver.c
   * @brief          : Main program body
   ******************************************************************************
   * @attention
@@ -20,37 +20,15 @@
 
 #include "peristaltic_driver.h"
 #include "main.h"
+//extern TIM_HandleTypeDef step_timer;
 
-void delay_Stepper(uint16_t us,TIM_HandleTypeDef h)
+void delay_Stepper(uint16_t us)
 {
-		__HAL_TIM_SET_COUNTER(&h,0);  			 // set the counter value a 0
-		while (__HAL_TIM_GET_COUNTER(&h) < us);  // wait for the counter to reach the us input in the parameter
+		__HAL_TIM_SET_COUNTER(&htim2,0);  			 // set the counter value a 0
+		while (__HAL_TIM_GET_COUNTER(&htim2) < us);  // wait for the counter to reach the us input in the parameter
 }
 
-void step(int nutrient_steps, int ph_up_steps, int ph_down_steps, TIM_HandleTypeDef h)
-{
-		int most_steps = nutrient_steps;							// find the largest dose in steps. Will be used in step loop
-		if(ph_up_steps>most_steps) most_steps 	= ph_up_steps;
-		if(ph_down_steps>most_steps) most_steps = ph_down_steps;
-
-		if(nutrient_steps>0) HAL_GPIO_WritePin(GPIOE,nutrient_enable_Pin,1);	// enable only pumps that are going to dose
-		if(ph_up_steps>0)	 HAL_GPIO_WritePin(GPIOE,ph_up_enable_Pin,1);
-		if(ph_down_steps>0)	 HAL_GPIO_WritePin(GPIOE,ph_down_enable_Pin,1);
-
-		for(int i = 0; i<most_steps; i++)							// step each pump their respective number of steps.
-		{
-			if(i<nutrient_steps)	HAL_GPIO_TogglePin(GPIOE, nutrient_pump_Pin);
-			if(i<ph_up_steps)		HAL_GPIO_TogglePin(GPIOE, ph_up_pump_Pin);
-			if(i<ph_down_steps)		HAL_GPIO_TogglePin(GPIOE, ph_down_pump_Pin);
-			delay_Stepper(100,h);
-			if(i<nutrient_steps)	HAL_GPIO_TogglePin(GPIOE, nutrient_pump_Pin);
-			if(i<ph_up_steps)		HAL_GPIO_TogglePin(GPIOE, ph_up_pump_Pin);
-			if(i<ph_down_steps)		HAL_GPIO_TogglePin(GPIOE, ph_down_pump_Pin);
-			delay_Stepper(100,h);
-		}
-}
-
-int calc_dose_steps(double miliLiters)
+int calc_dose_steps(double miliLiters)	// takes a dose in mls and returns the number of steps for that volume
 {
 	double steps = 0;
 	if	   (miliLiters > 0 && miliLiters <= 1)	steps = (1/0.221)*(miliLiters+0.2012)*(1700);
@@ -62,11 +40,39 @@ int calc_dose_steps(double miliLiters)
 	else steps = (1/0.221)*(miliLiters+0.2012)*(1915);
 	return (int)steps;
 }
-void disablePump()
+
+void disablePumps()
 {
-	 HAL_GPIO_WritePin(GPIOE, ph_up_enable_Pin, GPIO_PIN_SET); // Disable the stepper motor
+	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7,GPIO_PIN_SET);	// disable all pumps
+	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_5,GPIO_PIN_SET);
+ 	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_6,GPIO_PIN_SET);
+
 }
-void enablePump()
+
+void enablePumps(int nutrient_steps, int ph_up_steps, int ph_down_steps)// enable only the pumps that are going to dose
 {
-	HAL_GPIO_WritePin(GPIOE, ph_up_enable_Pin, GPIO_PIN_RESET);		// Enable the stepper motor
+	if(nutrient_steps>0)HAL_GPIO_WritePin(GPIOE,128,GPIO_PIN_RESET);		// enable nutrient pump
+	if(ph_up_steps>0)	HAL_GPIO_WritePin(GPIOE,64,GPIO_PIN_RESET);		// enable ph down pump
+	if(ph_down_steps>0)	HAL_GPIO_WritePin(GPIOE,32,GPIO_PIN_RESET);		// enable ph up pump
+}
+
+void step(int nutrient_steps, int ph_up_steps, int ph_down_steps)
+{
+		int most_steps = nutrient_steps;										// find the largest dose in steps. Will be used in step loop
+		if(ph_up_steps>most_steps) most_steps 	= ph_up_steps;
+		if(ph_down_steps>most_steps) most_steps = ph_down_steps;
+		enablePumps(nutrient_steps,ph_up_steps,ph_down_steps);					// enable only the pumps that are going to dose
+		 HAL_TIM_Base_Start(&htim2);
+		for(int i = 0; i<most_steps; i++)										// step each pump their respective number of steps.
+		{
+			if(i<nutrient_steps)	HAL_GPIO_TogglePin(GPIOE, nutrient_pump_Pin);
+			if(i<ph_up_steps)		HAL_GPIO_TogglePin(GPIOE, ph_up_pump_Pin);
+			if(i<ph_down_steps)		HAL_GPIO_TogglePin(GPIOE, ph_down_pump_Pin);
+			delay_Stepper(40);
+			if(i<nutrient_steps)	HAL_GPIO_TogglePin(GPIOE, nutrient_pump_Pin);
+			if(i<ph_up_steps)		HAL_GPIO_TogglePin(GPIOE, ph_up_pump_Pin);
+			if(i<ph_down_steps)		HAL_GPIO_TogglePin(GPIOE, ph_down_pump_Pin);
+			delay_Stepper(40);
+		}
+		disablePumps();
 }

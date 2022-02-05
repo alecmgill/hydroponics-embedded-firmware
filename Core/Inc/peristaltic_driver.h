@@ -21,8 +21,8 @@
 #include "main.h"
 #include "stm32f2xx_hal.h"
 
-void delay_Stepper(uint16_t us,TIM_HandleTypeDef h);
-void step(int nutrient_steps, int ph_up_steps, int ph_down_steps, TIM_HandleTypeDef h);
+void delay_Stepper(uint16_t us);
+void step(int nutrient_steps, int ph_up_steps, int ph_down_steps);
 int  calc_dose_steps(double miliLiters);
-void disablePump();
-void enablePump();
+void disablePumps();
+void enablePumps(int nutrient_steps, int ph_up_steps, int ph_down_steps);

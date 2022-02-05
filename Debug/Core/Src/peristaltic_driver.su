@@ -1,5 +1,5 @@
-peristaltic_driver.c:24:6:delay_Stepper	16	static
-peristaltic_driver.c:30:6:step	104	static
-peristaltic_driver.c:53:5:calc_dose_steps	24	static
-peristaltic_driver.c:65:6:disablePump	8	static
-peristaltic_driver.c:69:6:enablePump	8	static
+peristaltic_driver.c:25:6:delay_Stepper	16	static
+peristaltic_driver.c:31:5:calc_dose_steps	24	static
+peristaltic_driver.c:44:6:disablePumps	8	static
+peristaltic_driver.c:52:6:enablePumps	24	static
+peristaltic_driver.c:59:6:step	32	static

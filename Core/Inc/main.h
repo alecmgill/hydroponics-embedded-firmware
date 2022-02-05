@@ -30,6 +30,12 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f2xx_hal.h"
 
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim10;
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
