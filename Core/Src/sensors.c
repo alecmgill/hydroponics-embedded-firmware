@@ -33,7 +33,6 @@ double readWaterTemp(void)
 	 DWT_Delay_us (300);
 	 DS18B20_Write (0xCC);  // skip ROM
 	 DS18B20_Write (0x44);  // convert t
-	 DWT_Delay_us (800000);
 
 	 Presence = DS18B20_Start();
 	 DWT_Delay_us (300);
