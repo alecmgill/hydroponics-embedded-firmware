@@ -1,4 +1,4 @@
-Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
+Core/Src/TDS_driver.o: ../Core/Src/TDS_driver.c ../Core/Inc/TDS_driver.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h \
  ../Core/Inc/stm32f2xx_hal_conf.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rcc.h \
@@ -28,10 +28,9 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
  ../Core/Inc/main.h ../Core/Inc/sensors.h ../Core/Inc/main.h \
- ../Core/Inc/water_temp_driver.h ../Core/Inc/TDS_driver.h \
- ../Core/Inc/ADC_driver.h
+ ../Core/Inc/sensors.h
 
-../Core/Inc/sensors.h:
+../Core/Inc/TDS_driver.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h:
 
@@ -95,8 +94,4 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
 
 ../Core/Inc/main.h:
 
-../Core/Inc/water_temp_driver.h:
-
-../Core/Inc/TDS_driver.h:
-
-../Core/Inc/ADC_driver.h:
+../Core/Inc/sensors.h:

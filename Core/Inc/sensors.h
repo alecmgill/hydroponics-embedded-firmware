@@ -14,4 +14,6 @@
 double readWaterTemp(void);
 
 
+float readWaterTDS();
+
 #endif /* INC_SENSORS_H_ */

@@ -30,17 +30,18 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f2xx_hal.h"
 
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+extern ADC_HandleTypeDef hadc2;
+
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim10;
+
 extern GPIO_InitTypeDef  GPIO_InitStruct;
-
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
+extern uint32_t nutrient_ph_values[2];
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -84,10 +85,10 @@ void Error_Handler(void);
 #define water_temp_GPIO_Port GPIOA
 #define water_ph_Pin GPIO_PIN_4
 #define water_ph_GPIO_Port GPIOA
+#define nutrient_level_Pin GPIO_PIN_5
+#define nutrient_level_GPIO_Port GPIOA
 #define system_fan_speed_Pin GPIO_PIN_6
 #define system_fan_speed_GPIO_Port GPIOA
-#define nutrient_level_Pin GPIO_PIN_5
-#define nutrient_level_GPIO_Port GPIOC
 #define nutrient_enable_Pin GPIO_PIN_7
 #define nutrient_enable_GPIO_Port GPIOE
 #define water_heat_cool_Pin GPIO_PIN_8

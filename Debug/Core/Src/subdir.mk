@@ -5,6 +5,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/ADC_driver.c \
+../Core/Src/TDS_driver.c \
 ../Core/Src/fan_driver.c \
 ../Core/Src/main.c \
 ../Core/Src/nutrient_pH_driver.c \
@@ -18,6 +20,8 @@ C_SRCS += \
 ../Core/Src/water_temp_driver.c 
 
 OBJS += \
+./Core/Src/ADC_driver.o \
+./Core/Src/TDS_driver.o \
 ./Core/Src/fan_driver.o \
 ./Core/Src/main.o \
 ./Core/Src/nutrient_pH_driver.o \
@@ -31,6 +35,8 @@ OBJS += \
 ./Core/Src/water_temp_driver.o 
 
 C_DEPS += \
+./Core/Src/ADC_driver.d \
+./Core/Src/TDS_driver.d \
 ./Core/Src/fan_driver.d \
 ./Core/Src/main.d \
 ./Core/Src/nutrient_pH_driver.d \
@@ -51,7 +57,7 @@ Core/Src/%.o: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/fan_driver.d ./Core/Src/fan_driver.o ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/nutrient_pH_driver.d ./Core/Src/nutrient_pH_driver.o ./Core/Src/peristaltic_driver.d ./Core/Src/peristaltic_driver.o ./Core/Src/sensors.d ./Core/Src/sensors.o ./Core/Src/stm32f2xx_hal_msp.d ./Core/Src/stm32f2xx_hal_msp.o ./Core/Src/stm32f2xx_it.d ./Core/Src/stm32f2xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32f2xx.d ./Core/Src/system_stm32f2xx.o ./Core/Src/water_temp_driver.d ./Core/Src/water_temp_driver.o
+	-$(RM) ./Core/Src/ADC_driver.d ./Core/Src/ADC_driver.o ./Core/Src/TDS_driver.d ./Core/Src/TDS_driver.o ./Core/Src/fan_driver.d ./Core/Src/fan_driver.o ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/nutrient_pH_driver.d ./Core/Src/nutrient_pH_driver.o ./Core/Src/peristaltic_driver.d ./Core/Src/peristaltic_driver.o ./Core/Src/sensors.d ./Core/Src/sensors.o ./Core/Src/stm32f2xx_hal_msp.d ./Core/Src/stm32f2xx_hal_msp.o ./Core/Src/stm32f2xx_it.d ./Core/Src/stm32f2xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32f2xx.d ./Core/Src/system_stm32f2xx.o ./Core/Src/water_temp_driver.d ./Core/Src/water_temp_driver.o
 
 .PHONY: clean-Core-2f-Src
 

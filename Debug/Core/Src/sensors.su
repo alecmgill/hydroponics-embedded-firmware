@@ -1,1 +1,3 @@
-sensors.c:23:8:readWaterTemp	8	static
+sensors.c:24:8:readWaterTemp	8	static
+sensors.c:58:7:readWaterTDS	40	static
+sensors.c:78:6:get_nutrient_ph_value	8	static
