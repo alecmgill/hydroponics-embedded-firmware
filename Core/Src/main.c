@@ -25,6 +25,8 @@
 #include "peristaltic_driver.h"
 #include "nutrient_pH_driver.h"
 #include "fan_driver.h"
+#include "sensors.h"
+#include "water_temp_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,6 +122,8 @@ int runOnce = 1;
 
   while (1)
   {
+	 double water_temp = readWaterTemp();
+	  HAL_Delay(100);
 	  if(runOnce != 0)
 		  {
 		  	  fanOn(htim3,htim10,htim1); 	// turn fan control on (sys_fan,plant_fan,heat_cool_fan)

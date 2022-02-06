@@ -9,33 +9,39 @@ C_SRCS += \
 ../Core/Src/main.c \
 ../Core/Src/nutrient_pH_driver.c \
 ../Core/Src/peristaltic_driver.c \
+../Core/Src/sensors.c \
 ../Core/Src/stm32f2xx_hal_msp.c \
 ../Core/Src/stm32f2xx_it.c \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
-../Core/Src/system_stm32f2xx.c 
+../Core/Src/system_stm32f2xx.c \
+../Core/Src/water_temp_driver.c 
 
 OBJS += \
 ./Core/Src/fan_driver.o \
 ./Core/Src/main.o \
 ./Core/Src/nutrient_pH_driver.o \
 ./Core/Src/peristaltic_driver.o \
+./Core/Src/sensors.o \
 ./Core/Src/stm32f2xx_hal_msp.o \
 ./Core/Src/stm32f2xx_it.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
-./Core/Src/system_stm32f2xx.o 
+./Core/Src/system_stm32f2xx.o \
+./Core/Src/water_temp_driver.o 
 
 C_DEPS += \
 ./Core/Src/fan_driver.d \
 ./Core/Src/main.d \
 ./Core/Src/nutrient_pH_driver.d \
 ./Core/Src/peristaltic_driver.d \
+./Core/Src/sensors.d \
 ./Core/Src/stm32f2xx_hal_msp.d \
 ./Core/Src/stm32f2xx_it.d \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
-./Core/Src/system_stm32f2xx.d 
+./Core/Src/system_stm32f2xx.d \
+./Core/Src/water_temp_driver.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -45,7 +51,7 @@ Core/Src/%.o: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/fan_driver.d ./Core/Src/fan_driver.o ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/nutrient_pH_driver.d ./Core/Src/nutrient_pH_driver.o ./Core/Src/peristaltic_driver.d ./Core/Src/peristaltic_driver.o ./Core/Src/stm32f2xx_hal_msp.d ./Core/Src/stm32f2xx_hal_msp.o ./Core/Src/stm32f2xx_it.d ./Core/Src/stm32f2xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32f2xx.d ./Core/Src/system_stm32f2xx.o
+	-$(RM) ./Core/Src/fan_driver.d ./Core/Src/fan_driver.o ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/nutrient_pH_driver.d ./Core/Src/nutrient_pH_driver.o ./Core/Src/peristaltic_driver.d ./Core/Src/peristaltic_driver.o ./Core/Src/sensors.d ./Core/Src/sensors.o ./Core/Src/stm32f2xx_hal_msp.d ./Core/Src/stm32f2xx_hal_msp.o ./Core/Src/stm32f2xx_it.d ./Core/Src/stm32f2xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32f2xx.d ./Core/Src/system_stm32f2xx.o ./Core/Src/water_temp_driver.d ./Core/Src/water_temp_driver.o
 
 .PHONY: clean-Core-2f-Src
 

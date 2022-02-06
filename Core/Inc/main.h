@@ -35,6 +35,8 @@ extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim10;
+extern GPIO_InitTypeDef  GPIO_InitStruct;
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
