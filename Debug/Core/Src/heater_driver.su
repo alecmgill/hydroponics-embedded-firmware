@@ -1,0 +1,4 @@
+heater_driver.c:12:6:heatOn	8	static
+heater_driver.c:17:6:heatOff	8	static
+heater_driver.c:21:6:coolOn	8	static
+heater_driver.c:26:6:coolOff	8	static

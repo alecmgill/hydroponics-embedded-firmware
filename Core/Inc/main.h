@@ -99,6 +99,8 @@ void Error_Handler(void);
 #define grow_light_GPIO_Port GPIOE
 #define water_pump_enable_Pin GPIO_PIN_11
 #define water_pump_enable_GPIO_Port GPIOE
+#define water_heat_cool_enable_Pin GPIO_PIN_12
+#define water_heat_cool_enable_GPIO_Port GPIOE
 #define water_level_Pin GPIO_PIN_1
 #define water_level_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */

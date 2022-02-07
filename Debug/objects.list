@@ -1,6 +1,7 @@
 "./Core/Src/ADC_driver.o"
 "./Core/Src/TDS_driver.o"
 "./Core/Src/fan_driver.o"
+"./Core/Src/heater_driver.o"
 "./Core/Src/main.o"
 "./Core/Src/nutrient_pH_driver.o"
 "./Core/Src/pH_driver.o"

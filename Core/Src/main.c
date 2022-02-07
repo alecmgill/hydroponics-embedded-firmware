@@ -538,7 +538,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(water_temp_GPIO_Port, water_temp_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, water_heat_cool_Pin|grow_light_Pin|water_pump_enable_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOE, water_heat_cool_Pin|grow_light_Pin|water_pump_enable_Pin|water_heat_cool_enable_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : ph_up_pump_Pin ph_down_pump_Pin nutrient_pump_Pin ph_up_enable_Pin
                            ph_down_enable_Pin nutrient_enable_Pin water_heat_cool_Pin */
@@ -556,8 +556,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(water_temp_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : grow_light_Pin water_pump_enable_Pin */
-  GPIO_InitStruct.Pin = grow_light_Pin|water_pump_enable_Pin;
+  /*Configure GPIO pins : grow_light_Pin water_pump_enable_Pin water_heat_cool_enable_Pin */
+  GPIO_InitStruct.Pin = grow_light_Pin|water_pump_enable_Pin|water_heat_cool_enable_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
