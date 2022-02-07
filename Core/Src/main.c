@@ -29,6 +29,7 @@
 #include "water_temp_driver.h"
 #include "TDS_driver.h"
 #include "ADC_driver.h"
+#include "pH_driver.h"
 
 /* USER CODE END Includes */
 
@@ -128,13 +129,14 @@ int main(void)
   {
 	 double water_temp = readWaterTemp();
 	 float TDS = readWaterTDS();
-	  HAL_Delay(100);
-	  if(runOnce != 0)
-	  {
-		  fanOn(htim3,htim10,htim1); 	// turn fan control on (sys_fan,plant_fan,heat_cool_fan)
-		  doseWater(5.0, 5.0, 5.0);		// step the pump motor
-		  runOnce = 0;
-	  }
+	 float pH = readPH();
+	 HAL_Delay(100);
+	 if(runOnce != 0)
+	 {
+		 fanOn(htim3,htim10,htim1); 	// turn fan control on (sys_fan,plant_fan,heat_cool_fan)
+		 doseWater(5.0, 5.0, 5.0);		// step the pump motor
+		 runOnce = 0;
+	 }
 
     /* USER CODE END WHILE */
 
@@ -221,7 +223,7 @@ static void MX_ADC2_Init(void)
   }
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */
-  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
@@ -410,7 +412,7 @@ static void MX_TIM3_Init(void)
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }
@@ -526,6 +528,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, ph_up_pump_Pin|ph_down_pump_Pin|nutrient_pump_Pin|ph_up_enable_Pin

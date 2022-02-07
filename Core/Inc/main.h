@@ -83,12 +83,12 @@ void Error_Handler(void);
 #define plant_fan_speed_GPIO_Port GPIOF
 #define water_temp_Pin GPIO_PIN_0
 #define water_temp_GPIO_Port GPIOA
-#define water_ph_Pin GPIO_PIN_4
-#define water_ph_GPIO_Port GPIOA
 #define nutrient_level_Pin GPIO_PIN_5
 #define nutrient_level_GPIO_Port GPIOA
-#define system_fan_speed_Pin GPIO_PIN_6
-#define system_fan_speed_GPIO_Port GPIOA
+#define water_ph_Pin GPIO_PIN_6
+#define water_ph_GPIO_Port GPIOA
+#define system_fan_speed_Pin GPIO_PIN_0
+#define system_fan_speed_GPIO_Port GPIOB
 #define nutrient_enable_Pin GPIO_PIN_7
 #define nutrient_enable_GPIO_Port GPIOE
 #define water_heat_cool_Pin GPIO_PIN_8

@@ -11,6 +11,7 @@
 #include "water_temp_driver.h"
 #include "TDS_driver.h"
 #include "ADC_driver.h"
+#include "pH_driver.h"
 
 extern int getMedianNum();
 
@@ -79,11 +80,12 @@ void calibratePhProbe()
 {
 
 }
-
+float mili_voltage,ph_value = 0;
 float readPH()
 {
-	return 0;
+	mili_voltage = read_voltage();
+	ph_value = convert_ph(mili_voltage);
+	return ph_value;
 }
-
 
 

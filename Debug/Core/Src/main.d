@@ -29,9 +29,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
  ../Core/Inc/peristaltic_driver.h ../Core/Inc/main.h \
  ../Core/Inc/nutrient_pH_driver.h ../Core/Inc/fan_driver.h \
- ../Core/Inc/fan_driver.h ../Core/Inc/sensors.h ../Core/Inc/sensors.h \
+ ../Core/Inc/sensors.h ../Core/Inc/sensors.h \
  ../Core/Inc/water_temp_driver.h ../Core/Inc/TDS_driver.h \
- ../Core/Inc/ADC_driver.h
+ ../Core/Inc/ADC_driver.h ../Core/Inc/pH_driver.h
 
 ../Core/Inc/main.h:
 
@@ -99,8 +99,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Core/Inc/fan_driver.h:
 
-../Core/Inc/fan_driver.h:
-
 ../Core/Inc/sensors.h:
 
 ../Core/Inc/sensors.h:
@@ -110,3 +108,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/TDS_driver.h:
 
 ../Core/Inc/ADC_driver.h:
+
+../Core/Inc/pH_driver.h:

@@ -7,7 +7,7 @@
 
 #ifndef INC_FAN_DRIVER_H_
 #define INC_FAN_DRIVER_H_
-#include "fan_driver.h"
+
 #include "main.h"
 
 void fanOn(TIM_HandleTypeDef sys,TIM_HandleTypeDef plant,TIM_HandleTypeDef heat_cool);
