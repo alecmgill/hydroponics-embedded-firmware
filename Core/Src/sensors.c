@@ -72,9 +72,9 @@ void get_nutrient_ph_value()	// gets nutrient and ph values from the ADC and pla
 	nutrient_ph_values[1] = get_ADC_values();
 }
 
-int readWaterLevel()
+int readWaterLevel() // 1=good 0=low
 {
-	return 0;
+	return HAL_GPIO_ReadPin (water_level_GPIO_Port, water_level_Pin);
 }
 void calibratePhProbe()
 {
