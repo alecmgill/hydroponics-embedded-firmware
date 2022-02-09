@@ -1,0 +1,2 @@
+RTC_driver.c:14:6:getTime	8	static
+RTC_driver.c:20:6:setTimeDate	24	static

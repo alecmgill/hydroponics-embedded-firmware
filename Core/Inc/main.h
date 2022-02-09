@@ -39,9 +39,15 @@ extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim10;
+extern RTC_HandleTypeDef hrtc;
+extern RTC_TimeTypeDef sTime;
+extern RTC_DateTypeDef sDate;
+extern RTC_AlarmTypeDef sAlarm;
 
+extern uint8_t dem;
 extern GPIO_InitTypeDef  GPIO_InitStruct;
 extern uint32_t nutrient_ph_values[2];
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
