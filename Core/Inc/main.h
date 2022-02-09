@@ -32,6 +32,21 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+extern ADC_HandleTypeDef hadc2;
+
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim10;
+extern RTC_HandleTypeDef hrtc;
+extern RTC_TimeTypeDef sTime;
+extern RTC_DateTypeDef sDate;
+extern RTC_AlarmTypeDef sAlarm;
+
+extern uint8_t dem;
+extern GPIO_InitTypeDef  GPIO_InitStruct;
+extern uint32_t nutrient_ph_values[2];
 
 /* USER CODE END Includes */
 
@@ -50,6 +65,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -58,6 +75,40 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ph_up_pump_Pin GPIO_PIN_2
+#define ph_up_pump_GPIO_Port GPIOE
+#define ph_down_pump_Pin GPIO_PIN_3
+#define ph_down_pump_GPIO_Port GPIOE
+#define nutrient_pump_Pin GPIO_PIN_4
+#define nutrient_pump_GPIO_Port GPIOE
+#define ph_up_enable_Pin GPIO_PIN_5
+#define ph_up_enable_GPIO_Port GPIOE
+#define ph_down_enable_Pin GPIO_PIN_6
+#define ph_down_enable_GPIO_Port GPIOE
+#define plant_fan_speed_Pin GPIO_PIN_6
+#define plant_fan_speed_GPIO_Port GPIOF
+#define water_temp_Pin GPIO_PIN_0
+#define water_temp_GPIO_Port GPIOA
+#define nutrient_level_Pin GPIO_PIN_5
+#define nutrient_level_GPIO_Port GPIOA
+#define water_ph_Pin GPIO_PIN_6
+#define water_ph_GPIO_Port GPIOA
+#define system_fan_speed_Pin GPIO_PIN_0
+#define system_fan_speed_GPIO_Port GPIOB
+#define nutrient_enable_Pin GPIO_PIN_7
+#define nutrient_enable_GPIO_Port GPIOE
+#define water_heat_cool_Pin GPIO_PIN_8
+#define water_heat_cool_GPIO_Port GPIOE
+#define heat_cool_fan_speed_Pin GPIO_PIN_9
+#define heat_cool_fan_speed_GPIO_Port GPIOE
+#define grow_light_Pin GPIO_PIN_10
+#define grow_light_GPIO_Port GPIOE
+#define water_pump_enable_Pin GPIO_PIN_11
+#define water_pump_enable_GPIO_Port GPIOE
+#define water_heat_cool_enable_Pin GPIO_PIN_12
+#define water_heat_cool_enable_GPIO_Port GPIOE
+#define water_level_Pin GPIO_PIN_1
+#define water_level_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
@@ -67,5 +118,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
