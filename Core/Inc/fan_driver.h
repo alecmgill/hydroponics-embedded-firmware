@@ -10,10 +10,10 @@
 
 #include "main.h"
 
-void fanOn(TIM_HandleTypeDef sys,TIM_HandleTypeDef plant,TIM_HandleTypeDef heat_cool);
+void fanOn();
 
-void fanOff(TIM_HandleTypeDef sys,TIM_HandleTypeDef plant,TIM_HandleTypeDef heat_cool);
+void fanOff();
 
-void setFanSpeed(TIM_HandleTypeDef sys,TIM_HandleTypeDef plant,TIM_HandleTypeDef heat_cool, float sys_fan,float plant_fan,float heat_cool_fan);
+void setFanSpeed(float sys_fan,float plant_fan,float heat_cool_fan);
 
 #endif /* INC_FAN_DRIVER_H_ */

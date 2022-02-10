@@ -44,7 +44,6 @@ extern RTC_TimeTypeDef sTime;
 extern RTC_DateTypeDef sDate;
 extern RTC_AlarmTypeDef sAlarm;
 
-extern uint8_t dem;
 extern GPIO_InitTypeDef  GPIO_InitStruct;
 extern uint32_t nutrient_ph_values[2];
 
@@ -93,8 +92,6 @@ void Error_Handler(void);
 #define nutrient_level_GPIO_Port GPIOA
 #define water_ph_Pin GPIO_PIN_6
 #define water_ph_GPIO_Port GPIOA
-#define system_fan_speed_Pin GPIO_PIN_0
-#define system_fan_speed_GPIO_Port GPIOB
 #define nutrient_enable_Pin GPIO_PIN_7
 #define nutrient_enable_GPIO_Port GPIOE
 #define water_heat_cool_Pin GPIO_PIN_8
@@ -107,6 +104,8 @@ void Error_Handler(void);
 #define water_pump_enable_GPIO_Port GPIOE
 #define water_heat_cool_enable_Pin GPIO_PIN_12
 #define water_heat_cool_enable_GPIO_Port GPIOE
+#define system_fan_speed_Pin GPIO_PIN_13
+#define system_fan_speed_GPIO_Port GPIOE
 #define water_level_Pin GPIO_PIN_1
 #define water_level_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
