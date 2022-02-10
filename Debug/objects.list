@@ -3,6 +3,7 @@
 "./Core/Src/TDS_driver.o"
 "./Core/Src/fan_driver.o"
 "./Core/Src/heater_driver.o"
+"./Core/Src/hydro_control_loop.o"
 "./Core/Src/light_driver.o"
 "./Core/Src/main.o"
 "./Core/Src/nutrient_pH_driver.o"
