@@ -30,29 +30,30 @@ void delay_Stepper(uint16_t us)
 double steps = 0;
 int calc_dose_steps(double miliLiters)	// takes a dose in mls and returns the number of steps for that volume
 {
-	if	   (miliLiters > 0 && miliLiters <= 1)	steps = (1/0.221)*(miliLiters+0.2012)*(1700);
-	else if(miliLiters > 1 && miliLiters <= 2)	steps = (1/0.221)*(miliLiters+0.2012)*(1740);
-	else if(miliLiters > 2 && miliLiters <= 3)  steps = (1/0.221)*(miliLiters+0.2012)*(1793);
-	else if(miliLiters > 3 && miliLiters <= 4)  steps = (1/0.221)*(miliLiters+0.2012)*(1793);
-	else if(miliLiters > 4 && miliLiters <= 5)  steps = (1/0.221)*(miliLiters+0.2012)*(1893);
-	else if(miliLiters > 5 && miliLiters <= 30) steps = (1/0.221)*(miliLiters+0.2012)*(1900);
+	if	   (miliLiters > 0 && miliLiters <= 1)	steps = (1/0.221)*(miliLiters+0.2012)*(1745);
+	else if(miliLiters > 1 && miliLiters <= 2)	steps = (1/0.221)*(miliLiters+0.2012)*(1790);
+	else if(miliLiters > 2 && miliLiters <= 3)  steps = (1/0.221)*(miliLiters+0.2012)*(1980);
+	else if(miliLiters > 3 && miliLiters <= 4)  steps = (1/0.221)*(miliLiters+0.2012)*(1980);
+	else if(miliLiters > 4 && miliLiters <= 5)  steps = (1/0.221)*(miliLiters+0.2012)*(1980);
+	else if(miliLiters > 5 && miliLiters <= 30) steps = (1/0.221)*(miliLiters+0.2012)*(1980);
+	else if(miliLiters == 0) steps = 0;
 	else steps = (1/0.221)*(miliLiters+0.2012)*(1915);
 	return (int)steps;
 }
 
 void disablePumps()	// disable all pumps
 {
-	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7,GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_5,GPIO_PIN_SET);
- 	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_6,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOE,nutrient_enable_Pin,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOE,ph_down_enable_Pin,GPIO_PIN_SET);
+ 	HAL_GPIO_WritePin(GPIOE,ph_up_enable_Pin,GPIO_PIN_SET);
 
 }
 
 void enablePumps(int nutrient_steps, int ph_up_steps, int ph_down_steps)	// enable only the pumps that are going to dose
 {
-	if(nutrient_steps>0)HAL_GPIO_WritePin(GPIOE,128,GPIO_PIN_RESET);		// enable nutrient pump
-	if(ph_up_steps>0)	HAL_GPIO_WritePin(GPIOE,64,GPIO_PIN_RESET);			// enable ph down pump
-	if(ph_down_steps>0)	HAL_GPIO_WritePin(GPIOE,32,GPIO_PIN_RESET);			// enable ph up pump
+	if(nutrient_steps>0)HAL_GPIO_WritePin(GPIOE,nutrient_enable_Pin,GPIO_PIN_RESET);		// enable nutrient pump
+	if(ph_down_steps>0)	HAL_GPIO_WritePin(GPIOE,ph_down_enable_Pin,GPIO_PIN_RESET);			// enable ph down pump
+	if(ph_up_steps>0)	HAL_GPIO_WritePin(GPIOE,ph_up_enable_Pin,GPIO_PIN_RESET);			// enable ph up pump
 }
 
 void step(int nutrient_steps, int ph_up_steps, int ph_down_steps)

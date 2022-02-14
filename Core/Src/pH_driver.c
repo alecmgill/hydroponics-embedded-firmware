@@ -7,6 +7,7 @@
 
 #include "main.h"
 #include "pH_driver.h"
+#include "sensors.h"
 
 float mili_Voltage,ph_Value = 0;
 int phBuffer[30];
@@ -14,7 +15,7 @@ int phAverage = 0;
 int j = 0;
 float value;
 
-float voltage_mV, volt_avg_len = 30, pH_low_cal = 2016.5, pH_mid_cal = 1527.5, pH_high_cal= 1115.1;
+float voltage_mV, volt_avg_len = 30, pH_low_cal = 2070.0, pH_mid_cal = 1608.0, pH_high_cal= 1230.0;
 
 float read_voltage()
 {

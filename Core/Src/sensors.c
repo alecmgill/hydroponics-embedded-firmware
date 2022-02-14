@@ -24,7 +24,7 @@ double readWaterTemp(void)
 {
 	 DWT_Delay_Init();
 
-	 Set_Pin_Output(water_temp_GPIO_Port, water_temp_Pin);   // set the pin as output
+	 //Set_Pin_Output(water_temp_GPIO_Port, water_temp_Pin);   // set the pin as output
 	 HAL_GPIO_WritePin (water_temp_GPIO_Port, water_temp_Pin, 1);
 	 DWT_Delay_us(100);
 	 Presence = DS18B20_Start();

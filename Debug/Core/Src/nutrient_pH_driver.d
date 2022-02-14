@@ -30,7 +30,7 @@ Core/Src/nutrient_pH_driver.o: ../Core/Src/nutrient_pH_driver.c \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
- ../Core/Inc/main.h
+ ../Core/Inc/peristaltic_driver.h ../Core/Inc/main.h ../Core/Inc/main.h
 
 ../Core/Inc/nutrient_pH_driver.h:
 
@@ -93,5 +93,9 @@ Core/Src/nutrient_pH_driver.o: ../Core/Src/nutrient_pH_driver.c \
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h:
+
+../Core/Inc/peristaltic_driver.h:
+
+../Core/Inc/main.h:
 
 ../Core/Inc/main.h:

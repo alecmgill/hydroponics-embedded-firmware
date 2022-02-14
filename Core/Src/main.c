@@ -32,6 +32,7 @@
 #include "pH_driver.h"
 #include "RTC_driver.h"
 #include "light_driver.h"
+#include "hydro_control_loop.h"
 
 /* USER CODE END Includes */
 

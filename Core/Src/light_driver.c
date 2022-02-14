@@ -38,6 +38,7 @@ void setLightCyle(uint8_t start_hour, uint8_t start_min, uint8_t end_hours, uint
 
 void checkLightCycle() // checks to see if its time to turn lights on or off
 {
+	getTime();		   // get the current system time sets global variables sTime and sDate in RTC_driver.c
 	if((sTime.Hours == light_on_time.Hours) && (sTime.Minutes == light_on_time.Minutes) && day_or_night == 0)        lightOn();
 	else if((sTime.Hours == light_off_time.Hours) && (sTime.Minutes == light_off_time.Minutes) && day_or_night == 1) lightOff();
 }

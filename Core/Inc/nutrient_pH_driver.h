@@ -9,10 +9,10 @@
 #define INC_NUTRIENT_PH_DRIVER_H_
 
 #include "stm32f2xx_hal.h"
-
-void doseWater(double acid_ml, double base_ml, double nutrient_ml);
-double calcPhUpDose();      // following dose methods return a double in milliliters.
-double calcPhDownDose();
-double calcNutrientDose();
+#include "peristaltic_driver.h"
+void doseWater(float acid_ml, float base_ml, float nutrient_ml);
+double calcPhUpDose(float TDS, float pH);      // following dose methods return a double in milliliters.
+double calcPhDownDose(float TDS, float pH);
+double calcNutrientDose(float TDS, float pH);
 
 #endif /* INC_NUTRIENT_PH_DRIVER_H_ */
