@@ -12,8 +12,7 @@
 #include "main.h"
 #include "sensors.h"
 
-float get_ADC_values();
+float get_ADC_values(int pH_or_nutrients);
 
-void get_nutrient_ph_value();
 
 #endif /* INC_ADC_DRIVER_H_ */

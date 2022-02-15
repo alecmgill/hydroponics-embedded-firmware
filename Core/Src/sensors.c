@@ -68,8 +68,8 @@ float readWaterTDS() // Get nutrient level
 
 void get_nutrient_ph_value()	// gets nutrient and ph values from the ADC and places it in a buffer
 {
-	nutrient_ph_values[0] = get_ADC_values();
-	nutrient_ph_values[1] = get_ADC_values();
+	nutrient_ph_values[0] = get_ADC_values(1);
+	nutrient_ph_values[1] = get_ADC_values(0);
 }
 
 int readWaterLevel() // 1=good 0=low

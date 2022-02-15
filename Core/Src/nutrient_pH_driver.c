@@ -20,12 +20,12 @@ void doseWater(float acid_ml, float base_ml, float nutrient_ml)
 double calcPhUpDose(float TDS, float pH)      // following dose methods return a double in milliliters.
 {
 	//if(pH > (pH_set_point+0.8))
-	return 2.0;
+	return 0;
 }
 
 double calcPhDownDose(float TDS, float pH)
 {
-	return 0;
+	return 3.0;
 }
 
 double calcNutrientDose(float TDS, float pH)

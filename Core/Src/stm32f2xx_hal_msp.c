@@ -98,10 +98,10 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
     /**ADC2 GPIO Configuration
+    PA4     ------> ADC2_IN4
     PA5     ------> ADC2_IN5
-    PA6     ------> ADC2_IN6
     */
-    GPIO_InitStruct.Pin = nutrient_level_Pin|water_ph_Pin;
+    GPIO_InitStruct.Pin = water_ph_Pin|nutrient_level_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -130,10 +130,10 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
     __HAL_RCC_ADC2_CLK_DISABLE();
 
     /**ADC2 GPIO Configuration
+    PA4     ------> ADC2_IN4
     PA5     ------> ADC2_IN5
-    PA6     ------> ADC2_IN6
     */
-    HAL_GPIO_DeInit(GPIOA, nutrient_level_Pin|water_ph_Pin);
+    HAL_GPIO_DeInit(GPIOA, water_ph_Pin|nutrient_level_Pin);
 
   /* USER CODE BEGIN ADC2_MspDeInit 1 */
 
