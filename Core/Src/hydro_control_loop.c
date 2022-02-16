@@ -24,7 +24,7 @@ void systemControl()
 
    		pH_up_dose 	  = calcPhUpDose(TDS,pH);
 		pH_down_dose  = calcPhDownDose(TDS,pH);
- 		nutrient_dose = calcNutrientDose(TDS,pH);
+         		nutrient_dose = calcNutrientDose(TDS,pH);
 
 
 

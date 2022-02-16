@@ -1,8 +1,9 @@
 #MicroXplorer Configuration settings - do not modify
 ADC2.Channel-10\#ChannelRegularConversion=ADC_CHANNEL_5
 ADC2.Channel-9\#ChannelRegularConversion=ADC_CHANNEL_4
-ADC2.ContinuousConvMode=ENABLE
-ADC2.IPParameters=Rank-9\#ChannelRegularConversion,Channel-9\#ChannelRegularConversion,SamplingTime-9\#ChannelRegularConversion,NbrOfConversionFlag,ContinuousConvMode,ScanConvMode,Rank-10\#ChannelRegularConversion,Channel-10\#ChannelRegularConversion,SamplingTime-10\#ChannelRegularConversion,NbrOfConversion
+ADC2.ContinuousConvMode=DISABLE
+ADC2.DiscontinuousConvMode=ENABLE
+ADC2.IPParameters=Rank-9\#ChannelRegularConversion,Channel-9\#ChannelRegularConversion,SamplingTime-9\#ChannelRegularConversion,NbrOfConversionFlag,ContinuousConvMode,ScanConvMode,Rank-10\#ChannelRegularConversion,Channel-10\#ChannelRegularConversion,SamplingTime-10\#ChannelRegularConversion,NbrOfConversion,DiscontinuousConvMode
 ADC2.NbrOfConversion=2
 ADC2.NbrOfConversionFlag=1
 ADC2.Rank-10\#ChannelRegularConversion=2
