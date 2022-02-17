@@ -133,7 +133,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  /*GPIO_InitTypeDef GPIO_InitStruct = {0};
   GPIO_InitStruct.Pin = GPIO_PIN_4;
 
 
@@ -143,7 +143,7 @@ int main(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
 
 
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);*/
   while (1)
   {
 	  systemControl();
