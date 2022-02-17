@@ -28,7 +28,9 @@ Core/Src/fan_driver.o: ../Core/Src/fan_driver.c ../Core/Inc/fan_driver.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
- ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h \
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h
 
 ../Core/Inc/fan_driver.h:
 
@@ -93,3 +95,7 @@ Core/Src/fan_driver.o: ../Core/Src/fan_driver.c ../Core/Inc/fan_driver.h \
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h:
+
+../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h:
+
+../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h:

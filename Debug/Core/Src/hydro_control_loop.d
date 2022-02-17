@@ -30,6 +30,8 @@ Core/Src/hydro_control_loop.o: ../Core/Src/hydro_control_loop.c \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h \
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h \
  ../Core/Inc/nutrient_pH_driver.h ../Core/Inc/peristaltic_driver.h \
  ../Core/Inc/RTC_driver.h ../Core/Inc/light_driver.h \
  ../Core/Inc/sensors.h ../Core/Inc/fan_driver.h ../Core/Inc/pH_driver.h \
@@ -98,6 +100,10 @@ Core/Src/hydro_control_loop.o: ../Core/Src/hydro_control_loop.c \
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h:
+
+../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h:
+
+../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h:
 
 ../Core/Inc/nutrient_pH_driver.h:
 

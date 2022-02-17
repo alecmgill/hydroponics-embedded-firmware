@@ -6,6 +6,10 @@
  */
 
 #include "hydro_control_loop.h"
+
+extern void Create_File();
+extern void Write_File();
+extern void MX_USB_HOST_Process(void);
 double pH_up_dose = 0, pH_down_dose = 0, nutrient_dose = 0;
 float nutrient_set_point = 500.0, pH_set_point = 6.5, water_temp_set_point = 20.0, water_temp = 0, TDS = 0, pH = 0;
 void systemControl()
@@ -16,6 +20,10 @@ void systemControl()
 	fanOn();
 	while (1)
 	{
+		MX_USB_HOST_Process();
+		Create_File("/TestFile65.txt");
+		Write_File("/TestFile65.txt","This is a tes2t412");
+
 		checkLightCycle();						    // check if its time to turn lights on or off
 
 		water_temp	  = readWaterTemp();
