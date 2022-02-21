@@ -46,7 +46,7 @@ ApplicationTypeDef Appli_state = APPLICATION_IDLE;
  * -- Insert your variables declaration here --
  */
 /* USER CODE BEGIN 0 */
-
+int usb_good = 0;
 /* USER CODE END 0 */
 
 /*
@@ -110,17 +110,20 @@ static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id)
 
   case HOST_USER_DISCONNECTION:
   Appli_state = APPLICATION_DISCONNECT;
+  usb_good = 0;
   Unmount_USB();
   break;
 
   case HOST_USER_CLASS_ACTIVE:
   Appli_state = APPLICATION_READY;
+	Mount_USB();
+	Check_USB_Details();
+	Scan_USB("/");
+	Create_File("/TDS_PH_UP_Calibration_data.csv");
+	Create_File("/TDS_PH_Down_Calibration_data.csv");
 
-
-  Mount_USB();
-  Check_USB_Details();
-  Scan_USB("/");
-
+	//Write_File("/TDS_PH_Calibration_data.csv","does it work");
+  usb_good = 1;
 
   break;
 

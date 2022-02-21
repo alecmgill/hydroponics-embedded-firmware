@@ -88,6 +88,7 @@ void MX_USB_HOST_Process(void);
 /* USER CODE BEGIN PFP */
 uint32_t nutrient_ph_values[2] = {0};
 
+extern void MX_USB_HOST_Process(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -150,11 +151,14 @@ int main(void)
 
 
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);*/
+
   while (1)
   {
+
+	  MX_USB_HOST_Process();
 	  systemControl();
     /* USER CODE END WHILE */
-
+    //MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
   }

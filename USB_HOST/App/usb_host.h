@@ -31,7 +31,7 @@
 #include "stm32f2xx_hal.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+ extern int usb_good;
 /* USER CODE END INCLUDE */
 
 /** @addtogroup USBH_OTG_DRIVER

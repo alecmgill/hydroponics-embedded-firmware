@@ -69,7 +69,7 @@ main-build: hydro_firmware.elf secondary-outputs
 
 # Tool invocations
 hydro_firmware.elf: $(OBJS) $(USER_OBJS) C:\Users\Alec\STM32CubeIDE\HydroProject\STM32F207ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "hydro_firmware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Alec\STM32CubeIDE\HydroProject\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="hydro_firmware.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "hydro_firmware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Alec\STM32CubeIDE\HydroProject\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="hydro_firmware.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

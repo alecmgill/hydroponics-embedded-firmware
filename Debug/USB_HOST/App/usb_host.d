@@ -48,8 +48,7 @@ USB_HOST/App/usb_host.o: ../USB_HOST/App/usb_host.c \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h \
- ../Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.h \
- ../Core/Inc/main.h ../Core/Inc/sensors.h
+ ../Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.h
 
 ../USB_HOST/App/usb_host.h:
 
@@ -156,7 +155,3 @@ USB_HOST/App/usb_host.o: ../USB_HOST/App/usb_host.c \
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 
 ../Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.h:
-
-../Core/Inc/main.h:
-
-../Core/Inc/sensors.h:

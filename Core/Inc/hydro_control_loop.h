@@ -13,7 +13,11 @@
 #include "fan_driver.h"
 #include "pH_driver.h"
 #include "TDS_driver.h"
-extern float nutrient_set_point, pH_set_point, water_temp_set_point;
-void systemControl();
+#include "calibrate_system.h"
+float extern water_temp, TDS, pH;
 
+
+//extern float nutrient_set_point, pH_set_point, water_temp_set_point;
+void systemControl();
+void writeCalibrationData();
 #endif /* INC_HYDRO_CONTROL_LOOP_H_ */

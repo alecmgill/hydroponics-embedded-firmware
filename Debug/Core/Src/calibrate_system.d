@@ -1,4 +1,4 @@
-Core/Src/hydro_control_loop.o: ../Core/Src/hydro_control_loop.c \
+Core/Src/calibrate_system.o: ../Core/Src/calibrate_system.c \
  ../Core/Inc/hydro_control_loop.h ../Core/Inc/main.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h \
  ../Core/Inc/stm32f2xx_hal_conf.h \
