@@ -29,6 +29,6 @@ Middlewares/ST/STM32_USB_Host_Library/Core/Src \
 Middlewares/Third_Party/FatFs/src \
 Middlewares/Third_Party/FatFs/src/drivers \
 Middlewares/Third_Party/FatFs/src/option \
-USB_HOST/App \
-USB_HOST/Target \
+Middlewares/USB_HOST/App \
+Middlewares/USB_HOST/Target \
 
