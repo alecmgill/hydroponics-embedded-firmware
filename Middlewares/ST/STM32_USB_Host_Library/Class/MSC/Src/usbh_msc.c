@@ -564,6 +564,10 @@ static USBH_StatusTypeDef USBH_MSC_RdWrProcess(USBH_HandleTypeDef *phost, uint8_
       {
         MSC_Handle->unit[lun].state = MSC_REQUEST_SENSE;
       }
+      else if (scsi_status == USBH_BUSY)	// ADDED TO FIX infinate loop when USB is disconnected.
+      {
+    	  MX_USB_HOST_Process();
+      }
       else
       {
         if (scsi_status == USBH_UNRECOVERED_ERROR)

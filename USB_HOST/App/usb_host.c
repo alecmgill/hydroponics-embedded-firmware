@@ -119,10 +119,7 @@ static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id)
 	Mount_USB();
 	Check_USB_Details();
 	Scan_USB("/");
-	Create_File("/TDS_PH_UP_Calibration_data.csv");
-	Create_File("/TDS_PH_Down_Calibration_data.csv");
 
-	//Write_File("/TDS_PH_Calibration_data.csv","does it work");
   usb_good = 1;
 
   break;

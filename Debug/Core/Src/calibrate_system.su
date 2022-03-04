@@ -1,8 +1,9 @@
-calibrate_system.c:43:6:getFiveSamples	24	static
-calibrate_system.c:60:6:saveInitialState	16	static
-calibrate_system.c:78:6:saveStateAfterNutrient	32	static
-calibrate_system.c:128:5:isStabalized	32	static
-calibrate_system.c:195:7:waitForWaterToStabilize	8	static
-calibrate_system.c:213:6:set_init_water_ph	24	static
-calibrate_system.c:234:6:calibrateSys	48	static
-calibrate_system.c:432:6:writeCalibrationData	32	static
+calibrate_system.c:44:6:getFiveSamples	32	static
+calibrate_system.c:65:6:saveInitialState	16	static
+calibrate_system.c:76:6:saveStateAfterNutrient	32	static
+calibrate_system.c:130:6:resetStabilityVars	16	static
+calibrate_system.c:161:6:isStabalized	32	static
+calibrate_system.c:276:5:waitForWaterToStabilize	8	static
+calibrate_system.c:298:6:set_init_water_ph	24	static
+calibrate_system.c:324:6:calibrateSys	56	static
+calibrate_system.c:558:6:writeCalibrationData	24	static
