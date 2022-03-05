@@ -11,6 +11,10 @@ RM := rm -rf
 -include sources.mk
 -include USB_HOST/Target/subdir.mk
 -include USB_HOST/App/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/subdir.mk
 -include Middlewares/Third_Party/FatFs/src/option/subdir.mk
 -include Middlewares/Third_Party/FatFs/src/drivers/subdir.mk
 -include Middlewares/Third_Party/FatFs/src/subdir.mk

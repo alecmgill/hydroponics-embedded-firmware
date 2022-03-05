@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "fatfs.h"
 #include "usb_host.h"
 
@@ -63,6 +64,9 @@ TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim12;
 
+osThreadId BalanceWaterHandle;
+uint32_t BalanceWaterBuffer[ 4096 ];
+osStaticThreadDef_t BalanceWaterControlBlock;
 /* USER CODE BEGIN PV */
 
 GPIO_InitTypeDef  GPIO_InitStruct;
@@ -83,7 +87,7 @@ static void MX_TIM4_Init(void);
 static void MX_TIM10_Init(void);
 static void MX_RTC_Init(void);
 static void MX_TIM12_Init(void);
-void MX_USB_HOST_Process(void);
+void StartBalanceWater(void const * argument);
 
 /* USER CODE BEGIN PFP */
 uint32_t nutrient_ph_values[2] = {0};
@@ -133,11 +137,39 @@ int main(void)
   MX_RTC_Init();
   MX_TIM12_Init();
   MX_FATFS_Init();
-  MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
+  /* USER CODE BEGIN RTOS_MUTEX */
+  /* add mutexes, ... */
+  /* USER CODE END RTOS_MUTEX */
+
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* add semaphores, ... */
+  /* USER CODE END RTOS_SEMAPHORES */
+
+  /* USER CODE BEGIN RTOS_TIMERS */
+  /* start timers, add new ones, ... */
+  /* USER CODE END RTOS_TIMERS */
+
+  /* USER CODE BEGIN RTOS_QUEUES */
+  /* add queues, ... */
+  /* USER CODE END RTOS_QUEUES */
+
+  /* Create the thread(s) */
+  /* definition and creation of BalanceWater */
+  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityNormal, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
+  BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
+
+  /* USER CODE BEGIN RTOS_THREADS */
+  /* add threads, ... */
+  /* USER CODE END RTOS_THREADS */
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   /*GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -155,10 +187,7 @@ int main(void)
   while (1)
   {
 
-	  MX_USB_HOST_Process();
-	  systemControl();
     /* USER CODE END WHILE */
-    MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
   }
@@ -680,6 +709,50 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
+
+/* USER CODE BEGIN Header_StartBalanceWater */
+/**
+  * @brief  Function implementing the BalanceWater thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_StartBalanceWater */
+void StartBalanceWater(void const * argument)
+{
+  /* init code for USB_HOST */
+  MX_USB_HOST_Init();
+  /* USER CODE BEGIN 5 */
+  /* Infinite loop */
+  for(;;)
+  {
+
+	 // MX_USB_HOST_Process();
+	  systemControl();
+    osDelay(1);
+  }
+  /* USER CODE END 5 */
+}
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM6 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM6) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.
