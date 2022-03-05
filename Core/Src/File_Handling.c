@@ -41,15 +41,15 @@ void Unmount_USB (void)
 {
 	fresult = f_mount(NULL, USBHPath, 1);
 }
-
+char *path[20*8] = {0};
 /* Start node to be scanned (***also used as work area***) */
 FRESULT Scan_USB (char* pat)
 {
     DIR dir;
-    UINT i;
-    char *path = malloc(20*sizeof (char));
+    UINT i=0;
 
-    fresult = f_opendir(&dir, path);                       /* Open the directory */
+
+    fresult = f_opendir(&dir, *path);                       /* Open the directory */
     if (fresult == FR_OK)
     {
         for (;;)
@@ -60,7 +60,7 @@ FRESULT Scan_USB (char* pat)
             {
             	if (!(strcmp ("SYSTEM~1", USBHfno.fname))) continue;
             	if (!(strcmp("System Volume Information", USBHfno.fname))) continue;
-                fresult = Scan_USB(path);                     /* Enter the directory */
+                fresult = Scan_USB(*path);                     /* Enter the directory */
                 if (fresult != FR_OK) break;
                 path[i] = 0;
             }
@@ -70,41 +70,10 @@ FRESULT Scan_USB (char* pat)
         }
         f_closedir(&dir);
     }
-    free(path);
+    free(*path);
     return fresult;
 }
 
-/* Only supports removing files from home directory */
-FRESULT Format_USB (void)
-{
-    DIR dir;
-    char *path = malloc(20*sizeof (char));
-    sprintf (path, "%s","/");
-
-    fresult = f_opendir(&dir, path);                       /* Open the directory */
-    if (fresult == FR_OK)
-    {
-        for (;;)
-        {
-            fresult = f_readdir(&dir, &USBHfno);                   /* Read a directory item */
-            if (fresult != FR_OK || USBHfno.fname[0] == 0) break;  /* Break on error or end of dir */
-            if (USBHfno.fattrib & AM_DIR)     /* It is a directory */
-            {
-            	if (!(strcmp ("SYSTEM~1", USBHfno.fname))) continue;
-            	if (!(strcmp("System Volume Information", USBHfno.fname))) continue;
-            	fresult = f_unlink(USBHfno.fname);
-            	if (fresult == FR_DENIED) continue;
-            }
-            else
-            {   /* It is a file. */
-               fresult = f_unlink(USBHfno.fname);
-            }
-        }
-        f_closedir(&dir);
-    }
-    free(path);
-    return fresult;
-}
 
 
 
