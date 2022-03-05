@@ -375,7 +375,7 @@ void getFiveSamples(int delay_and_temp_enable)
 		if(delay_and_temp_enable == 1)
 		{
 			water_temp	  += readWaterTemp();
-			HAL_Delay(100);
+			 osDelay(100);
 		}
 	}
 	water_temp	  = water_temp/5;							    // get sensor data so we can tell if its time to do pH up or pH down
@@ -482,7 +482,7 @@ void balancePhAndNutrient()
 			pH_up = 0;
 			time_to_bal_pH = waitForWaterToStabilize();
 		}
-		HAL_Delay(500);
+		 osDelay(500);
 		num_of_stable_runs++;
 		add_data_to_array();
 		pH_up_dose = 0;
@@ -584,13 +584,13 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 	prev_largest_TDS = largest_value_TDS;
 	prev_largest_pH = largest_value_pH;
 
-	HAL_Delay(5000);
+	 osDelay(5000);
 	for(int samples = 0; samples<30; samples++)			   // sample TDS and PH every half second for 30 times
 	{
 
 		sample_array_TDS[samples] = readWaterTDS();
 		sample_array_pH[samples] = readPH();
-		HAL_Delay(10);
+		 osDelay(10);
 	}
 
 	smallest_value_TDS = 10000;							   // set smallest values to value much higher than expected
@@ -680,7 +680,7 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 		if(valid < 4)				// if we have not completed three valid runs in a row re-run
 		{
 
-			HAL_Delay(5000);
+			 osDelay(5000);
 			run_again = 2;
 		}
 	}
@@ -734,10 +734,7 @@ void systemControl()
 	//float_to_string(10.21);
 	//convertedString[1] = convertedString[1];
 
-	if(usb_good == 1)//if(usb_good == 1 && (what_to_save < 3) && (what_to_save != 0))
-		{
-			write_file();
-		}
+	getFiveSamples(1);
 	//balancePhAndNutrient();
 
 	// Water Temp control

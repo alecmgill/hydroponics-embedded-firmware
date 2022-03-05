@@ -25,7 +25,7 @@ float read_voltage()
 		get_nutrient_ph_value();
 		value = nutrient_ph_values[0];
 		if(i>1) ph_voltage_buffer[i-2] = value;   // skip first 2 samples for accuracy
-		HAL_Delay(1);
+		 osDelay(1);
 	}
 	for(int j=0;j<30;j++) ph_Value_Buf = ph_voltage_buffer[j] + ph_Value_Buf;
 	ph_voltage_average = ph_Value_Buf/30;

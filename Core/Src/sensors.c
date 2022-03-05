@@ -18,7 +18,7 @@ extern int getMedianNum();
 uint8_t Temp_byte1, Temp_byte2,Presence = 0;
 uint16_t TEMP;
 double Temperature = 0;
-float Humidity = 0;
+double Humidity = 0;
 
 double readWaterTemp(void)
 {
@@ -41,7 +41,7 @@ double readWaterTemp(void)
 	 Temp_byte1 = DS18B20_Read();
 	 Temp_byte2 = DS18B20_Read();
 	 TEMP = (Temp_byte2<<8)|Temp_byte1;
-	 Temperature = (float)TEMP/16;
+	 Temperature = (double)TEMP/16;
 	 return Temperature;
 }
 
@@ -55,7 +55,7 @@ float readWaterTDS() // Get nutrient level
 	{
 		get_nutrient_ph_value();
 		if(i>9)nutrientBuffer[i-10] = nutrient_ph_values[1];  		 // skip first 10 values since they are way off (pH: position 0 Nutrient: position 1)
-	    HAL_Delay(1);
+	     osDelay(1);
 	}
 
     for(copyIndex=0;copyIndex<SCOUNT;copyIndex++) analogBufferTemp[copyIndex]= nutrientBuffer[copyIndex];
