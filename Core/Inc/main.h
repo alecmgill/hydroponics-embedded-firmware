@@ -48,7 +48,7 @@ extern RTC_AlarmTypeDef sAlarm;
 extern osThreadId WaterTempControHandle;
 extern osThreadId BalanceWaterHandle;
 extern GPIO_InitTypeDef  GPIO_InitStruct;
-extern uint32_t nutrient_ph_values[2];
+extern uint32_t nutrient_ph_values[10];
 extern char new_TDS_sample;
 extern char new_pH_sample;
 /* USER CODE END Includes */
@@ -90,10 +90,6 @@ void Error_Handler(void);
 #define ph_down_enable_GPIO_Port GPIOE
 #define plant_fan_speed_Pin GPIO_PIN_6
 #define plant_fan_speed_GPIO_Port GPIOF
-#define water_ph_Pin GPIO_PIN_4
-#define water_ph_GPIO_Port GPIOA
-#define nutrient_level_Pin GPIO_PIN_5
-#define nutrient_level_GPIO_Port GPIOA
 #define water_temp_Pin GPIO_PIN_2
 #define water_temp_GPIO_Port GPIOB
 #define nutrient_enable_Pin GPIO_PIN_7

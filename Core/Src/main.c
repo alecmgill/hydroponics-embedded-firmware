@@ -54,13 +54,13 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc2;
+ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 
 RTC_HandleTypeDef hrtc;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
-TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim12;
@@ -84,19 +84,19 @@ RTC_AlarmTypeDef sAlarm = {0};
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_ADC2_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM10_Init(void);
 static void MX_RTC_Init(void);
 static void MX_TIM12_Init(void);
-static void MX_TIM3_Init(void);
+static void MX_DMA_Init(void);
+static void MX_ADC1_Init(void);
 void StartBalanceWater(void const * argument);
 void StartWaterTempControl(void const * argument);
 
 /* USER CODE BEGIN PFP */
-uint32_t nutrient_ph_values[2] = {0};
+uint32_t nutrient_ph_values[10] = {0};
 
 
 extern void MX_USB_HOST_Process(void);
@@ -104,33 +104,8 @@ extern void MX_USB_HOST_Process(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int adc_index = 0;
-char new_TDS_sample = 'n';
-char new_pH_sample = 'n';
-char retrieved_ADC_value = 'n';
-void HAL_ADC_ConvCpltCallback (ADC_HandleTypeDef *hadc)
-{
 
 
-	if(adc_index == 0)
-	{
-		nutrient_ph_values[adc_index]  = HAL_ADC_GetValue(&hadc2);
-
-		adc_index = 1;
-		new_TDS_sample = 'y';
-	}
-	else if(adc_index == 1)
-	{
-		nutrient_ph_values[adc_index] = HAL_ADC_GetValue(&hadc2);
-		new_pH_sample = 'y';
-		adc_index = 0;
-	}
-
-	retrieved_ADC_value = 'y';
-
-
-
-}
 /* USER CODE END 0 */
 
 /**
@@ -161,7 +136,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_ADC2_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
@@ -169,11 +143,15 @@ int main(void)
   MX_RTC_Init();
   MX_TIM12_Init();
   MX_FATFS_Init();
-  MX_TIM3_Init();
+  MX_DMA_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+ // (DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength)
+//HAL_DMA_RegisterCallback(&hdma_adc2,HAL_DMA_XFER_CPLT_CB_ID,&DMATransferComplete);
+HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 10);
 
-HAL_TIM_Base_Start(&htim3);
-HAL_ADC_Start_IT(&hadc2);
+
+//HAL_DMA_Start_IT(&hdma_adc2,(uint32_t)&nutrient_ph_values,(uint32_t)&hadc2,(uint32_t)2);
 
   /* USER CODE END 2 */
 
@@ -195,19 +173,19 @@ HAL_ADC_Start_IT(&hadc2);
 
   /* Create the thread(s) */
   /* definition and creation of BalanceWater */
-  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
-  BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
+ // osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
+//  BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
 
   /* definition and creation of WaterTempContro */
-  osThreadStaticDef(WaterTempContro, StartWaterTempControl, osPriorityNormal, 0, 2048, WaterTempControBuffer, &WaterTempControControlBlock);
-  WaterTempControHandle = osThreadCreate(osThread(WaterTempContro), NULL);
+//  osThreadStaticDef(WaterTempContro, StartWaterTempControl, osPriorityNormal, 0, 2048, WaterTempControBuffer, &WaterTempControControlBlock);
+//  WaterTempControHandle = osThreadCreate(osThread(WaterTempContro), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
-  osKernelStart();
+ // osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
@@ -226,6 +204,8 @@ HAL_ADC_Start_IT(&hadc2);
 
   while (1)
   {
+	  //HAL_Delay(10000);
+	  //HAL_ADC_Start(&hadc1);
 
     /* USER CODE END WHILE */
 
@@ -283,61 +263,60 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief ADC2 Initialization Function
+  * @brief ADC1 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_ADC2_Init(void)
+static void MX_ADC1_Init(void)
 {
 
-  /* USER CODE BEGIN ADC2_Init 0 */
+  /* USER CODE BEGIN ADC1_Init 0 */
 
-  /* USER CODE END ADC2_Init 0 */
+  /* USER CODE END ADC1_Init 0 */
 
   ADC_ChannelConfTypeDef sConfig = {0};
 
-  /* USER CODE BEGIN ADC2_Init 1 */
-  hadc2.Init.ContinuousConvMode = ENABLE;
-  /* USER CODE END ADC2_Init 1 */
+  /* USER CODE BEGIN ADC1_Init 1 */
+
+  /* USER CODE END ADC1_Init 1 */
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
-  hadc2.Instance = ADC2;
-  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
-  hadc2.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc2.Init.ScanConvMode = ENABLE;
-  hadc2.Init.ContinuousConvMode = DISABLE;
-  hadc2.Init.DiscontinuousConvMode = ENABLE;
-  hadc2.Init.NbrOfDiscConversion = 1;
-  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISINGFALLING;
-  hadc2.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_TRGO;
-  hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc2.Init.NbrOfConversion = 2;
-  hadc2.Init.DMAContinuousRequests = DISABLE;
-  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  sConfig.Channel = ADC_CHANNEL_4;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = ENABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 2;
+  hadc1.Init.DMAContinuousRequests = ENABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
   }
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */
   sConfig.Channel = ADC_CHANNEL_5;
-  sConfig.Rank = 2;
-  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_480CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN ADC2_Init 2 */
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Rank = 2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
 
-  /* USER CODE END ADC2_Init 2 */
+  /* USER CODE END ADC1_Init 2 */
 
 }
 
@@ -550,53 +529,6 @@ static void MX_TIM2_Init(void)
 }
 
 /**
-  * @brief TIM3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM3_Init(void)
-{
-
-  /* USER CODE BEGIN TIM3_Init 0 */
-
-  /* USER CODE END TIM3_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM3_Init 1 */
-  TIM3->CR2 &= ~0x02;
-  TIM3->CR2 |= 0x02;
-  //TIM_CR2_MMS = 0x02;
-  /* USER CODE END TIM3_Init 1 */
-  htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 1000;
-  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 7200;
-  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM3_Init 2 */
-
-  /* USER CODE END TIM3_Init 2 */
-
-}
-
-/**
   * @brief TIM4 Initialization Function
   * @param None
   * @retval None
@@ -726,6 +658,22 @@ static void MX_TIM12_Init(void)
 }
 
 /**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA2_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA2_Stream0_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -771,6 +719,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PA5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
   /*Configure GPIO pin : water_temp_Pin */
   GPIO_InitStruct.Pin = water_temp_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -795,6 +749,34 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+
+int adc_index = 0;
+char new_TDS_sample = 'n';
+char new_pH_sample = 'n';
+char retrieved_ADC_value = 'n';
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+
+
+	if(adc_index == 0)
+	{
+		//nutrient_ph_values[adc_index]  = HAL_ADC_GetValue(&hadc2);
+
+		adc_index = 1;
+		new_TDS_sample = 'y';
+	}
+	else if(adc_index == 1)
+	{
+		//nutrient_ph_values[adc_index] = HAL_ADC_GetValue(&hadc2);
+		new_pH_sample = 'y';
+		adc_index = 0;
+	}
+
+	retrieved_ADC_value = 'y';
+
+
+
+}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartBalanceWater */
@@ -849,15 +831,7 @@ void StartWaterTempControl(void const * argument)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
-	if (htim->Instance == TIM3)
-	{
-		if(retrieved_ADC_value == 'y')
-		{
-			retrieved_ADC_value = 'n';
-			HAL_ADC_Start_IT(&hadc2);
-		}
 
-	}
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM6) {
     HAL_IncTick();
