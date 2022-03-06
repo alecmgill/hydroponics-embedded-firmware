@@ -60,6 +60,7 @@ RTC_HandleTypeDef hrtc;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim12;
@@ -67,6 +68,9 @@ TIM_HandleTypeDef htim12;
 osThreadId BalanceWaterHandle;
 uint32_t BalanceWaterBuffer[ 4096 ];
 osStaticThreadDef_t BalanceWaterControlBlock;
+osThreadId WaterTempControHandle;
+uint32_t WaterTempControBuffer[ 2048 ];
+osStaticThreadDef_t WaterTempControControlBlock;
 /* USER CODE BEGIN PV */
 
 GPIO_InitTypeDef  GPIO_InitStruct;
@@ -87,18 +91,46 @@ static void MX_TIM4_Init(void);
 static void MX_TIM10_Init(void);
 static void MX_RTC_Init(void);
 static void MX_TIM12_Init(void);
+static void MX_TIM3_Init(void);
 void StartBalanceWater(void const * argument);
+void StartWaterTempControl(void const * argument);
 
 /* USER CODE BEGIN PFP */
 uint32_t nutrient_ph_values[2] = {0};
+
 
 extern void MX_USB_HOST_Process(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int adc_index = 0;
+char new_TDS_sample = 'n';
+char new_pH_sample = 'n';
+char retrieved_ADC_value = 'n';
+void HAL_ADC_ConvCpltCallback (ADC_HandleTypeDef *hadc)
+{
 
 
+	if(adc_index == 0)
+	{
+		nutrient_ph_values[adc_index]  = HAL_ADC_GetValue(&hadc2);
+
+		adc_index = 1;
+		new_TDS_sample = 'y';
+	}
+	else if(adc_index == 1)
+	{
+		nutrient_ph_values[adc_index] = HAL_ADC_GetValue(&hadc2);
+		new_pH_sample = 'y';
+		adc_index = 0;
+	}
+
+	retrieved_ADC_value = 'y';
+
+
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -137,7 +169,11 @@ int main(void)
   MX_RTC_Init();
   MX_TIM12_Init();
   MX_FATFS_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+
+HAL_TIM_Base_Start(&htim3);
+HAL_ADC_Start_IT(&hadc2);
 
   /* USER CODE END 2 */
 
@@ -159,8 +195,12 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of BalanceWater */
-  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityNormal, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
+  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
   BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
+
+  /* definition and creation of WaterTempContro */
+  osThreadStaticDef(WaterTempContro, StartWaterTempControl, osPriorityNormal, 0, 2048, WaterTempControBuffer, &WaterTempControControlBlock);
+  WaterTempControHandle = osThreadCreate(osThread(WaterTempContro), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -268,8 +308,8 @@ static void MX_ADC2_Init(void)
   hadc2.Init.ContinuousConvMode = DISABLE;
   hadc2.Init.DiscontinuousConvMode = ENABLE;
   hadc2.Init.NbrOfDiscConversion = 1;
-  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISINGFALLING;
+  hadc2.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_TRGO;
   hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc2.Init.NbrOfConversion = 2;
   hadc2.Init.DMAContinuousRequests = DISABLE;
@@ -510,6 +550,53 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+  TIM3->CR2 &= ~0x02;
+  TIM3->CR2 |= 0x02;
+  //TIM_CR2_MMS = 0x02;
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 1000;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 7200;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+
+}
+
+/**
   * @brief TIM4 Initialization Function
   * @param None
   * @retval None
@@ -733,6 +820,24 @@ void StartBalanceWater(void const * argument)
   /* USER CODE END 5 */
 }
 
+/* USER CODE BEGIN Header_StartWaterTempControl */
+/**
+* @brief Function implementing the WaterTempContro thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartWaterTempControl */
+void StartWaterTempControl(void const * argument)
+{
+  /* USER CODE BEGIN StartWaterTempControl */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartWaterTempControl */
+}
+
 /**
   * @brief  Period elapsed callback in non blocking mode
   * @note   This function is called  when TIM6 interrupt took place, inside
@@ -744,7 +849,15 @@ void StartBalanceWater(void const * argument)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
+	if (htim->Instance == TIM3)
+	{
+		if(retrieved_ADC_value == 'y')
+		{
+			retrieved_ADC_value = 'n';
+			HAL_ADC_Start_IT(&hadc2);
+		}
 
+	}
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM6) {
     HAL_IncTick();

@@ -10,11 +10,13 @@
 #include "sensors.h"
 #include "heater_driver.h"
 void heatOn()
+{taskENTER_CRITICAL();
 {
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_SET);			// set to heat
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_SET);	// enable the heater
+}taskEXIT_CRITICAL();
 }
-void heatOff()
+void heatCoolOff()
 {
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_RESET);	// disable the heater
 }
@@ -22,8 +24,4 @@ void coolOn()
 {
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_RESET);		// set to cool
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_SET);	// enable the cooler
-}
-void coolOff()
-{
-	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_RESET);	// disable the cooler
 }

@@ -32,6 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "cmsis_os.h"
 extern ADC_HandleTypeDef hadc2;
 extern ADC_HandleTypeDef hadc1;
 extern ADC_HandleTypeDef hadc3;
@@ -44,10 +45,12 @@ extern RTC_HandleTypeDef hrtc;
 extern RTC_TimeTypeDef sTime;
 extern RTC_DateTypeDef sDate;
 extern RTC_AlarmTypeDef sAlarm;
-
+extern osThreadId WaterTempControHandle;
+extern osThreadId BalanceWaterHandle;
 extern GPIO_InitTypeDef  GPIO_InitStruct;
 extern uint32_t nutrient_ph_values[2];
-
+extern char new_TDS_sample;
+extern char new_pH_sample;
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

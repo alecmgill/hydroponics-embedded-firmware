@@ -11,7 +11,7 @@
 int getMedianNum(int bArray[], int iFilterLen)
 {
       int bTab[iFilterLen];
-      for (char i = 0; i<iFilterLen; i++)
+      for (int i = 0; i<iFilterLen; i++)
       bTab[i] = bArray[i];
       int i, j, bTemp;
       for (j = 0; j < iFilterLen - 1; j++)

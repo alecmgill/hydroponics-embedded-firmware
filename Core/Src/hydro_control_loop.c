@@ -13,9 +13,11 @@
 #include "fatfs.h"
 #include "usb_host.h"
 #include "stm32f2xx_hal.h"
-
+#include "heater_driver.h"
+#include "sensors.h"
+#include "main.h"
 double max_pH_up_dose = 5.0, max_pH_down_dose = 5.0, pH_up_dose = 0, pH_down_dose = 0, max_nutrient_dose = 80, nutrient_dose = 0, total_nutrient_ml = 0, total_pH_up_ml = 0, total_pH_down_ml = 0, total_nutrient_ml_per_file = 0, total_pH_up_ml_per_file = 0, total_pH_down_ml_per_file = 0;
-float nutrient_set_point = 185.0, pH_set_point = 6.0, water_temp_set_point = 20.0, pH_bounds_check = 0.10, pH_bounds_set = 0.05, nutrient_bounds_check = 15, nutrient_bounds_set = 7.5, TDS = 0, pH = 0, water_temp = 0;
+float nutrient_set_point = 185.0, pH_set_point = 6.0, water_temp_set_point = 28.0, water_temp_bounds_set = 1.0,  water_temp_bounds_check = 2.0, pH_bounds_check = 0.10, pH_bounds_set = 0.05, nutrient_bounds_check = 15, nutrient_bounds_set = 7.5, TDS = 0, pH = 0, water_temp = 0;
 char balance_data[50000] = {0};
 int run_once = 1, error = 0, balance_index = 0, i = 0;
 int time_to_bal_nutrient = 0;
@@ -125,7 +127,7 @@ void floatToString(double FP_NUM) {
 
 }
 
-void write_file()
+void write_balance_data_file()
 {
 	for(file_index = 0; file_index<16 && file_name[file_index] != '\0'; file_index++)
 	{
@@ -362,29 +364,17 @@ void appendInitialConditions()
 char setting_pH = 'n';
 char setting_nutrient = 'n';
 
-void getFiveSamples(int delay_and_temp_enable)
-{
-	water_temp = 0;
-	TDS = 0;
-	pH = 0;
-	for(int fiveSamples = 0; fiveSamples<5;fiveSamples++)
-	{
-								// get sensor data
-		TDS 		  += readWaterTDS();
-		pH 		 	  += readPH();
-		if(delay_and_temp_enable == 1)
-		{
-			water_temp	  += readWaterTemp();
-			 osDelay(100);
-		}
-	}
-	water_temp	  = water_temp/5;							    // get sensor data so we can tell if its time to do pH up or pH down
-	TDS 		  = TDS/5;
-	pH 		 	  = pH/5;
-}
+
 void balancePhAndNutrient()
 {
+	// osThreadSuspend(WaterTempControHandle);
+
+	// osDelay(5000);
+	done_sampling = 'n';
 	if(waiting_to_write == 'n') getFiveSamples(1);
+	//osThreadResume(WaterTempControHandle);
+
+	done_sampling = 'y';
 	pH_up = 0;
 	pH_down = 0;
 	nutrient_up = 0;
@@ -437,11 +427,14 @@ void balancePhAndNutrient()
 			total_nutrient_ml_per_file += nutrient_dose;
 			time_to_bal_nutrient = waitForWaterToStabilize();
 			nutrient_up = 0;
-
+		//	osThreadSuspend(WaterTempControHandle);
+		//	 osDelay(5000);
 			getFiveSamples(1);	// after adding nutrient check the pH again to see if it needs to be adjusted
+		//	osThreadResume(WaterTempControHandle);
+			// vTaskDelay(100);
 			pH_down = 0;
 			pH_up 	= 0;
-
+			done_sampling = 'y';
 			if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)   		pH_down = 1;  // if we are over our set point dose the water with pH-down
 			else if(pH  < pH_set_point 	   &&     (pH + pH_bounds_check) < pH_set_point)  		pH_up   = 1;  // if we are under our set point dose the water with pH-up
 
@@ -482,6 +475,7 @@ void balancePhAndNutrient()
 			pH_up = 0;
 			time_to_bal_pH = waitForWaterToStabilize();
 		}
+
 		 osDelay(500);
 		num_of_stable_runs++;
 		add_data_to_array();
@@ -498,7 +492,7 @@ void balancePhAndNutrient()
 	}
 	if(usb_good == 1 && num_of_stable_runs >= 6 && waiting_to_write == 'y')//if(usb_good == 1 && (what_to_save < 3) && (what_to_save != 0))
 	{
-		write_file();
+		write_balance_data_file();
 		num_of_stable_runs = 0;
 		balance_index = 0;
 		get_init_conditions  = 'n';
@@ -509,6 +503,8 @@ void balancePhAndNutrient()
 			if(a<25)buffer[a] = '\0';
 		}
 	}
+
+
 }
 
 float historic_largest_pH[30] = {0};
@@ -584,14 +580,24 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 	prev_largest_TDS = largest_value_TDS;
 	prev_largest_pH = largest_value_pH;
 
-	 osDelay(5000);
+	//osThreadSuspend(WaterTempControHandle);
+	// osDelay(5000);
+	// done_sampling = 'n';
+	// osThreadSuspend(WaterTempControHandle);
+
+	// vTaskDelay(100);
+	done_sampling = 'n';
+	 getFiveSamples(1);
+
 	for(int samples = 0; samples<30; samples++)			   // sample TDS and PH every half second for 30 times
 	{
-
 		sample_array_TDS[samples] = readWaterTDS();
 		sample_array_pH[samples] = readPH();
-		 osDelay(10);
+		osDelay(10);
 	}
+//	osThreadResume(WaterTempControHandle);
+	done_sampling = 'y';
+	//osThreadResume(WaterTempControHandle);
 
 	smallest_value_TDS = 10000;							   // set smallest values to value much higher than expected
 	largest_value_TDS = 0;	  							   // set largest to the smallest possible value these steps ensure we catch error cases
@@ -679,23 +685,32 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 		valid++;
 		if(valid < 4)				// if we have not completed three valid runs in a row re-run
 		{
-
-			 osDelay(5000);
 			run_again = 2;
 		}
 	}
 	if(run_again == 1) run_again = 0;
 	else if (run_again == 2) run_again = 1;
+	//waterTempControl();
 }
 
 
 int waitForWaterToStabilize() // Returns the total time in seconds
-{
+{	//vTaskSuspend(WaterTempControHandle);
+//	osThreadSuspend(WaterTempControHandle);
 	getTime();
 	eq_start_time_sec = sTime.Seconds + sTime.Minutes*60;
 
+	while(run_again > 0)
+	{
+		osThreadSuspend(WaterTempControHandle);
 
-	while(run_again > 0)	 isStabalized();// if we are not stabilized wait until we are
+
+
+		isStabalized();// if we are not stabilized wait until we are
+
+		osThreadResume(WaterTempControHandle);
+		osDelay(5000);
+	}
 
 	getTime();
 	eq_end_time_sec = sTime.Seconds + sTime.Minutes*60;
@@ -704,18 +719,66 @@ int waitForWaterToStabilize() // Returns the total time in seconds
 		total_time_seconds = (3600-eq_start_time_sec)+eq_end_time_sec;
 	}
 	else total_time_seconds = eq_end_time_sec-eq_start_time_sec;	// else we did not roll over so total seconds is end time - start time
-
+	//vTaskResume(WaterTempControHandle);
+//	osThreadResume(WaterTempControHandle);
 	stability_value = 0;
 	recheck_count = 0;
 	resetStabilityVars();
 	return (total_time_seconds);
 }
 
+char setting_water_temp = 'n';
 
+
+int water_temp_index = 0;
+int temp_up = 0, temp_down = 0;
+int number_of_stable_temp_runs = 0;
 
 void waterTempControl()
 {
+	 osThreadSuspend(BalanceWaterHandle);
+	 //osDelay(5000);
+	temp_up = 0;
+	temp_down = 0;
+	if(done_sampling == 'y' && new_sample == 'y')
+	{
+		new_sample = 'n';
+		if(setting_water_temp == 'n')	// if we are not changing the pH or nutrient level, check to see if we are out of bounds
+		{
+			if(     water_temp  > water_temp_set_point     &&     (water_temp - water_temp_bounds_check) > water_temp_set_point)   				temp_down = 1; 			// if we are over our set point dose the water with pH-down
+			else if(water_temp  < water_temp_set_point 	   &&     (water_temp + water_temp_bounds_check) < water_temp_set_point)  				temp_up = 1; 				// if we are under our set point dose the water with pH-up
+		}
+		else	// else we are setting the pH so reduce the pH bounds to accurately set the value
+		{
+			if(     water_temp  > water_temp_set_point     &&     (water_temp - water_temp_bounds_set) > water_temp_set_point)   				temp_down = 1; 			// if we are over our set point dose the water with pH-down
+			else if(water_temp  < water_temp_set_point 	   &&     (water_temp + water_temp_bounds_set) < water_temp_set_point)  				temp_up = 1; 				// if we are under our set point dose the water with pH-up
+		}
 
+		if((temp_up == 1 || temp_down == 1))				// if we are adding pH-up/down or nutrient, signify what we are setting so we can change the accuracy range
+		{
+			setting_water_temp = 'y';
+			number_of_stable_temp_runs = 0;
+		}
+		else setting_water_temp = 'n';
+
+		if(number_of_stable_temp_runs >= 0 && number_of_stable_temp_runs <= 5) // consider changing to 10
+		{
+
+			if(temp_up == 1) 	heatOn();	// if we need heat the water turn on the heater
+			else if(temp_down == 1);	//coolOn();	// if we need cool the water turn on the cooler
+		    number_of_stable_temp_runs++;
+		}
+		if(number_of_stable_temp_runs > 5)
+		{
+		//	heatCoolOff();
+			number_of_stable_temp_runs = 0;
+		}
+	}
+
+	osThreadResume(BalanceWaterHandle);
+	osDelay(5000);
+	//else if(done_sampling == 'y' && new_sample == 'n') getFiveSamples(1);
+	//done_sampling = 'y';
 }
 void systemControl()
 {
@@ -728,15 +791,23 @@ void systemControl()
 		fanOn();
 		setTimeDate(0x01, 0x08, 0x22, 0x19, 0x09, 0x00); // MUST BE HEX BUT NOT CONVERTED i,e,(the 22 day of the month is represented as 0x22 NOT 0x16) (month, day, year, hours, min, sec)
 		setLightCyle(19, 9, 19, 10); 			   		 // MUST BE INT (start hour, start min, start sec, end hour, end min)
+		// osThreadSuspend(WaterTempControHandle);
 	}
 
-
+	// osDelay(1000);
 	//float_to_string(10.21);
 	//convertedString[1] = convertedString[1];
+	//waterTempControl();
+	//getFiveSamples(1);
+	// osThreadSuspend(WaterTempControHandle);
+	// osDelay(5000);
+
 
 	getFiveSamples(1);
 	//balancePhAndNutrient();
 
+	//osThreadResume(WaterTempControHandle);
+	 //osDelay(5000);
 	// Water Temp control
 
 

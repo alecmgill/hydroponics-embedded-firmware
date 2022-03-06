@@ -31,9 +31,32 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h \
- ../Core/Inc/main.h ../Core/Inc/sensors.h ../Core/Inc/main.h \
- ../Core/Inc/water_temp_driver.h ../Core/Inc/TDS_driver.h \
- ../Core/Inc/ADC_driver.h ../Core/Inc/pH_driver.h
+ ../Core/Inc/main.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+ ../Core/Inc/FreeRTOSConfig.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ ../Core/Inc/sensors.h ../Core/Inc/main.h ../Core/Inc/water_temp_driver.h \
+ ../Core/Inc/TDS_driver.h ../Core/Inc/ADC_driver.h \
+ ../Core/Inc/pH_driver.h ../Core/Inc/hydro_control_loop.h \
+ ../Core/Inc/nutrient_pH_driver.h ../Core/Inc/peristaltic_driver.h \
+ ../Core/Inc/RTC_driver.h ../Core/Inc/light_driver.h \
+ ../Core/Inc/fan_driver.h ../Core/Inc/pH_driver.h \
+ ../Core/Inc/TDS_driver.h ../Core/Inc/calibrate_system.h \
+ ../Core/Inc/hydro_control_loop.h
 
 ../Core/Inc/sensors.h:
 
@@ -103,6 +126,40 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
 
 ../Core/Inc/main.h:
 
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
+
+../Core/Inc/FreeRTOSConfig.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
+
+../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+
 ../Core/Inc/sensors.h:
 
 ../Core/Inc/main.h:
@@ -114,3 +171,23 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
 ../Core/Inc/ADC_driver.h:
 
 ../Core/Inc/pH_driver.h:
+
+../Core/Inc/hydro_control_loop.h:
+
+../Core/Inc/nutrient_pH_driver.h:
+
+../Core/Inc/peristaltic_driver.h:
+
+../Core/Inc/RTC_driver.h:
+
+../Core/Inc/light_driver.h:
+
+../Core/Inc/fan_driver.h:
+
+../Core/Inc/pH_driver.h:
+
+../Core/Inc/TDS_driver.h:
+
+../Core/Inc/calibrate_system.h:
+
+../Core/Inc/hydro_control_loop.h:

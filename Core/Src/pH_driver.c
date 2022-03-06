@@ -8,7 +8,7 @@
 #include "main.h"
 #include "pH_driver.h"
 #include "sensors.h"
-
+#include "cmsis_os.h"
 float mili_Voltage_Buf = 0;
 
 float ph_voltage_average = 0;
@@ -19,17 +19,24 @@ float pH_low_cal = 2021.0, pH_mid_cal = 1523.0, pH_high_cal= 1135.0, low_ph_solu
 float slope = 0, ph_Value_Buf = 0;
 float read_voltage()
 {
+	taskENTER_CRITICAL();
+			 	{
 	ph_Value_Buf = 0;
-	for(int i = 0; i<32; i++)
+	for(int i = 0; i<32;)
 	{
-		get_nutrient_ph_value();
-		value = nutrient_ph_values[0];
-		if(i>1) ph_voltage_buffer[i-2] = value;   // skip first 2 samples for accuracy
-		 osDelay(1);
+		if(ph_voltage_buffer[0] !=0 && ph_voltage_buffer[1] != 0)
+		{	 i++;
+			value = nutrient_ph_values[0];
+			if(i>1) ph_voltage_buffer[i-2] = value;   // skip first 2 samples for accuracy
+			osDelay(1);
+		}
+		ph_voltage_buffer[0] = 0;
+		ph_voltage_buffer[1] = 0;
 	}
 	for(int j=0;j<30;j++) ph_Value_Buf = ph_voltage_buffer[j] + ph_Value_Buf;
 	ph_voltage_average = ph_Value_Buf/30;
 	mili_Voltage_Buf = ((ph_voltage_average/4096.0)*3.3)*1000;
+}	taskEXIT_CRITICAL();
 	return mili_Voltage_Buf;
 }
 

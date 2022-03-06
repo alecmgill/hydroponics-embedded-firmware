@@ -11,9 +11,9 @@
 #include "main.h"
 #include "sensors.h"
 void heatOn();
-void heatOff();
+void heatCoolOff();
 void coolOn();
-void coolOff();
+
 
 
 #endif /* INC_HEATER_DRIVER_H_ */
