@@ -55,8 +55,7 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
  ../Core/Inc/nutrient_pH_driver.h ../Core/Inc/peristaltic_driver.h \
  ../Core/Inc/RTC_driver.h ../Core/Inc/light_driver.h \
  ../Core/Inc/fan_driver.h ../Core/Inc/pH_driver.h \
- ../Core/Inc/TDS_driver.h ../Core/Inc/calibrate_system.h \
- ../Core/Inc/hydro_control_loop.h
+ ../Core/Inc/TDS_driver.h
 
 ../Core/Inc/sensors.h:
 
@@ -187,7 +186,3 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
 ../Core/Inc/pH_driver.h:
 
 ../Core/Inc/TDS_driver.h:
-
-../Core/Inc/calibrate_system.h:
-
-../Core/Inc/hydro_control_loop.h:

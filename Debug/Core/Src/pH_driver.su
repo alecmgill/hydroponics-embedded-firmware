@@ -1,6 +1,5 @@
-pH_driver.c:20:7:read_voltage	16	static
-pH_driver.c:43:7:convert_ph	24	static
-pH_driver.c:59:6:cal_mid	16	static
-pH_driver.c:64:6:cal_low	16	static
-pH_driver.c:69:6:cal_high	16	static
-pH_driver.c:74:6:cal_clear	4	static
+pH_driver.c:21:8:convert_ph	24	static
+pH_driver.c:37:6:cal_mid	16	static
+pH_driver.c:42:6:cal_low	16	static
+pH_driver.c:47:6:cal_high	16	static
+pH_driver.c:52:6:cal_clear	4	static

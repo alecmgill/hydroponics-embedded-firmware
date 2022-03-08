@@ -12,7 +12,7 @@
 void heatOn()
 {taskENTER_CRITICAL();
 {
-	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_SET);			// set to heat
+	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_RESET);			// set to heat
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_SET);	// enable the heater
 }taskEXIT_CRITICAL();
 }
@@ -22,6 +22,6 @@ void heatCoolOff()
 }
 void coolOn()
 {
-	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_RESET);		// set to cool
+	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_SET);		// set to cool
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_SET);	// enable the cooler
 }

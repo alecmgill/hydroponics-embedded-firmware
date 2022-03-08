@@ -7,8 +7,6 @@
 
 #include "hydro_control_loop.h"
 
-#include "stdio.h"
-#include "stdlib.h"
 #include "File_Handling.h"
 #include "fatfs.h"
 #include "usb_host.h"
@@ -17,8 +15,8 @@
 #include "sensors.h"
 #include "main.h"
 double max_pH_up_dose = 5.0, max_pH_down_dose = 5.0, pH_up_dose = 0, pH_down_dose = 0, max_nutrient_dose = 80, nutrient_dose = 0, total_nutrient_ml = 0, total_pH_up_ml = 0, total_pH_down_ml = 0, total_nutrient_ml_per_file = 0, total_pH_up_ml_per_file = 0, total_pH_down_ml_per_file = 0;
-float nutrient_set_point = 185.0, pH_set_point = 6.0, water_temp_set_point = 28.0, water_temp_bounds_set = 1.0,  water_temp_bounds_check = 2.0, pH_bounds_check = 0.10, pH_bounds_set = 0.05, nutrient_bounds_check = 15, nutrient_bounds_set = 7.5, TDS = 0, pH = 0, water_temp = 0;
-char balance_data[50000] = {0};
+double nutrient_set_point = 185.0, pH_set_point = 6.0, water_temp_set_point = 19.0, water_temp_bounds_set = 1.0,  water_temp_bounds_check = 2.0, pH_bounds_check = 0.10, pH_bounds_set = 0.05, nutrient_bounds_check = 15, nutrient_bounds_set = 7.5, TDS = 0, pH = 0, water_temp = 0;
+char balance_data[10000] = {0};
 int run_once = 1, error = 0, balance_index = 0, i = 0;
 int time_to_bal_nutrient = 0;
 int time_to_bal_pH = 0;
@@ -40,9 +38,10 @@ char extention[5] = ".csv";
 char buffer[25] = {0};
 char convertedString[10] = {0};
 
+double fpnumber;
+long int befdec, aftdec;
 void floatToString(double FP_NUM) {
-        double fpnumber;
-        long int befdec, aftdec;
+
 
         fpnumber = FP_NUM;
 
@@ -371,7 +370,7 @@ void balancePhAndNutrient()
 
 	// osDelay(5000);
 	done_sampling = 'n';
-	if(waiting_to_write == 'n') getFiveSamples(1);
+	if(waiting_to_write == 'n') getSensorValues(1);
 	//osThreadResume(WaterTempControHandle);
 
 	done_sampling = 'y';
@@ -422,14 +421,14 @@ void balancePhAndNutrient()
 		{
 			nutrient_dose = calcNutrientDose(pH_set_point, nutrient_set_point);
 
-			doseWater(0,0,nutrient_dose);
+			doseWater(0,0,5);//nutrient_dose);
 			total_nutrient_ml += nutrient_dose;
 			total_nutrient_ml_per_file += nutrient_dose;
 			time_to_bal_nutrient = waitForWaterToStabilize();
 			nutrient_up = 0;
 		//	osThreadSuspend(WaterTempControHandle);
 		//	 osDelay(5000);
-			getFiveSamples(1);	// after adding nutrient check the pH again to see if it needs to be adjusted
+			getSensorValues(1);	// after adding nutrient check the pH again to see if it needs to be adjustedgetSensorValues
 		//	osThreadResume(WaterTempControHandle);
 			// vTaskDelay(100);
 			pH_down = 0;
@@ -506,34 +505,34 @@ void balancePhAndNutrient()
 
 
 }
-
-float historic_largest_pH[30] = {0};
-float historic_smallest_pH[30] = {0};
-float historic_largest_TDS[30] = {0};
-float historic_smallest_TDS[30] = {0};
-float historic_average_pH[30] = {0};
-float historic_average_TDS[30] = {0};
+int number_historic_samples = 200;
+double historic_largest_pH[200] = {0};
+double historic_smallest_pH[200] = {0};
+double historic_largest_TDS[200] = {0};
+double historic_smallest_TDS[200] = {0};
+double historic_average_pH[200] = {0};
+double historic_average_TDS[200] = {0};
 int	historic_sample_index = 0;
-float historic_average_pH_range = 0;
-float historic_average_TDS_range = 0;
-float historic_range_pH  = 0;
-float historic_range_TDS = 0;
-float average_pH = 0;
-float average_TDS = 0;
-float historic_average_pH_min = 1000;
-float historic_average_pH_max = 0;
-float historic_average_TDS_min = 100000;
-float historic_average_TDS_max = 0;
-float historic_TDS_max = 0;
-float historic_pH_max  = 0;
-float historic_pH_min  = 0;
-float historic_TDS_min  = 0;
-float slope_factor_average_TDS = 0;
-float slope_factor_average_ph = 0;
+double historic_average_pH_range = 0;
+double historic_average_TDS_range = 0;
+double historic_range_pH  = 0;
+double historic_range_TDS = 0;
+double average_pH = 0;
+double average_TDS = 0;
+double historic_average_pH_min = 1000;
+double historic_average_pH_max = 0;
+double historic_average_TDS_min = 100000;
+double historic_average_TDS_max = 0;
+double historic_TDS_max = 0;
+double historic_pH_max  = 0;
+double historic_pH_min  = 0;
+double historic_TDS_min  = 0;
+double slope_factor_average_TDS = 0;
+double slope_factor_average_ph = 0;
 int recheck_count = 0;
 int run_again = 1;
 int valid = 0;
-float sample_array_TDS[30] = {0}, sample_array_pH[30] = {0}, smallest_value_TDS = 100000, largest_value_TDS = 0, smallest_value_pH = 100, largest_value_pH = 0, prev_largest_pH = 0, prev_largest_TDS = 0, TDS_range = 0,
+double sample_array_TDS[30] = {0}, sample_array_pH[30] = {0}, smallest_value_TDS = 100000, largest_value_TDS = 0, smallest_value_pH = 100, largest_value_pH = 0, prev_largest_pH = 0, prev_largest_TDS = 0, TDS_range = 0,
 		pH_range = 0, minimum_sec_duration = 36;
 
 void resetStabilityVars()
@@ -558,7 +557,7 @@ void resetStabilityVars()
 		 historic_average_TDS_max = 0;
 		//slope_factor_TDS = 0;
 		//slope_factor_ph = 0;
-		for(int h = 0; h<30; h++)
+		for(int h = 0; h<200; h++)
 		{
 			historic_largest_pH[h] = 0;
 			historic_smallest_pH[h] = 0;
@@ -570,6 +569,9 @@ int data_array_length = 10000, write_times = 0, been_written = 0, number_of_file
 		stability_value = 1, initial_run = 1, start_time_seconds = 0, end_time_seconds = 0, total_time_seconds = 0, max_runs = 0, previous_written = 0, up_down_total = 0;
 float prev_smallest_ph = 0;
 float prev_smallest_TDS = 0;
+int num_sensor_samples = 15;
+
+int sample_index1 = 0;
 void isStabalized()  // will take a few samples of the waters pH and TDS to determine if the solution has stabilized. If stabilized returns one else 0
 {		// get the current system time sets global variables sTime and sDate in RTC_driver.c
 
@@ -587,13 +589,16 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 
 	// vTaskDelay(100);
 	done_sampling = 'n';
-	 getFiveSamples(1);
+	// getSensorValues(1);
 
-	for(int samples = 0; samples<30; samples++)			   // sample TDS and PH every half second for 30 times
+	for(int samples = 0; samples<num_sensor_samples; samples++)			   // sample TDS and PH every half second for 30 times
 	{
-		sample_array_TDS[samples] = readWaterTDS();
-		sample_array_pH[samples] = readPH();
+		getSensorValues(0);
+
+		sample_array_TDS[samples] = TDS;
+		sample_array_pH[samples] = pH;
 		osDelay(10);
+
 	}
 //	osThreadResume(WaterTempControHandle);
 	done_sampling = 'y';
@@ -608,21 +613,24 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
     float slope_factor_ph = 0;							   // if positive we are increasing, negative decreasing
     float slope_factor_TDS = 0;
 
-	for(int i = 0; i<30;i++)
+	for(int i = 0; i<num_sensor_samples;i++)
 	{
 
-		if(sample_array_TDS[i] > largest_value_TDS)  largest_value_TDS  = sample_array_TDS[i];	// find largest and smallest values in our data
-		if(sample_array_TDS[i] < smallest_value_TDS) smallest_value_TDS = sample_array_TDS[i];
-		if(sample_array_pH[i]  > largest_value_pH)	 largest_value_pH   = sample_array_pH[i];
-		if(sample_array_pH[i]  < smallest_value_pH)  smallest_value_pH  = sample_array_pH[i];
-
-		average_pH  += sample_array_pH[i];
-		average_TDS += sample_array_TDS[i];
-		// find the slope of the data
-		if(i>1)
+		if(sample_array_TDS[i] > largest_value_TDS  && sample_array_TDS[i] != 0)  largest_value_TDS  = sample_array_TDS[i];	// find largest and smallest values in our data
+		if(sample_array_TDS[i] < smallest_value_TDS && sample_array_TDS[i] != 0) smallest_value_TDS = sample_array_TDS[i];
+		if(sample_array_pH[i]  > largest_value_pH && sample_array_pH[i] != 0) 	 largest_value_pH   = sample_array_pH[i];
+		if(sample_array_pH[i]  < smallest_value_pH && sample_array_pH[i] != 0)   smallest_value_pH  = sample_array_pH[i];
+		if( sample_array_TDS[i] != 0 && sample_array_pH[i] != 0)
 		{
-			slope_factor_TDS += (sample_array_TDS[i] - sample_array_TDS[i-1]);
-			slope_factor_ph  += (sample_array_pH[i]  - sample_array_pH[i-1]);
+			average_pH  += sample_array_pH[i];
+			average_TDS += sample_array_TDS[i];
+			sample_index1++;
+			// find the slope of the data
+			if(i>1)
+			{
+				slope_factor_TDS += (sample_array_TDS[i] - sample_array_TDS[i-1]);
+				slope_factor_ph  += (sample_array_pH[i]  - sample_array_pH[i-1]);
+			}
 		}
 	}
 
@@ -634,9 +642,10 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 	historic_pH_max  = 0;
 	historic_pH_min  = 100000;
 
-	average_pH  = average_pH/30;
-	average_TDS = average_TDS/30;
-	if(historic_sample_index < 30)
+	average_pH  = average_pH/sample_index1;
+	average_TDS = average_TDS/sample_index1;
+	sample_index1 = 0;
+	if(historic_sample_index < number_historic_samples)
 	{
 		historic_largest_pH[historic_sample_index]   = largest_value_pH;
 		historic_smallest_pH[historic_sample_index]  = smallest_value_pH;
@@ -645,35 +654,36 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 		historic_average_pH[historic_sample_index]   = average_pH;
 		historic_average_TDS[historic_sample_index]  = average_TDS;
 		historic_sample_index++;
-
-		if(historic_sample_index > 7)
-		{
-			for(int k = historic_sample_index-7; k<historic_sample_index; k++) 								// if we have at-least 5 samples find the max and min to calculate range of the last 5 runs
-			{
-				if(historic_largest_TDS[k]  > historic_TDS_max)   		historic_TDS_max 		  = historic_largest_TDS[k];	// find largest and smallest valuesin our data
-				if(historic_smallest_TDS[k] < historic_TDS_min)  		historic_TDS_min		  = historic_smallest_TDS[k];
-				if(historic_largest_pH[k]   > historic_pH_max)     		historic_pH_max  		  = historic_largest_pH[k];
-				if(historic_smallest_pH[k]  < historic_pH_min)    		historic_pH_min  		  = historic_smallest_pH[k];
-				if(historic_average_pH[k]   < historic_average_pH_min)  historic_average_pH_min   = historic_average_pH[k];
-				if(historic_average_pH[k]   > historic_average_pH_max)  historic_average_pH_max   = historic_average_pH[k];
-				if(historic_average_TDS[k]  < historic_average_TDS_min) historic_average_TDS_min  = historic_average_TDS[k];
-				if(historic_average_TDS[k]  > historic_average_TDS_max) historic_average_TDS_max  = historic_average_TDS[k];
-
-				slope_factor_average_TDS += (historic_average_TDS[historic_sample_index]-historic_average_TDS[historic_sample_index-1]);
-				slope_factor_average_ph  += (historic_average_TDS[historic_sample_index]-historic_average_TDS[historic_sample_index-1]);
-			}
-			historic_range_pH  = historic_pH_max  - historic_pH_min;
-			historic_range_TDS = historic_TDS_max - historic_TDS_min;
-			historic_average_pH_range  = historic_average_pH_max  - historic_average_pH_min;
-		    historic_average_TDS_range = historic_average_TDS_max - historic_average_TDS_min;
-		}
 	}
 	else
 	{
 		resetStabilityVars();
 		run_again = 2;
 	}
-	if(run_again != 2 && (historic_sample_index <= 7 || TDS_range > 10 || pH_range > 0.06 || historic_average_pH_range > 0.02 || historic_average_pH_range < -0.02  || historic_range_pH > 0.07 || historic_range_pH < -0.07 || historic_range_TDS > 12.8 || historic_range_TDS < -12.8 || historic_average_TDS_range > 2.6 || historic_average_TDS_range < -2.6))
+	if(historic_sample_index >= 20)
+	{
+		for(int k = historic_sample_index-20; k<historic_sample_index; k++) 								// if we have at-least 5 samples find the max and min to calculate range of the last 5 runs
+		{
+			if(historic_largest_TDS[k]  > historic_TDS_max)   		historic_TDS_max 		  = historic_largest_TDS[k];	// find largest and smallest valuesin our data
+			if(historic_smallest_TDS[k] < historic_TDS_min)  		historic_TDS_min		  = historic_smallest_TDS[k];
+			if(historic_largest_pH[k]   > historic_pH_max )     		historic_pH_max  		  = historic_largest_pH[k];
+			if(historic_smallest_pH[k]  < historic_pH_min )    		historic_pH_min  		  = historic_smallest_pH[k];
+			if(historic_average_pH[k]   < historic_average_pH_min)  historic_average_pH_min   = historic_average_pH[k];
+			if(historic_average_pH[k]   > historic_average_pH_max)  historic_average_pH_max   = historic_average_pH[k];
+			if(historic_average_TDS[k]  < historic_average_TDS_min) historic_average_TDS_min  = historic_average_TDS[k];
+			if(historic_average_TDS[k]  > historic_average_TDS_max) historic_average_TDS_max  = historic_average_TDS[k];
+
+			slope_factor_average_TDS += (historic_average_TDS[historic_sample_index]-historic_average_TDS[historic_sample_index-1]);
+			slope_factor_average_ph  += (historic_average_TDS[historic_sample_index]-historic_average_TDS[historic_sample_index-1]);
+		}
+		historic_range_pH  = historic_pH_max  - historic_pH_min;
+		historic_range_TDS = historic_TDS_max - historic_TDS_min;
+		historic_average_pH_range  = historic_average_pH_max  - historic_average_pH_min;
+		historic_average_TDS_range = historic_average_TDS_max - historic_average_TDS_min;
+	}
+
+
+	if(run_again != 2 && (historic_sample_index <= 20 || TDS_range > 5.5 || pH_range > 0.1 || historic_average_pH_range > 1.0 || historic_average_pH_range < -1.0  || historic_range_pH > 0.3 || historic_range_pH < -0.3 || historic_range_TDS > 7.0 || historic_range_TDS < -7.0 || historic_average_TDS_range > 10.0 || historic_average_TDS_range < -10.0))
 	{
  		valid = 0;
  		recheck_count++;
@@ -702,14 +712,14 @@ int waitForWaterToStabilize() // Returns the total time in seconds
 
 	while(run_again > 0)
 	{
-		osThreadSuspend(WaterTempControHandle);
+	//	osThreadSuspend(WaterTempControHandle);
 
 
 
 		isStabalized();// if we are not stabilized wait until we are
 
-		osThreadResume(WaterTempControHandle);
-		osDelay(5000);
+		//osThreadResume(WaterTempControHandle);
+		osDelay(2000);
 	}
 
 	getTime();
@@ -733,14 +743,14 @@ char setting_water_temp = 'n';
 int water_temp_index = 0;
 int temp_up = 0, temp_down = 0;
 int number_of_stable_temp_runs = 0;
-
+char heat_on = 'n', cool_on = 'n';
 void waterTempControl()
 {
-	 osThreadSuspend(BalanceWaterHandle);
+	// osThreadSuspend(BalanceWaterHandle);
 	 //osDelay(5000);
 	temp_up = 0;
 	temp_down = 0;
-	if(done_sampling == 'y' && new_sample == 'y')
+	if(new_sample == 'y')
 	{
 		new_sample = 'n';
 		if(setting_water_temp == 'n')	// if we are not changing the pH or nutrient level, check to see if we are out of bounds
@@ -764,20 +774,32 @@ void waterTempControl()
 		if(number_of_stable_temp_runs >= 0 && number_of_stable_temp_runs <= 5) // consider changing to 10
 		{
 
-			if(temp_up == 1) 	heatOn();	// if we need heat the water turn on the heater
-			else if(temp_down == 1);	//coolOn();	// if we need cool the water turn on the cooler
+			if(temp_up == 1 && heat_on == 'n')
+			{
+				heatOn();	// if we need heat the water turn on the heater
+				heat_on = 'y';
+				cool_on = 'n';
+			}
+			else if(temp_down == 1 && cool_on == 'n')
+			{
+				coolOn();	// if we need cool the water turn on the cooler
+				cool_on = 'y';
+				heat_on = 'n';
+			}
 		    number_of_stable_temp_runs++;
 		}
 		if(number_of_stable_temp_runs > 5)
 		{
-		//	heatCoolOff();
+			heat_on = 'n';
+			cool_on = 'n';
+			heatCoolOff();
 			number_of_stable_temp_runs = 0;
 		}
 	}
 
-	osThreadResume(BalanceWaterHandle);
+//	osThreadResume(BalanceWaterHandle);
 	osDelay(5000);
-	//else if(done_sampling == 'y' && new_sample == 'n') getFiveSamples(1);
+	//else if(done_sampling == 'y' && new_sample == 'n') getSensorValues(1);
 	//done_sampling = 'y';
 }
 void systemControl()
@@ -786,7 +808,7 @@ void systemControl()
 
 	if(run_once == 1)// && write_times == 2)
 	{
-		//doseWater(30,30,50);
+		//doseWater(50,50,50);
 		run_once = 0;
 		fanOn();
 		setTimeDate(0x01, 0x08, 0x22, 0x19, 0x09, 0x00); // MUST BE HEX BUT NOT CONVERTED i,e,(the 22 day of the month is represented as 0x22 NOT 0x16) (month, day, year, hours, min, sec)
@@ -798,13 +820,13 @@ void systemControl()
 	//float_to_string(10.21);
 	//convertedString[1] = convertedString[1];
 	//waterTempControl();
-	//getFiveSamples(1);
+	//getSensorValues(1);
 	// osThreadSuspend(WaterTempControHandle);
 	// osDelay(5000);
 
 
-	getFiveSamples(1);
-	//balancePhAndNutrient();
+	//getSensorValues(1);
+	balancePhAndNutrient();
 
 	//osThreadResume(WaterTempControHandle);
 	 //osDelay(5000);

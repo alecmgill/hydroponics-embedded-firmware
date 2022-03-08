@@ -9,9 +9,9 @@
 #define INC_PH_DRIVER_H_
 #include "main.h"
 #include "stm32f2xx_hal.h"
-float read_voltage();
+double read_voltage();
 
-float convert_ph(float voltage_mV);
+double convert_ph(float voltage_mV);
 
 void cal_mid(float voltage_mV);
 

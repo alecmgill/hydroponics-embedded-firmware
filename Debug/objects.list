@@ -1,4 +1,3 @@
-"./Core/Src/ADC_driver.o"
 "./Core/Src/File_Handling.o"
 "./Core/Src/RTC_driver.o"
 "./Core/Src/TDS_driver.o"

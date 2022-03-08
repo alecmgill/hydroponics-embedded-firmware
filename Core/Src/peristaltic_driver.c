@@ -23,11 +23,7 @@
 #include "cmsis_os.h"
 //extern TIM_HandleTypeDef step_timer;
 
-void delay_Stepper(uint16_t us)
-{
-		__HAL_TIM_SET_COUNTER(&htim2,0);  			 // set the counter value a 0
-		while (__HAL_TIM_GET_COUNTER(&htim2) < us);  // wait for the counter to reach the us input in the parameter
-}
+
 double steps = 0;
 int calc_dose_steps(double miliLiters)	// takes a dose in mls and returns the number of steps for that volume
 {
@@ -59,21 +55,24 @@ void enablePumps(int nutrient_steps, int ph_up_steps, int ph_down_steps)	// enab
 
 void step(int nutrient_steps, int ph_up_steps, int ph_down_steps)
 {
+	 DWT_Delay_Init();
+
 	int most_steps = nutrient_steps;										// find the largest dose in steps. Will be used in step loop
 	if(ph_up_steps>most_steps) most_steps 	= ph_up_steps;
 	if(ph_down_steps>most_steps) most_steps = ph_down_steps;
 	enablePumps(nutrient_steps,ph_up_steps,ph_down_steps);					// enable only the pumps that are going to dose
-	HAL_TIM_Base_Start(&htim2);
+	//HAL_TIM_Base_Start(&htim2);
+
 	for(int i = 0; i<most_steps; i++)										// step each pump their respective number of steps.
 	{
 		if(i<nutrient_steps) HAL_GPIO_TogglePin(GPIOE, nutrient_pump_Pin);
 		if(i<ph_up_steps)	 HAL_GPIO_TogglePin(GPIOE, ph_up_pump_Pin);
 		if(i<ph_down_steps)	 HAL_GPIO_TogglePin(GPIOE, ph_down_pump_Pin);
-		delay_Stepper(40);
+		 DWT_Delay_us(40);
 		if(i<nutrient_steps) HAL_GPIO_TogglePin(GPIOE, nutrient_pump_Pin);
 		if(i<ph_up_steps)	 HAL_GPIO_TogglePin(GPIOE, ph_up_pump_Pin);
 		if(i<ph_down_steps)	 HAL_GPIO_TogglePin(GPIOE, ph_down_pump_Pin);
-		delay_Stepper(40);
+		 DWT_Delay_us(40);
 	}
 	disablePumps();
 }

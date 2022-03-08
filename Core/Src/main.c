@@ -60,7 +60,6 @@ DMA_HandleTypeDef hdma_adc1;
 RTC_HandleTypeDef hrtc;
 
 TIM_HandleTypeDef htim1;
-TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim12;
@@ -85,7 +84,6 @@ RTC_AlarmTypeDef sAlarm = {0};
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM1_Init(void);
-static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM10_Init(void);
 static void MX_RTC_Init(void);
@@ -96,7 +94,7 @@ void StartBalanceWater(void const * argument);
 void StartWaterTempControl(void const * argument);
 
 /* USER CODE BEGIN PFP */
-uint32_t nutrient_ph_values[10] = {0};
+uint32_t nutrient_ph_values[85] = {0};
 
 
 extern void MX_USB_HOST_Process(void);
@@ -137,7 +135,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM1_Init();
-  MX_TIM2_Init();
   MX_TIM4_Init();
   MX_TIM10_Init();
   MX_RTC_Init();
@@ -148,7 +145,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
  // (DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength)
 //HAL_DMA_RegisterCallback(&hdma_adc2,HAL_DMA_XFER_CPLT_CB_ID,&DMATransferComplete);
-HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 10);
+HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 80);
 
 
 //HAL_DMA_Start_IT(&hdma_adc2,(uint32_t)&nutrient_ph_values,(uint32_t)&hadc2,(uint32_t)2);
@@ -173,19 +170,19 @@ HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 10);
 
   /* Create the thread(s) */
   /* definition and creation of BalanceWater */
- // osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
-//  BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
+  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
+  BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
 
   /* definition and creation of WaterTempContro */
-//  osThreadStaticDef(WaterTempContro, StartWaterTempControl, osPriorityNormal, 0, 2048, WaterTempControBuffer, &WaterTempControControlBlock);
-//  WaterTempControHandle = osThreadCreate(osThread(WaterTempContro), NULL);
+  osThreadStaticDef(WaterTempContro, StartWaterTempControl, osPriorityNormal, 0, 2048, WaterTempControBuffer, &WaterTempControControlBlock);
+  WaterTempControHandle = osThreadCreate(osThread(WaterTempContro), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
- // osKernelStart();
+  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
@@ -484,51 +481,6 @@ static void MX_TIM1_Init(void)
 }
 
 /**
-  * @brief TIM2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM2_Init(void)
-{
-
-  /* USER CODE BEGIN TIM2_Init 0 */
-
-  /* USER CODE END TIM2_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM2_Init 1 */
-
-  /* USER CODE END TIM2_Init 1 */
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 36-1;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 0xffff-1;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM2_Init 2 */
-
-  /* USER CODE END TIM2_Init 2 */
-
-}
-
-/**
   * @brief TIM4 Initialization Function
   * @param None
   * @retval None
@@ -692,7 +644,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, ph_up_pump_Pin|ph_down_pump_Pin|nutrient_pump_Pin|ph_up_enable_Pin
-                          |ph_down_enable_Pin|nutrient_enable_Pin, GPIO_PIN_SET);
+                          |ph_down_enable_Pin|nutrient_enable_Pin|water_heat_cool_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_RESET);
@@ -701,7 +653,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(water_temp_GPIO_Port, water_temp_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, water_heat_cool_Pin|grow_light_Pin|water_pump_enable_Pin|water_heat_cool_enable_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOE, grow_light_Pin|water_pump_enable_Pin|water_heat_cool_enable_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : ph_up_pump_Pin ph_down_pump_Pin nutrient_pump_Pin ph_up_enable_Pin
                            ph_down_enable_Pin nutrient_enable_Pin water_heat_cool_Pin */
@@ -750,31 +702,13 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 
-int adc_index = 0;
-char new_TDS_sample = 'n';
-char new_pH_sample = 'n';
-char retrieved_ADC_value = 'n';
+
+
+char retrieved_ADC_values = 'n';
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-
-
-	if(adc_index == 0)
-	{
-		//nutrient_ph_values[adc_index]  = HAL_ADC_GetValue(&hadc2);
-
-		adc_index = 1;
-		new_TDS_sample = 'y';
-	}
-	else if(adc_index == 1)
-	{
-		//nutrient_ph_values[adc_index] = HAL_ADC_GetValue(&hadc2);
-		new_pH_sample = 'y';
-		adc_index = 0;
-	}
-
-	retrieved_ADC_value = 'y';
-
-
+	retrieved_ADC_values = 'y';
+	//water_temp = readWaterTemp();
 
 }
 /* USER CODE END 4 */
@@ -815,6 +749,7 @@ void StartWaterTempControl(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+	waterTempControl();
     osDelay(1);
   }
   /* USER CODE END StartWaterTempControl */

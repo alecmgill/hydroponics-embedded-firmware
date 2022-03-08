@@ -9,7 +9,6 @@
 #define FILE_HANDLING_H_
 
 #include "fatfs.h"
-#include "string.h"
 #include "stdio.h"
 #include "stm32f2xx_hal.h"
 extern UINT br, bw;  // File read/write count

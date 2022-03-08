@@ -74,8 +74,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/RTC_driver.h ../Core/Inc/light_driver.h \
  ../Core/Inc/hydro_control_loop.h ../Core/Inc/nutrient_pH_driver.h \
  ../Core/Inc/fan_driver.h ../Core/Inc/pH_driver.h \
- ../Core/Inc/TDS_driver.h ../Core/Inc/calibrate_system.h \
- ../Core/Inc/hydro_control_loop.h
+ ../Core/Inc/TDS_driver.h
 
 ../Core/Inc/main.h:
 
@@ -254,7 +253,3 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/pH_driver.h:
 
 ../Core/Inc/TDS_driver.h:
-
-../Core/Inc/calibrate_system.h:
-
-../Core/Inc/hydro_control_loop.h:

@@ -7,9 +7,9 @@
 #include "fan_driver.h"
 
 
-float system_fan_sp = 5.5;
-float plant_fan_sp = 3.5;
-float heat_cool_fan_sp = 3.5; // set default fan speed values
+double system_fan_sp = 5.5;
+double plant_fan_sp = 3.5;
+double heat_cool_fan_sp = 2.5; // set default fan speed values
 void fanOn()
 {
    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);	// start heater cooler fan control

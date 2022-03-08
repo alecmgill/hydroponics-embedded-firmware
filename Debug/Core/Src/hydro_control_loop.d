@@ -52,8 +52,7 @@ Core/Src/hydro_control_loop.o: ../Core/Src/hydro_control_loop.c \
  ../Core/Inc/nutrient_pH_driver.h ../Core/Inc/peristaltic_driver.h \
  ../Core/Inc/RTC_driver.h ../Core/Inc/light_driver.h \
  ../Core/Inc/sensors.h ../Core/Inc/fan_driver.h ../Core/Inc/pH_driver.h \
- ../Core/Inc/TDS_driver.h ../Core/Inc/calibrate_system.h \
- ../Core/Inc/hydro_control_loop.h ../Core/Inc/File_Handling.h \
+ ../Core/Inc/TDS_driver.h ../Core/Inc/File_Handling.h \
  ../FATFS/App/fatfs.h ../Middlewares/Third_Party/FatFs/src/ff.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
  ../Core/Inc/main.h \
@@ -191,10 +190,6 @@ Core/Src/hydro_control_loop.o: ../Core/Src/hydro_control_loop.c \
 ../Core/Inc/pH_driver.h:
 
 ../Core/Inc/TDS_driver.h:
-
-../Core/Inc/calibrate_system.h:
-
-../Core/Inc/hydro_control_loop.h:
 
 ../Core/Inc/File_Handling.h:
 

@@ -48,9 +48,9 @@ extern RTC_AlarmTypeDef sAlarm;
 extern osThreadId WaterTempControHandle;
 extern osThreadId BalanceWaterHandle;
 extern GPIO_InitTypeDef  GPIO_InitStruct;
-extern uint32_t nutrient_ph_values[10];
-extern char new_TDS_sample;
-extern char new_pH_sample;
+extern uint32_t nutrient_ph_values[85];
+extern char retrieved_ADC_values;
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
