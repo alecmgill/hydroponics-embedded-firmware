@@ -186,7 +186,7 @@ __lock___malloc_recursive_mutex
                     0x1               c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-lock.o)
 hadc1               0x48              ./Core/Src/main.o
 free_space          0x4               ./Core/Src/File_Handling.o
-BalanceWaterBuffer  0x4000            ./Core/Src/main.o
+BalanceWaterBuffer  0x3070            ./Core/Src/main.o
 Temp_byte1          0x1               ./Core/Src/sensors.o
 WaterTempControHandle
                     0x4               ./Core/Src/main.o
@@ -664,7 +664,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xf2 ./Core/Src/TDS_driver.o
  .debug_macro   0x0000000000000000       0xb8 ./Core/Src/TDS_driver.o
  .debug_line    0x0000000000000000      0xa88 ./Core/Src/TDS_driver.o
- .debug_str     0x0000000000000000    0xcb0a4 ./Core/Src/TDS_driver.o
+ .debug_str     0x0000000000000000    0xcb0a5 ./Core/Src/TDS_driver.o
  .comment       0x0000000000000000       0x54 ./Core/Src/TDS_driver.o
  .debug_frame   0x0000000000000000       0x3c ./Core/Src/TDS_driver.o
  .ARM.attributes
@@ -9022,7 +9022,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8c ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
  .debug_macro   0x0000000000000000       0x43 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
  .debug_line    0x0000000000000000      0x5eb ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_str     0x0000000000000000     0x9d6f ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
+ .debug_str     0x0000000000000000     0x9d70 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
  .comment       0x0000000000000000       0x54 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
  .ARM.attributes
                 0x0000000000000000       0x33 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
@@ -9132,7 +9132,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x91 ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
  .debug_macro   0x0000000000000000       0x19 ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
  .debug_line    0x0000000000000000      0xaa5 ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
- .debug_str     0x0000000000000000     0xbbc3 ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
+ .debug_str     0x0000000000000000     0xbbc4 ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
  .comment       0x0000000000000000       0x54 ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
  .debug_frame   0x0000000000000000      0x1a4 ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
  .ARM.attributes
@@ -9431,7 +9431,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8c ./Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.o
  .debug_macro   0x0000000000000000       0x18 ./Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.o
  .debug_line    0x0000000000000000      0xed9 ./Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.o
- .debug_str     0x0000000000000000     0xba7c ./Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.o
+ .debug_str     0x0000000000000000     0xba7d ./Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.o
  .comment       0x0000000000000000       0x54 ./Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.o
  .debug_frame   0x0000000000000000      0x328 ./Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.o
  .ARM.attributes
@@ -9649,7 +9649,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8d ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
  .debug_macro   0x0000000000000000       0x91 ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
  .debug_line    0x0000000000000000      0x621 ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
- .debug_str     0x0000000000000000     0xbc66 ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
+ .debug_str     0x0000000000000000     0xbc67 ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
  .comment       0x0000000000000000       0x54 ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
  .ARM.attributes
                 0x0000000000000000       0x33 ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
@@ -10853,16 +10853,15 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .text.fanOn    0x00000000080012e4       0xe0 ./Core/Src/fan_driver.o
                 0x00000000080012e4                fanOn
  .text.vApplicationGetIdleTaskMemory
-                0x00000000080013c4       0x30 ./Core/Src/freertos.o
+                0x00000000080013c4       0x34 ./Core/Src/freertos.o
                 0x00000000080013c4                vApplicationGetIdleTaskMemory
- .text.heatOn   0x00000000080013f4       0x2c ./Core/Src/heater_driver.o
-                0x00000000080013f4                heatOn
+ .text.heatOn   0x00000000080013f8       0x2c ./Core/Src/heater_driver.o
+                0x00000000080013f8                heatOn
  .text.heatCoolOff
-                0x0000000008001420       0x18 ./Core/Src/heater_driver.o
-                0x0000000008001420                heatCoolOff
- .text.coolOn   0x0000000008001438       0x24 ./Core/Src/heater_driver.o
-                0x0000000008001438                coolOn
- *fill*         0x000000000800145c        0x4 
+                0x0000000008001424       0x18 ./Core/Src/heater_driver.o
+                0x0000000008001424                heatCoolOff
+ .text.coolOn   0x000000000800143c       0x24 ./Core/Src/heater_driver.o
+                0x000000000800143c                coolOn
  .text.floatToString
                 0x0000000008001460      0x5b8 ./Core/Src/hydro_control_loop.o
                 0x0000000008001460                floatToString
@@ -12738,7 +12737,7 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .igot.plt      0x0000000020000434        0x0 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp/crtbegin.o
                 0x0000000020000434                . = ALIGN (0x4)
 
-.bss            0x0000000020000438    0x10578 load address 0x000000000801af00
+.bss            0x0000000020000438    0x113e8 load address 0x000000000801af00
                 0x0000000020000438                _sbss = .
                 0x0000000020000438                __bss_start__ = _sbss
  *(.bss)
@@ -12749,417 +12748,417 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .bss.xIdleTaskTCBBuffer
                 0x00000000200006d4       0xb4 ./Core/Src/freertos.o
  .bss.xIdleStack
-                0x0000000020000788      0x200 ./Core/Src/freertos.o
+                0x0000000020000788     0x2000 ./Core/Src/freertos.o
  .bss.pH_up_dose
-                0x0000000020000988        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020000988                pH_up_dose
+                0x0000000020002788        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020002788                pH_up_dose
  .bss.pH_down_dose
-                0x0000000020000990        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020000990                pH_down_dose
+                0x0000000020002790        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020002790                pH_down_dose
  .bss.nutrient_dose
-                0x0000000020000998        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020000998                nutrient_dose
+                0x0000000020002798        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020002798                nutrient_dose
  .bss.total_nutrient_ml
-                0x00000000200009a0        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009a0                total_nutrient_ml
+                0x00000000200027a0        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027a0                total_nutrient_ml
  .bss.total_pH_up_ml
-                0x00000000200009a8        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009a8                total_pH_up_ml
+                0x00000000200027a8        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027a8                total_pH_up_ml
  .bss.total_pH_down_ml
-                0x00000000200009b0        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009b0                total_pH_down_ml
+                0x00000000200027b0        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027b0                total_pH_down_ml
  .bss.total_nutrient_ml_per_file
-                0x00000000200009b8        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009b8                total_nutrient_ml_per_file
+                0x00000000200027b8        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027b8                total_nutrient_ml_per_file
  .bss.total_pH_up_ml_per_file
-                0x00000000200009c0        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009c0                total_pH_up_ml_per_file
+                0x00000000200027c0        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027c0                total_pH_up_ml_per_file
  .bss.total_pH_down_ml_per_file
-                0x00000000200009c8        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009c8                total_pH_down_ml_per_file
- .bss.TDS       0x00000000200009d0        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009d0                TDS
- .bss.pH        0x00000000200009d8        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009d8                pH
+                0x00000000200027c8        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027c8                total_pH_down_ml_per_file
+ .bss.TDS       0x00000000200027d0        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027d0                TDS
+ .bss.pH        0x00000000200027d8        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027d8                pH
  .bss.water_temp
-                0x00000000200009e0        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200009e0                water_temp
+                0x00000000200027e0        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200027e0                water_temp
  .bss.balance_data
-                0x00000000200009e8     0x2710 ./Core/Src/hydro_control_loop.o
-                0x00000000200009e8                balance_data
- .bss.error     0x00000000200030f8        0x4 ./Core/Src/hydro_control_loop.o
-                0x00000000200030f8                error
+                0x00000000200027e8     0x2710 ./Core/Src/hydro_control_loop.o
+                0x00000000200027e8                balance_data
+ .bss.error     0x0000000020004ef8        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004ef8                error
  .bss.balance_index
-                0x00000000200030fc        0x4 ./Core/Src/hydro_control_loop.o
-                0x00000000200030fc                balance_index
- .bss.i         0x0000000020003100        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020003100                i
+                0x0000000020004efc        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004efc                balance_index
+ .bss.i         0x0000000020004f00        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f00                i
  .bss.time_to_bal_nutrient
-                0x0000000020003104        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020003104                time_to_bal_nutrient
+                0x0000000020004f04        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f04                time_to_bal_nutrient
  .bss.time_to_bal_pH
-                0x0000000020003108        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020003108                time_to_bal_pH
- .bss.pH_up     0x000000002000310c        0x4 ./Core/Src/hydro_control_loop.o
-                0x000000002000310c                pH_up
- .bss.pH_down   0x0000000020003110        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020003110                pH_down
+                0x0000000020004f08        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f08                time_to_bal_pH
+ .bss.pH_up     0x0000000020004f0c        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f0c                pH_up
+ .bss.pH_down   0x0000000020004f10        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f10                pH_down
  .bss.nutrient_up
-                0x0000000020003114        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020003114                nutrient_up
+                0x0000000020004f14        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f14                nutrient_up
  .bss.num_of_stable_runs
-                0x0000000020003118        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020003118                num_of_stable_runs
+                0x0000000020004f18        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f18                num_of_stable_runs
  .bss.file_number
-                0x000000002000311c        0x4 ./Core/Src/hydro_control_loop.o
-                0x000000002000311c                file_number
+                0x0000000020004f1c        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f1c                file_number
  .bss.file_index
-                0x0000000020003120        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020003120                file_index
- .bss.buffer    0x0000000020003124       0x19 ./Core/Src/hydro_control_loop.o
-                0x0000000020003124                buffer
- *fill*         0x000000002000313d        0x3 
+                0x0000000020004f20        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f20                file_index
+ .bss.buffer    0x0000000020004f24       0x19 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f24                buffer
+ *fill*         0x0000000020004f3d        0x3 
  .bss.convertedString
-                0x0000000020003140        0xa ./Core/Src/hydro_control_loop.o
-                0x0000000020003140                convertedString
- *fill*         0x000000002000314a        0x2 
- .bss.one_run   0x000000002000314c        0x4 ./Core/Src/hydro_control_loop.o
-                0x000000002000314c                one_run
+                0x0000000020004f40        0xa ./Core/Src/hydro_control_loop.o
+                0x0000000020004f40                convertedString
+ *fill*         0x0000000020004f4a        0x2 
+ .bss.one_run   0x0000000020004f4c        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f4c                one_run
  .bss.historic_largest_pH
-                0x0000000020003150      0x640 ./Core/Src/hydro_control_loop.o
-                0x0000000020003150                historic_largest_pH
+                0x0000000020004f50      0x640 ./Core/Src/hydro_control_loop.o
+                0x0000000020004f50                historic_largest_pH
  .bss.historic_smallest_pH
-                0x0000000020003790      0x640 ./Core/Src/hydro_control_loop.o
-                0x0000000020003790                historic_smallest_pH
+                0x0000000020005590      0x640 ./Core/Src/hydro_control_loop.o
+                0x0000000020005590                historic_smallest_pH
  .bss.historic_largest_TDS
-                0x0000000020003dd0      0x640 ./Core/Src/hydro_control_loop.o
-                0x0000000020003dd0                historic_largest_TDS
+                0x0000000020005bd0      0x640 ./Core/Src/hydro_control_loop.o
+                0x0000000020005bd0                historic_largest_TDS
  .bss.historic_smallest_TDS
-                0x0000000020004410      0x640 ./Core/Src/hydro_control_loop.o
-                0x0000000020004410                historic_smallest_TDS
+                0x0000000020006210      0x640 ./Core/Src/hydro_control_loop.o
+                0x0000000020006210                historic_smallest_TDS
  .bss.historic_average_pH
-                0x0000000020004a50      0x640 ./Core/Src/hydro_control_loop.o
-                0x0000000020004a50                historic_average_pH
+                0x0000000020006850      0x640 ./Core/Src/hydro_control_loop.o
+                0x0000000020006850                historic_average_pH
  .bss.historic_average_TDS
-                0x0000000020005090      0x640 ./Core/Src/hydro_control_loop.o
-                0x0000000020005090                historic_average_TDS
+                0x0000000020006e90      0x640 ./Core/Src/hydro_control_loop.o
+                0x0000000020006e90                historic_average_TDS
  .bss.historic_sample_index
-                0x00000000200056d0        0x4 ./Core/Src/hydro_control_loop.o
-                0x00000000200056d0                historic_sample_index
- *fill*         0x00000000200056d4        0x4 
+                0x00000000200074d0        0x4 ./Core/Src/hydro_control_loop.o
+                0x00000000200074d0                historic_sample_index
+ *fill*         0x00000000200074d4        0x4 
  .bss.historic_average_pH_range
-                0x00000000200056d8        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200056d8                historic_average_pH_range
+                0x00000000200074d8        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200074d8                historic_average_pH_range
  .bss.historic_average_TDS_range
-                0x00000000200056e0        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200056e0                historic_average_TDS_range
+                0x00000000200074e0        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200074e0                historic_average_TDS_range
  .bss.historic_range_pH
-                0x00000000200056e8        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200056e8                historic_range_pH
+                0x00000000200074e8        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200074e8                historic_range_pH
  .bss.historic_range_TDS
-                0x00000000200056f0        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200056f0                historic_range_TDS
+                0x00000000200074f0        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200074f0                historic_range_TDS
  .bss.average_pH
-                0x00000000200056f8        0x8 ./Core/Src/hydro_control_loop.o
-                0x00000000200056f8                average_pH
+                0x00000000200074f8        0x8 ./Core/Src/hydro_control_loop.o
+                0x00000000200074f8                average_pH
  .bss.average_TDS
-                0x0000000020005700        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005700                average_TDS
+                0x0000000020007500        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007500                average_TDS
  .bss.historic_average_pH_max
-                0x0000000020005708        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005708                historic_average_pH_max
+                0x0000000020007508        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007508                historic_average_pH_max
  .bss.historic_average_TDS_max
-                0x0000000020005710        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005710                historic_average_TDS_max
+                0x0000000020007510        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007510                historic_average_TDS_max
  .bss.historic_TDS_max
-                0x0000000020005718        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005718                historic_TDS_max
+                0x0000000020007518        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007518                historic_TDS_max
  .bss.historic_pH_max
-                0x0000000020005720        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005720                historic_pH_max
+                0x0000000020007520        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007520                historic_pH_max
  .bss.historic_pH_min
-                0x0000000020005728        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005728                historic_pH_min
+                0x0000000020007528        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007528                historic_pH_min
  .bss.historic_TDS_min
-                0x0000000020005730        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005730                historic_TDS_min
+                0x0000000020007530        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007530                historic_TDS_min
  .bss.slope_factor_average_TDS
-                0x0000000020005738        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005738                slope_factor_average_TDS
+                0x0000000020007538        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007538                slope_factor_average_TDS
  .bss.slope_factor_average_ph
-                0x0000000020005740        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005740                slope_factor_average_ph
+                0x0000000020007540        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007540                slope_factor_average_ph
  .bss.recheck_count
-                0x0000000020005748        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005748                recheck_count
- .bss.valid     0x000000002000574c        0x4 ./Core/Src/hydro_control_loop.o
-                0x000000002000574c                valid
+                0x0000000020007548        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007548                recheck_count
+ .bss.valid     0x000000002000754c        0x4 ./Core/Src/hydro_control_loop.o
+                0x000000002000754c                valid
  .bss.sample_array_TDS
-                0x0000000020005750       0xf0 ./Core/Src/hydro_control_loop.o
-                0x0000000020005750                sample_array_TDS
+                0x0000000020007550       0xf0 ./Core/Src/hydro_control_loop.o
+                0x0000000020007550                sample_array_TDS
  .bss.sample_array_pH
-                0x0000000020005840       0xf0 ./Core/Src/hydro_control_loop.o
-                0x0000000020005840                sample_array_pH
+                0x0000000020007640       0xf0 ./Core/Src/hydro_control_loop.o
+                0x0000000020007640                sample_array_pH
  .bss.largest_value_TDS
-                0x0000000020005930        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005930                largest_value_TDS
+                0x0000000020007730        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007730                largest_value_TDS
  .bss.largest_value_pH
-                0x0000000020005938        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005938                largest_value_pH
+                0x0000000020007738        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007738                largest_value_pH
  .bss.prev_largest_pH
-                0x0000000020005940        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005940                prev_largest_pH
+                0x0000000020007740        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007740                prev_largest_pH
  .bss.prev_largest_TDS
-                0x0000000020005948        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005948                prev_largest_TDS
+                0x0000000020007748        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007748                prev_largest_TDS
  .bss.TDS_range
-                0x0000000020005950        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005950                TDS_range
- .bss.pH_range  0x0000000020005958        0x8 ./Core/Src/hydro_control_loop.o
-                0x0000000020005958                pH_range
+                0x0000000020007750        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007750                TDS_range
+ .bss.pH_range  0x0000000020007758        0x8 ./Core/Src/hydro_control_loop.o
+                0x0000000020007758                pH_range
  .bss.eq_end_time_sec
-                0x0000000020005960        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005960                eq_end_time_sec
+                0x0000000020007760        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007760                eq_end_time_sec
  .bss.eq_start_time_sec
-                0x0000000020005964        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005964                eq_start_time_sec
+                0x0000000020007764        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007764                eq_start_time_sec
  .bss.end_time_seconds
-                0x0000000020005968        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005968                end_time_seconds
+                0x0000000020007768        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007768                end_time_seconds
  .bss.total_time_seconds
-                0x000000002000596c        0x4 ./Core/Src/hydro_control_loop.o
-                0x000000002000596c                total_time_seconds
+                0x000000002000776c        0x4 ./Core/Src/hydro_control_loop.o
+                0x000000002000776c                total_time_seconds
  .bss.prev_smallest_ph
-                0x0000000020005970        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005970                prev_smallest_ph
+                0x0000000020007770        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007770                prev_smallest_ph
  .bss.prev_smallest_TDS
-                0x0000000020005974        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005974                prev_smallest_TDS
+                0x0000000020007774        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007774                prev_smallest_TDS
  .bss.sample_index1
-                0x0000000020005978        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005978                sample_index1
- .bss.temp_up   0x000000002000597c        0x4 ./Core/Src/hydro_control_loop.o
-                0x000000002000597c                temp_up
+                0x0000000020007778        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007778                sample_index1
+ .bss.temp_up   0x000000002000777c        0x4 ./Core/Src/hydro_control_loop.o
+                0x000000002000777c                temp_up
  .bss.temp_down
-                0x0000000020005980        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005980                temp_down
+                0x0000000020007780        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007780                temp_down
  .bss.number_of_stable_temp_runs
-                0x0000000020005984        0x4 ./Core/Src/hydro_control_loop.o
-                0x0000000020005984                number_of_stable_temp_runs
+                0x0000000020007784        0x4 ./Core/Src/hydro_control_loop.o
+                0x0000000020007784                number_of_stable_temp_runs
  .bss.light_on_time
-                0x0000000020005988        0xc ./Core/Src/light_driver.o
-                0x0000000020005988                light_on_time
+                0x0000000020007788        0xc ./Core/Src/light_driver.o
+                0x0000000020007788                light_on_time
  .bss.light_off_time
-                0x0000000020005994        0xc ./Core/Src/light_driver.o
-                0x0000000020005994                light_off_time
- .bss.sTime     0x00000000200059a0        0xc ./Core/Src/main.o
-                0x00000000200059a0                sTime
- .bss.sDate     0x00000000200059ac        0x4 ./Core/Src/main.o
-                0x00000000200059ac                sDate
+                0x0000000020007794        0xc ./Core/Src/light_driver.o
+                0x0000000020007794                light_off_time
+ .bss.sTime     0x00000000200077a0        0xc ./Core/Src/main.o
+                0x00000000200077a0                sTime
+ .bss.sDate     0x00000000200077ac        0x4 ./Core/Src/main.o
+                0x00000000200077ac                sDate
  .bss.nutrient_ph_values
-                0x00000000200059b0      0x154 ./Core/Src/main.o
-                0x00000000200059b0                nutrient_ph_values
- *fill*         0x0000000020005b04        0x4 
+                0x00000000200077b0      0x154 ./Core/Src/main.o
+                0x00000000200077b0                nutrient_ph_values
+ *fill*         0x0000000020007904        0x4 
  .bss.pH_up_volume
-                0x0000000020005b08        0x8 ./Core/Src/nutrient_pH_driver.o
-                0x0000000020005b08                pH_up_volume
+                0x0000000020007908        0x8 ./Core/Src/nutrient_pH_driver.o
+                0x0000000020007908                pH_up_volume
  .bss.pH_down_volume
-                0x0000000020005b10        0x8 ./Core/Src/nutrient_pH_driver.o
-                0x0000000020005b10                pH_down_volume
+                0x0000000020007910        0x8 ./Core/Src/nutrient_pH_driver.o
+                0x0000000020007910                pH_down_volume
  .bss.nutrient_volume
-                0x0000000020005b18        0x8 ./Core/Src/nutrient_pH_driver.o
-                0x0000000020005b18                nutrient_volume
- .bss.d         0x0000000020005b20        0x8 ./Core/Src/nutrient_pH_driver.o
-                0x0000000020005b20                d
- .bss.slope     0x0000000020005b28        0x8 ./Core/Src/pH_driver.o
-                0x0000000020005b28                slope
- .bss.steps     0x0000000020005b30        0x8 ./Core/Src/peristaltic_driver.o
-                0x0000000020005b30                steps
- .bss.Presence  0x0000000020005b38        0x1 ./Core/Src/sensors.o
-                0x0000000020005b38                Presence
- *fill*         0x0000000020005b39        0x7 
+                0x0000000020007918        0x8 ./Core/Src/nutrient_pH_driver.o
+                0x0000000020007918                nutrient_volume
+ .bss.d         0x0000000020007920        0x8 ./Core/Src/nutrient_pH_driver.o
+                0x0000000020007920                d
+ .bss.slope     0x0000000020007928        0x8 ./Core/Src/pH_driver.o
+                0x0000000020007928                slope
+ .bss.steps     0x0000000020007930        0x8 ./Core/Src/peristaltic_driver.o
+                0x0000000020007930                steps
+ .bss.Presence  0x0000000020007938        0x1 ./Core/Src/sensors.o
+                0x0000000020007938                Presence
+ *fill*         0x0000000020007939        0x7 
  .bss.Temperature
-                0x0000000020005b40        0x8 ./Core/Src/sensors.o
-                0x0000000020005b40                Temperature
+                0x0000000020007940        0x8 ./Core/Src/sensors.o
+                0x0000000020007940                Temperature
  .bss.DMA_TDS_sample_avg
-                0x0000000020005b48        0x8 ./Core/Src/sensors.o
-                0x0000000020005b48                DMA_TDS_sample_avg
+                0x0000000020007948        0x8 ./Core/Src/sensors.o
+                0x0000000020007948                DMA_TDS_sample_avg
  .bss.DMA_pH_sample_avg
-                0x0000000020005b50        0x8 ./Core/Src/sensors.o
-                0x0000000020005b50                DMA_pH_sample_avg
+                0x0000000020007950        0x8 ./Core/Src/sensors.o
+                0x0000000020007950                DMA_pH_sample_avg
  .bss.averageVoltage
-                0x0000000020005b58        0x8 ./Core/Src/sensors.o
-                0x0000000020005b58                averageVoltage
- .bss.tdsValue  0x0000000020005b60        0x8 ./Core/Src/sensors.o
-                0x0000000020005b60                tdsValue
+                0x0000000020007958        0x8 ./Core/Src/sensors.o
+                0x0000000020007958                averageVoltage
+ .bss.tdsValue  0x0000000020007960        0x8 ./Core/Src/sensors.o
+                0x0000000020007960                tdsValue
  .bss.compensationCoefficient
-                0x0000000020005b68        0x8 ./Core/Src/sensors.o
-                0x0000000020005b68                compensationCoefficient
+                0x0000000020007968        0x8 ./Core/Src/sensors.o
+                0x0000000020007968                compensationCoefficient
  .bss.compensationVolatge
-                0x0000000020005b70        0x8 ./Core/Src/sensors.o
-                0x0000000020005b70                compensationVolatge
- .bss.whtvalue  0x0000000020005b78        0x8 ./Core/Src/sensors.o
-                0x0000000020005b78                whtvalue
- .bss.ph_value  0x0000000020005b80        0x8 ./Core/Src/sensors.o
-                0x0000000020005b80                ph_value
+                0x0000000020007970        0x8 ./Core/Src/sensors.o
+                0x0000000020007970                compensationVolatge
+ .bss.whtvalue  0x0000000020007978        0x8 ./Core/Src/sensors.o
+                0x0000000020007978                whtvalue
+ .bss.ph_value  0x0000000020007980        0x8 ./Core/Src/sensors.o
+                0x0000000020007980                ph_value
  .bss.__sbrk_heap_end
-                0x0000000020005b88        0x4 ./Core/Src/sysmem.o
- .bss.FatFs     0x0000000020005b8c        0x4 ./Middlewares/Third_Party/FatFs/src/ff.o
- .bss.Fsid      0x0000000020005b90        0x2 ./Middlewares/Third_Party/FatFs/src/ff.o
- *fill*         0x0000000020005b92        0x2 
- .bss.Files     0x0000000020005b94       0x18 ./Middlewares/Third_Party/FatFs/src/ff.o
- .bss.disk      0x0000000020005bac        0xc ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
-                0x0000000020005bac                disk
+                0x0000000020007988        0x4 ./Core/Src/sysmem.o
+ .bss.FatFs     0x000000002000798c        0x4 ./Middlewares/Third_Party/FatFs/src/ff.o
+ .bss.Fsid      0x0000000020007990        0x2 ./Middlewares/Third_Party/FatFs/src/ff.o
+ *fill*         0x0000000020007992        0x2 
+ .bss.Files     0x0000000020007994       0x18 ./Middlewares/Third_Party/FatFs/src/ff.o
+ .bss.disk      0x00000000200079ac        0xc ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
+                0x00000000200079ac                disk
  .bss.pxCurrentTCB
-                0x0000000020005bb8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
-                0x0000000020005bb8                pxCurrentTCB
+                0x00000000200079b8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x00000000200079b8                pxCurrentTCB
  .bss.pxReadyTasksLists
-                0x0000000020005bbc       0x8c ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x00000000200079bc       0x8c ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xDelayedTaskList1
-                0x0000000020005c48       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007a48       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xDelayedTaskList2
-                0x0000000020005c5c       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007a5c       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.pxDelayedTaskList
-                0x0000000020005c70        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007a70        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.pxOverflowDelayedTaskList
-                0x0000000020005c74        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007a74        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xPendingReadyList
-                0x0000000020005c78       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007a78       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xTasksWaitingTermination
-                0x0000000020005c8c       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007a8c       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.uxDeletedTasksWaitingCleanUp
-                0x0000000020005ca0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007aa0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xSuspendedTaskList
-                0x0000000020005ca4       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007aa4       0x14 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.uxCurrentNumberOfTasks
-                0x0000000020005cb8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ab8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xTickCount
-                0x0000000020005cbc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007abc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.uxTopReadyPriority
-                0x0000000020005cc0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ac0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xSchedulerRunning
-                0x0000000020005cc4        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ac4        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.uxPendedTicks
-                0x0000000020005cc8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ac8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xYieldPending
-                0x0000000020005ccc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007acc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xNumOfOverflows
-                0x0000000020005cd0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ad0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.uxTaskNumber
-                0x0000000020005cd4        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ad4        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xNextTaskUnblockTime
-                0x0000000020005cd8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ad8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.xIdleTaskHandle
-                0x0000000020005cdc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007adc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.uxSchedulerSuspended
-                0x0000000020005ce0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                0x0000000020007ae0        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
  .bss.ucMaxSysCallPriority
-                0x0000000020005ce4        0x1 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
- *fill*         0x0000000020005ce5        0x3 
+                0x0000000020007ae4        0x1 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
+ *fill*         0x0000000020007ae5        0x3 
  .bss.ulMaxPRIGROUPValue
-                0x0000000020005ce8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
- .bss.ucHeap    0x0000000020005cec     0x3c00 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
- .bss.xStart    0x00000000200098ec        0x8 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
- .bss.pxEnd     0x00000000200098f4        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+                0x0000000020007ae8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
+ .bss.ucHeap    0x0000000020007aec     0x3c00 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+ .bss.xStart    0x000000002000b6ec        0x8 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+ .bss.pxEnd     0x000000002000b6f4        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
  .bss.xFreeBytesRemaining
-                0x00000000200098f8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+                0x000000002000b6f8        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
  .bss.xMinimumEverFreeBytesRemaining
-                0x00000000200098fc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+                0x000000002000b6fc        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
  .bss.xBlockAllocatedBit
-                0x0000000020009900        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+                0x000000002000b700        0x4 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
  .bss.Appli_state
-                0x0000000020009904        0x1 ./USB_HOST/App/usb_host.o
-                0x0000000020009904                Appli_state
- *fill*         0x0000000020009905        0x3 
- .bss.usb_good  0x0000000020009908        0x4 ./USB_HOST/App/usb_host.o
-                0x0000000020009908                usb_good
+                0x000000002000b704        0x1 ./USB_HOST/App/usb_host.o
+                0x000000002000b704                Appli_state
+ *fill*         0x000000002000b705        0x3 
+ .bss.usb_good  0x000000002000b708        0x4 ./USB_HOST/App/usb_host.o
+                0x000000002000b708                usb_good
  .bss.__malloc_free_list
-                0x000000002000990c        0x4 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
-                0x000000002000990c                __malloc_free_list
+                0x000000002000b70c        0x4 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
+                0x000000002000b70c                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x0000000020009910        0x4 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000020009910                __malloc_sbrk_start
+                0x000000002000b710        0x4 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
+                0x000000002000b710                __malloc_sbrk_start
  *(COMMON)
- COMMON         0x0000000020009914       0x34 ./Core/Src/File_Handling.o
-                0x0000000020009914                fre_clust
-                0x0000000020009918                br
-                0x000000002000991c                pUSBHFatFS
-                0x0000000020009920                free_space
-                0x0000000020009924                bw
-                0x0000000020009928                fresult
-                0x000000002000992c                USBHfno
-                0x0000000020009944                total
- COMMON         0x0000000020009948       0x10 ./Core/Src/hydro_control_loop.o
-                0x0000000020009948                befdec
-                0x000000002000994c                aftdec
-                0x0000000020009950                fpnumber
- COMMON         0x0000000020009958     0x636c ./Core/Src/main.o
-                0x0000000020009958                BalanceWaterHandle
-                0x000000002000995c                BalanceWaterControlBlock
-                0x0000000020009a10                htim4
-                0x0000000020009a58                htim10
-                0x0000000020009aa0                WaterTempControBuffer
-                0x000000002000baa0                hadc1
-                0x000000002000bae8                BalanceWaterBuffer
-                0x000000002000fae8                WaterTempControHandle
-                0x000000002000faec                hdma_adc1
-                0x000000002000fb4c                hrtc
-                0x000000002000fb6c                WaterTempControControlBlock
-                0x000000002000fc20                GPIO_InitStruct
-                0x000000002000fc34                htim1
-                0x000000002000fc7c                htim12
- *fill*         0x000000002000fcc4        0x4 
- COMMON         0x000000002000fcc8      0x101 ./Core/Src/sensors.o
-                0x000000002000fcc8                TEMP
-                0x000000002000fccc                nutrientBuffer
-                0x000000002000fd44                Temp_byte1
-                0x000000002000fd48                mili_voltage
-                0x000000002000fd50                analogBufferTemp
-                0x000000002000fdc8                Temp_byte2
- *fill*         0x000000002000fdc9        0x3 
- COMMON         0x000000002000fdcc       0x48 ./Core/Src/stm32f2xx_hal_timebase_tim.o
-                0x000000002000fdcc                htim6
- COMMON         0x000000002000fe14        0x4 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
-                0x000000002000fe14                uwTick
- COMMON         0x000000002000fe18      0x465 ./FATFS/App/fatfs.o
-                0x000000002000fe18                USBHPath
-                0x000000002000fe1c                USBHFile
-                0x0000000020010048                USBHFatFS
-                0x000000002001027c                retUSBH
- *fill*         0x000000002001027d        0x3 
- COMMON         0x0000000020010280       0x40 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
-                0x0000000020010280                xQueueRegistry
- COMMON         0x00000000200102c0      0x3dc ./USB_HOST/App/usb_host.o
-                0x00000000200102c0                hUsbHostFS
- COMMON         0x000000002001069c      0x304 ./USB_HOST/Target/usbh_conf.o
-                0x000000002001069c                hhcd_USB_OTG_FS
- COMMON         0x00000000200109a0        0x9 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-lock.o)
-                0x00000000200109a0                __lock___atexit_recursive_mutex
-                0x00000000200109a1                __lock___arc4random_mutex
-                0x00000000200109a2                __lock___env_recursive_mutex
-                0x00000000200109a3                __lock___sinit_recursive_mutex
-                0x00000000200109a4                __lock___malloc_recursive_mutex
-                0x00000000200109a5                __lock___at_quick_exit_mutex
-                0x00000000200109a6                __lock___dd_hash_mutex
-                0x00000000200109a7                __lock___tz_mutex
-                0x00000000200109a8                __lock___sfp_recursive_mutex
- *fill*         0x00000000200109a9        0x3 
- COMMON         0x00000000200109ac        0x4 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-reent.o)
-                0x00000000200109ac                errno
-                0x00000000200109b0                . = ALIGN (0x4)
-                0x00000000200109b0                _ebss = .
-                0x00000000200109b0                __bss_end__ = _ebss
+ COMMON         0x000000002000b714       0x34 ./Core/Src/File_Handling.o
+                0x000000002000b714                fre_clust
+                0x000000002000b718                br
+                0x000000002000b71c                pUSBHFatFS
+                0x000000002000b720                free_space
+                0x000000002000b724                bw
+                0x000000002000b728                fresult
+                0x000000002000b72c                USBHfno
+                0x000000002000b744                total
+ COMMON         0x000000002000b748       0x10 ./Core/Src/hydro_control_loop.o
+                0x000000002000b748                befdec
+                0x000000002000b74c                aftdec
+                0x000000002000b750                fpnumber
+ COMMON         0x000000002000b758     0x53dc ./Core/Src/main.o
+                0x000000002000b758                BalanceWaterHandle
+                0x000000002000b75c                BalanceWaterControlBlock
+                0x000000002000b810                htim4
+                0x000000002000b858                htim10
+                0x000000002000b8a0                WaterTempControBuffer
+                0x000000002000d8a0                hadc1
+                0x000000002000d8e8                BalanceWaterBuffer
+                0x0000000020010958                WaterTempControHandle
+                0x000000002001095c                hdma_adc1
+                0x00000000200109bc                hrtc
+                0x00000000200109dc                WaterTempControControlBlock
+                0x0000000020010a90                GPIO_InitStruct
+                0x0000000020010aa4                htim1
+                0x0000000020010aec                htim12
+ *fill*         0x0000000020010b34        0x4 
+ COMMON         0x0000000020010b38      0x101 ./Core/Src/sensors.o
+                0x0000000020010b38                TEMP
+                0x0000000020010b3c                nutrientBuffer
+                0x0000000020010bb4                Temp_byte1
+                0x0000000020010bb8                mili_voltage
+                0x0000000020010bc0                analogBufferTemp
+                0x0000000020010c38                Temp_byte2
+ *fill*         0x0000000020010c39        0x3 
+ COMMON         0x0000000020010c3c       0x48 ./Core/Src/stm32f2xx_hal_timebase_tim.o
+                0x0000000020010c3c                htim6
+ COMMON         0x0000000020010c84        0x4 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
+                0x0000000020010c84                uwTick
+ COMMON         0x0000000020010c88      0x465 ./FATFS/App/fatfs.o
+                0x0000000020010c88                USBHPath
+                0x0000000020010c8c                USBHFile
+                0x0000000020010eb8                USBHFatFS
+                0x00000000200110ec                retUSBH
+ *fill*         0x00000000200110ed        0x3 
+ COMMON         0x00000000200110f0       0x40 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
+                0x00000000200110f0                xQueueRegistry
+ COMMON         0x0000000020011130      0x3dc ./USB_HOST/App/usb_host.o
+                0x0000000020011130                hUsbHostFS
+ COMMON         0x000000002001150c      0x304 ./USB_HOST/Target/usbh_conf.o
+                0x000000002001150c                hhcd_USB_OTG_FS
+ COMMON         0x0000000020011810        0x9 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-lock.o)
+                0x0000000020011810                __lock___atexit_recursive_mutex
+                0x0000000020011811                __lock___arc4random_mutex
+                0x0000000020011812                __lock___env_recursive_mutex
+                0x0000000020011813                __lock___sinit_recursive_mutex
+                0x0000000020011814                __lock___malloc_recursive_mutex
+                0x0000000020011815                __lock___at_quick_exit_mutex
+                0x0000000020011816                __lock___dd_hash_mutex
+                0x0000000020011817                __lock___tz_mutex
+                0x0000000020011818                __lock___sfp_recursive_mutex
+ *fill*         0x0000000020011819        0x3 
+ COMMON         0x000000002001181c        0x4 c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-reent.o)
+                0x000000002001181c                errno
+                0x0000000020011820                . = ALIGN (0x4)
+                0x0000000020011820                _ebss = .
+                0x0000000020011820                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x00000000200109b0      0xc00 load address 0x000000000801af00
-                0x00000000200109b0                . = ALIGN (0x8)
+                0x0000000020011820      0xc00 load address 0x000000000801af00
+                0x0000000020011820                . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
-                0x00000000200109b0                PROVIDE (_end = .)
-                0x0000000020010db0                . = (. + _Min_Heap_Size)
- *fill*         0x00000000200109b0      0x400 
-                0x00000000200115b0                . = (. + _Min_Stack_Size)
- *fill*         0x0000000020010db0      0x800 
-                0x00000000200115b0                . = ALIGN (0x8)
+                0x0000000020011820                PROVIDE (_end = .)
+                0x0000000020011c20                . = (. + _Min_Heap_Size)
+ *fill*         0x0000000020011820      0x400 
+                0x0000000020012420                . = (. + _Min_Stack_Size)
+ *fill*         0x0000000020011c20      0x800 
+                0x0000000020012420                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -13433,121 +13432,121 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
 LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a
 LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp\libgcc.a
 
-.debug_info     0x0000000000000000    0x5c617
+.debug_info     0x0000000000000000    0x5c618
  .debug_info    0x0000000000000000     0x297f ./Core/Src/File_Handling.o
  .debug_info    0x000000000000297f     0x18a4 ./Core/Src/RTC_driver.o
  .debug_info    0x0000000000004223     0x187c ./Core/Src/fan_driver.o
- .debug_info    0x0000000000005a9f     0x19c2 ./Core/Src/freertos.o
- .debug_info    0x0000000000007461     0x1902 ./Core/Src/heater_driver.o
- .debug_info    0x0000000000008d63     0x3145 ./Core/Src/hydro_control_loop.o
- .debug_info    0x000000000000bea8     0x19b7 ./Core/Src/light_driver.o
- .debug_info    0x000000000000d85f     0x34bc ./Core/Src/main.o
- .debug_info    0x0000000000010d1b     0x19c8 ./Core/Src/nutrient_pH_driver.o
- .debug_info    0x00000000000126e3     0x198e ./Core/Src/pH_driver.o
- .debug_info    0x0000000000014071     0x19d7 ./Core/Src/peristaltic_driver.o
- .debug_info    0x0000000000015a48     0x1b97 ./Core/Src/sensors.o
- .debug_info    0x00000000000175df     0x1f1d ./Core/Src/stm32f2xx_hal_msp.o
- .debug_info    0x00000000000194fc      0xc6c ./Core/Src/stm32f2xx_hal_timebase_tim.o
- .debug_info    0x000000000001a168     0x1d68 ./Core/Src/stm32f2xx_it.o
- .debug_info    0x000000000001bed0      0xfa8 ./Core/Src/syscalls.o
- .debug_info    0x000000000001ce78      0xa25 ./Core/Src/sysmem.o
- .debug_info    0x000000000001d89d      0x3e9 ./Core/Src/system_stm32f2xx.o
- .debug_info    0x000000000001dc86     0x1c00 ./Core/Src/water_temp_driver.o
- .debug_info    0x000000000001f886       0x22 ./Core/Startup/startup_stm32f207zgtx.o
- .debug_info    0x000000000001f8a8      0xa1b ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
- .debug_info    0x00000000000202c3      0xdb5 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc.o
- .debug_info    0x0000000000021078      0xbae ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc_ex.o
- .debug_info    0x0000000000021c26      0xed7 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_cortex.o
- .debug_info    0x0000000000022afd      0x9f1 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma.o
- .debug_info    0x00000000000234ee      0x804 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio.o
- .debug_info    0x0000000000023cf2      0xf67 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_hcd.o
- .debug_info    0x0000000000024c59      0xb27 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.o
- .debug_info    0x0000000000025780      0x669 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.o
- .debug_info    0x0000000000025de9      0xcea ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc.o
- .debug_info    0x0000000000026ad3      0xdd9 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc_ex.o
- .debug_info    0x00000000000278ac     0x2a92 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.o
- .debug_info    0x000000000002a33e     0x1522 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.o
- .debug_info    0x000000000002b860     0x1ab4 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_usb.o
- .debug_info    0x000000000002d314     0x2527 ./FATFS/App/fatfs.o
- .debug_info    0x000000000002f83b     0x2abe ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
- .debug_info    0x00000000000322f9     0x28b9 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
- .debug_info    0x0000000000034bb2     0x28ef ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
- .debug_info    0x00000000000374a1     0x2bb2 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
- .debug_info    0x000000000003a053     0x26d9 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
- .debug_info    0x000000000003c72c     0x23f4 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
- .debug_info    0x000000000003eb20     0x221c ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
- .debug_info    0x0000000000040d3c     0x2412 ./Middlewares/Third_Party/FatFs/src/diskio.o
- .debug_info    0x000000000004314e     0x42fb ./Middlewares/Third_Party/FatFs/src/ff.o
- .debug_info    0x0000000000047449     0x23a3 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
- .debug_info    0x00000000000497ec     0x25f3 ./Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.o
- .debug_info    0x000000000004bddf     0x23ee ./Middlewares/Third_Party/FatFs/src/option/syscall.o
- .debug_info    0x000000000004e1cd     0x2037 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
- .debug_info    0x0000000000050204      0xb7c ./Middlewares/Third_Party/FreeRTOS/Source/list.o
- .debug_info    0x0000000000050d80     0x1f3a ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
- .debug_info    0x0000000000052cba     0x2575 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
- .debug_info    0x000000000005522f      0xd3a ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
- .debug_info    0x0000000000055f69      0xc77 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
- .debug_info    0x0000000000056be0     0x2646 ./USB_HOST/App/usb_host.o
- .debug_info    0x0000000000059226     0x314a ./USB_HOST/Target/usbh_conf.o
- .debug_info    0x000000000005c370      0x2a7 ./USB_HOST/Target/usbh_platform.o
+ .debug_info    0x0000000000005a9f     0x19c3 ./Core/Src/freertos.o
+ .debug_info    0x0000000000007462     0x1902 ./Core/Src/heater_driver.o
+ .debug_info    0x0000000000008d64     0x3145 ./Core/Src/hydro_control_loop.o
+ .debug_info    0x000000000000bea9     0x19b7 ./Core/Src/light_driver.o
+ .debug_info    0x000000000000d860     0x34bc ./Core/Src/main.o
+ .debug_info    0x0000000000010d1c     0x19c8 ./Core/Src/nutrient_pH_driver.o
+ .debug_info    0x00000000000126e4     0x198e ./Core/Src/pH_driver.o
+ .debug_info    0x0000000000014072     0x19d7 ./Core/Src/peristaltic_driver.o
+ .debug_info    0x0000000000015a49     0x1b97 ./Core/Src/sensors.o
+ .debug_info    0x00000000000175e0     0x1f1d ./Core/Src/stm32f2xx_hal_msp.o
+ .debug_info    0x00000000000194fd      0xc6c ./Core/Src/stm32f2xx_hal_timebase_tim.o
+ .debug_info    0x000000000001a169     0x1d68 ./Core/Src/stm32f2xx_it.o
+ .debug_info    0x000000000001bed1      0xfa8 ./Core/Src/syscalls.o
+ .debug_info    0x000000000001ce79      0xa25 ./Core/Src/sysmem.o
+ .debug_info    0x000000000001d89e      0x3e9 ./Core/Src/system_stm32f2xx.o
+ .debug_info    0x000000000001dc87     0x1c00 ./Core/Src/water_temp_driver.o
+ .debug_info    0x000000000001f887       0x22 ./Core/Startup/startup_stm32f207zgtx.o
+ .debug_info    0x000000000001f8a9      0xa1b ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
+ .debug_info    0x00000000000202c4      0xdb5 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc.o
+ .debug_info    0x0000000000021079      0xbae ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc_ex.o
+ .debug_info    0x0000000000021c27      0xed7 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_cortex.o
+ .debug_info    0x0000000000022afe      0x9f1 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma.o
+ .debug_info    0x00000000000234ef      0x804 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio.o
+ .debug_info    0x0000000000023cf3      0xf67 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_hcd.o
+ .debug_info    0x0000000000024c5a      0xb27 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.o
+ .debug_info    0x0000000000025781      0x669 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.o
+ .debug_info    0x0000000000025dea      0xcea ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc.o
+ .debug_info    0x0000000000026ad4      0xdd9 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc_ex.o
+ .debug_info    0x00000000000278ad     0x2a92 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.o
+ .debug_info    0x000000000002a33f     0x1522 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.o
+ .debug_info    0x000000000002b861     0x1ab4 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_usb.o
+ .debug_info    0x000000000002d315     0x2527 ./FATFS/App/fatfs.o
+ .debug_info    0x000000000002f83c     0x2abe ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
+ .debug_info    0x00000000000322fa     0x28b9 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
+ .debug_info    0x0000000000034bb3     0x28ef ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
+ .debug_info    0x00000000000374a2     0x2bb2 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
+ .debug_info    0x000000000003a054     0x26d9 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
+ .debug_info    0x000000000003c72d     0x23f4 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
+ .debug_info    0x000000000003eb21     0x221c ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
+ .debug_info    0x0000000000040d3d     0x2412 ./Middlewares/Third_Party/FatFs/src/diskio.o
+ .debug_info    0x000000000004314f     0x42fb ./Middlewares/Third_Party/FatFs/src/ff.o
+ .debug_info    0x000000000004744a     0x23a3 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
+ .debug_info    0x00000000000497ed     0x25f3 ./Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.o
+ .debug_info    0x000000000004bde0     0x23ee ./Middlewares/Third_Party/FatFs/src/option/syscall.o
+ .debug_info    0x000000000004e1ce     0x2037 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
+ .debug_info    0x0000000000050205      0xb7c ./Middlewares/Third_Party/FreeRTOS/Source/list.o
+ .debug_info    0x0000000000050d81     0x1f3a ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
+ .debug_info    0x0000000000052cbb     0x2575 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+ .debug_info    0x0000000000055230      0xd3a ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
+ .debug_info    0x0000000000055f6a      0xc77 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+ .debug_info    0x0000000000056be1     0x2646 ./USB_HOST/App/usb_host.o
+ .debug_info    0x0000000000059227     0x314a ./USB_HOST/Target/usbh_conf.o
+ .debug_info    0x000000000005c371      0x2a7 ./USB_HOST/Target/usbh_platform.o
 
-.debug_abbrev   0x0000000000000000     0x9211
+.debug_abbrev   0x0000000000000000     0x921a
  .debug_abbrev  0x0000000000000000      0x333 ./Core/Src/File_Handling.o
  .debug_abbrev  0x0000000000000333      0x22a ./Core/Src/RTC_driver.o
  .debug_abbrev  0x000000000000055d      0x217 ./Core/Src/fan_driver.o
- .debug_abbrev  0x0000000000000774      0x1fd ./Core/Src/freertos.o
- .debug_abbrev  0x0000000000000971      0x1ea ./Core/Src/heater_driver.o
- .debug_abbrev  0x0000000000000b5b      0x3ed ./Core/Src/hydro_control_loop.o
- .debug_abbrev  0x0000000000000f48      0x226 ./Core/Src/light_driver.o
- .debug_abbrev  0x000000000000116e      0x3c0 ./Core/Src/main.o
- .debug_abbrev  0x000000000000152e      0x26e ./Core/Src/nutrient_pH_driver.o
- .debug_abbrev  0x000000000000179c      0x233 ./Core/Src/pH_driver.o
- .debug_abbrev  0x00000000000019cf      0x28b ./Core/Src/peristaltic_driver.o
- .debug_abbrev  0x0000000000001c5a      0x2a3 ./Core/Src/sensors.o
- .debug_abbrev  0x0000000000001efd      0x2aa ./Core/Src/stm32f2xx_hal_msp.o
- .debug_abbrev  0x00000000000021a7      0x1bf ./Core/Src/stm32f2xx_hal_timebase_tim.o
- .debug_abbrev  0x0000000000002366      0x222 ./Core/Src/stm32f2xx_it.o
- .debug_abbrev  0x0000000000002588      0x286 ./Core/Src/syscalls.o
- .debug_abbrev  0x000000000000280e      0x1bf ./Core/Src/sysmem.o
- .debug_abbrev  0x00000000000029cd      0x145 ./Core/Src/system_stm32f2xx.o
- .debug_abbrev  0x0000000000002b12      0x264 ./Core/Src/water_temp_driver.o
- .debug_abbrev  0x0000000000002d76       0x12 ./Core/Startup/startup_stm32f207zgtx.o
- .debug_abbrev  0x0000000000002d88      0x25d ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
- .debug_abbrev  0x0000000000002fe5      0x267 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc.o
- .debug_abbrev  0x000000000000324c      0x24a ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc_ex.o
- .debug_abbrev  0x0000000000003496      0x33c ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_cortex.o
- .debug_abbrev  0x00000000000037d2      0x259 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma.o
- .debug_abbrev  0x0000000000003a2b      0x1e8 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio.o
- .debug_abbrev  0x0000000000003c13      0x28d ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_hcd.o
- .debug_abbrev  0x0000000000003ea0      0x293 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.o
- .debug_abbrev  0x0000000000004133      0x231 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.o
- .debug_abbrev  0x0000000000004364      0x1e4 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc.o
- .debug_abbrev  0x0000000000004548      0x213 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc_ex.o
- .debug_abbrev  0x000000000000475b      0x25e ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.o
- .debug_abbrev  0x00000000000049b9      0x266 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.o
- .debug_abbrev  0x0000000000004c1f      0x2a7 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_usb.o
- .debug_abbrev  0x0000000000004ec6      0x2be ./FATFS/App/fatfs.o
- .debug_abbrev  0x0000000000005184      0x35a ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
- .debug_abbrev  0x00000000000054de      0x315 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
- .debug_abbrev  0x00000000000057f3      0x2f9 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
- .debug_abbrev  0x0000000000005aec      0x3f8 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
- .debug_abbrev  0x0000000000005ee4      0x367 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
- .debug_abbrev  0x000000000000624b      0x2b5 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
- .debug_abbrev  0x0000000000006500      0x2f3 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
- .debug_abbrev  0x00000000000067f3      0x2d5 ./Middlewares/Third_Party/FatFs/src/diskio.o
- .debug_abbrev  0x0000000000006ac8      0x3bb ./Middlewares/Third_Party/FatFs/src/ff.o
- .debug_abbrev  0x0000000000006e83      0x306 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
- .debug_abbrev  0x0000000000007189      0x32e ./Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.o
- .debug_abbrev  0x00000000000074b7      0x2e0 ./Middlewares/Third_Party/FatFs/src/option/syscall.o
- .debug_abbrev  0x0000000000007797      0x3c2 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
- .debug_abbrev  0x0000000000007b59      0x1f7 ./Middlewares/Third_Party/FreeRTOS/Source/list.o
- .debug_abbrev  0x0000000000007d50      0x3a2 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
- .debug_abbrev  0x00000000000080f2      0x380 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
- .debug_abbrev  0x0000000000008472      0x333 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
- .debug_abbrev  0x00000000000087a5      0x2d3 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
- .debug_abbrev  0x0000000000008a78      0x304 ./USB_HOST/App/usb_host.o
- .debug_abbrev  0x0000000000008d7c      0x37b ./USB_HOST/Target/usbh_conf.o
- .debug_abbrev  0x00000000000090f7      0x11a ./USB_HOST/Target/usbh_platform.o
+ .debug_abbrev  0x0000000000000774      0x206 ./Core/Src/freertos.o
+ .debug_abbrev  0x000000000000097a      0x1ea ./Core/Src/heater_driver.o
+ .debug_abbrev  0x0000000000000b64      0x3ed ./Core/Src/hydro_control_loop.o
+ .debug_abbrev  0x0000000000000f51      0x226 ./Core/Src/light_driver.o
+ .debug_abbrev  0x0000000000001177      0x3c0 ./Core/Src/main.o
+ .debug_abbrev  0x0000000000001537      0x26e ./Core/Src/nutrient_pH_driver.o
+ .debug_abbrev  0x00000000000017a5      0x233 ./Core/Src/pH_driver.o
+ .debug_abbrev  0x00000000000019d8      0x28b ./Core/Src/peristaltic_driver.o
+ .debug_abbrev  0x0000000000001c63      0x2a3 ./Core/Src/sensors.o
+ .debug_abbrev  0x0000000000001f06      0x2aa ./Core/Src/stm32f2xx_hal_msp.o
+ .debug_abbrev  0x00000000000021b0      0x1bf ./Core/Src/stm32f2xx_hal_timebase_tim.o
+ .debug_abbrev  0x000000000000236f      0x222 ./Core/Src/stm32f2xx_it.o
+ .debug_abbrev  0x0000000000002591      0x286 ./Core/Src/syscalls.o
+ .debug_abbrev  0x0000000000002817      0x1bf ./Core/Src/sysmem.o
+ .debug_abbrev  0x00000000000029d6      0x145 ./Core/Src/system_stm32f2xx.o
+ .debug_abbrev  0x0000000000002b1b      0x264 ./Core/Src/water_temp_driver.o
+ .debug_abbrev  0x0000000000002d7f       0x12 ./Core/Startup/startup_stm32f207zgtx.o
+ .debug_abbrev  0x0000000000002d91      0x25d ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
+ .debug_abbrev  0x0000000000002fee      0x267 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc.o
+ .debug_abbrev  0x0000000000003255      0x24a ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc_ex.o
+ .debug_abbrev  0x000000000000349f      0x33c ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_cortex.o
+ .debug_abbrev  0x00000000000037db      0x259 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma.o
+ .debug_abbrev  0x0000000000003a34      0x1e8 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio.o
+ .debug_abbrev  0x0000000000003c1c      0x28d ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_hcd.o
+ .debug_abbrev  0x0000000000003ea9      0x293 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.o
+ .debug_abbrev  0x000000000000413c      0x231 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.o
+ .debug_abbrev  0x000000000000436d      0x1e4 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc.o
+ .debug_abbrev  0x0000000000004551      0x213 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc_ex.o
+ .debug_abbrev  0x0000000000004764      0x25e ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.o
+ .debug_abbrev  0x00000000000049c2      0x266 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.o
+ .debug_abbrev  0x0000000000004c28      0x2a7 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_usb.o
+ .debug_abbrev  0x0000000000004ecf      0x2be ./FATFS/App/fatfs.o
+ .debug_abbrev  0x000000000000518d      0x35a ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
+ .debug_abbrev  0x00000000000054e7      0x315 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
+ .debug_abbrev  0x00000000000057fc      0x2f9 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
+ .debug_abbrev  0x0000000000005af5      0x3f8 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
+ .debug_abbrev  0x0000000000005eed      0x367 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
+ .debug_abbrev  0x0000000000006254      0x2b5 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
+ .debug_abbrev  0x0000000000006509      0x2f3 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
+ .debug_abbrev  0x00000000000067fc      0x2d5 ./Middlewares/Third_Party/FatFs/src/diskio.o
+ .debug_abbrev  0x0000000000006ad1      0x3bb ./Middlewares/Third_Party/FatFs/src/ff.o
+ .debug_abbrev  0x0000000000006e8c      0x306 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
+ .debug_abbrev  0x0000000000007192      0x32e ./Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.o
+ .debug_abbrev  0x00000000000074c0      0x2e0 ./Middlewares/Third_Party/FatFs/src/option/syscall.o
+ .debug_abbrev  0x00000000000077a0      0x3c2 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
+ .debug_abbrev  0x0000000000007b62      0x1f7 ./Middlewares/Third_Party/FreeRTOS/Source/list.o
+ .debug_abbrev  0x0000000000007d59      0x3a2 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
+ .debug_abbrev  0x00000000000080fb      0x380 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+ .debug_abbrev  0x000000000000847b      0x333 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
+ .debug_abbrev  0x00000000000087ae      0x2d3 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+ .debug_abbrev  0x0000000000008a81      0x304 ./USB_HOST/App/usb_host.o
+ .debug_abbrev  0x0000000000008d85      0x37b ./USB_HOST/Target/usbh_conf.o
+ .debug_abbrev  0x0000000000009100      0x11a ./USB_HOST/Target/usbh_platform.o
 
 .debug_aranges  0x0000000000000000     0x2158
  .debug_aranges
@@ -13975,118 +13974,118 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_line    0x000000000003347c      0xf05 ./USB_HOST/Target/usbh_conf.o
  .debug_line    0x0000000000034381      0x74f ./USB_HOST/Target/usbh_platform.o
 
-.debug_str      0x0000000000000000    0xdb6e3
- .debug_str     0x0000000000000000    0xcfb25 ./Core/Src/File_Handling.o
-                                      0xd0112 (size before relaxing)
- .debug_str     0x00000000000cfb25       0x59 ./Core/Src/RTC_driver.o
-                                      0xcb0e7 (size before relaxing)
- .debug_str     0x00000000000cfb7e       0x7e ./Core/Src/fan_driver.o
-                                      0xcb0c3 (size before relaxing)
- .debug_str     0x00000000000cfbfc      0x14d ./Core/Src/freertos.o
-                                      0xcb18b (size before relaxing)
- .debug_str     0x00000000000cfd49       0x9a ./Core/Src/heater_driver.o
-                                      0xcb0fc (size before relaxing)
- .debug_str     0x00000000000cfde3      0x842 ./Core/Src/hydro_control_loop.o
-                                      0xd08c7 (size before relaxing)
- .debug_str     0x00000000000d0625       0xaa ./Core/Src/light_driver.o
-                                      0xcb18f (size before relaxing)
- .debug_str     0x00000000000d06cf      0xbb1 ./Core/Src/main.o
-                                      0xd0c50 (size before relaxing)
- .debug_str     0x00000000000d1280       0xd4 ./Core/Src/nutrient_pH_driver.o
-                                      0xcb21b (size before relaxing)
- .debug_str     0x00000000000d1354       0xed ./Core/Src/pH_driver.o
-                                      0xcb160 (size before relaxing)
- .debug_str     0x00000000000d1441       0x81 ./Core/Src/peristaltic_driver.o
-                                      0xcb13e (size before relaxing)
- .debug_str     0x00000000000d14c2      0x1b3 ./Core/Src/sensors.o
-                                      0xcb374 (size before relaxing)
- .debug_str     0x00000000000d1675       0xba ./Core/Src/stm32f2xx_hal_msp.o
-                                      0xcb71a (size before relaxing)
- .debug_str     0x00000000000d172f       0xaa ./Core/Src/stm32f2xx_hal_timebase_tim.o
+.debug_str      0x0000000000000000    0xdb6e5
+ .debug_str     0x0000000000000000    0xcfb27 ./Core/Src/File_Handling.o
+                                      0xd0114 (size before relaxing)
+ .debug_str     0x00000000000cfb27       0x59 ./Core/Src/RTC_driver.o
+                                      0xcb0e8 (size before relaxing)
+ .debug_str     0x00000000000cfb80       0x7e ./Core/Src/fan_driver.o
+                                      0xcb0c4 (size before relaxing)
+ .debug_str     0x00000000000cfbfe      0x14d ./Core/Src/freertos.o
+                                      0xcb18c (size before relaxing)
+ .debug_str     0x00000000000cfd4b       0x9a ./Core/Src/heater_driver.o
+                                      0xcb0fd (size before relaxing)
+ .debug_str     0x00000000000cfde5      0x842 ./Core/Src/hydro_control_loop.o
+                                      0xd08c9 (size before relaxing)
+ .debug_str     0x00000000000d0627       0xaa ./Core/Src/light_driver.o
+                                      0xcb190 (size before relaxing)
+ .debug_str     0x00000000000d06d1      0xbb1 ./Core/Src/main.o
+                                      0xd0c52 (size before relaxing)
+ .debug_str     0x00000000000d1282       0xd4 ./Core/Src/nutrient_pH_driver.o
+                                      0xcb21c (size before relaxing)
+ .debug_str     0x00000000000d1356       0xed ./Core/Src/pH_driver.o
+                                      0xcb161 (size before relaxing)
+ .debug_str     0x00000000000d1443       0x81 ./Core/Src/peristaltic_driver.o
+                                      0xcb13f (size before relaxing)
+ .debug_str     0x00000000000d14c4      0x1b3 ./Core/Src/sensors.o
+                                      0xcb375 (size before relaxing)
+ .debug_str     0x00000000000d1677       0xba ./Core/Src/stm32f2xx_hal_msp.o
+                                      0xcb71b (size before relaxing)
+ .debug_str     0x00000000000d1731       0xaa ./Core/Src/stm32f2xx_hal_timebase_tim.o
                                       0xc3523 (size before relaxing)
- .debug_str     0x00000000000d17d9      0x432 ./Core/Src/stm32f2xx_it.o
-                                      0xcb4e8 (size before relaxing)
- .debug_str     0x00000000000d1c0b     0x14c7 ./Core/Src/syscalls.o
+ .debug_str     0x00000000000d17db      0x432 ./Core/Src/stm32f2xx_it.o
+                                      0xcb4e9 (size before relaxing)
+ .debug_str     0x00000000000d1c0d     0x14c7 ./Core/Src/syscalls.o
                                        0x8e7d (size before relaxing)
- .debug_str     0x00000000000d30d2       0x6b ./Core/Src/sysmem.o
+ .debug_str     0x00000000000d30d4       0x6b ./Core/Src/sysmem.o
                                        0x6250 (size before relaxing)
- .debug_str     0x00000000000d313d       0x5b ./Core/Src/system_stm32f2xx.o
+ .debug_str     0x00000000000d313f       0x5b ./Core/Src/system_stm32f2xx.o
                                       0xc2a3c (size before relaxing)
- .debug_str     0x00000000000d3198      0x15b ./Core/Src/water_temp_driver.o
-                                      0xcb24c (size before relaxing)
- .debug_str     0x00000000000d32f3       0x36 ./Core/Startup/startup_stm32f207zgtx.o
+ .debug_str     0x00000000000d319a      0x15b ./Core/Src/water_temp_driver.o
+                                      0xcb24d (size before relaxing)
+ .debug_str     0x00000000000d32f5       0x36 ./Core/Startup/startup_stm32f207zgtx.o
                                          0x64 (size before relaxing)
- .debug_str     0x00000000000d3329      0x487 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
+ .debug_str     0x00000000000d332b      0x487 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.o
                                       0xc34d4 (size before relaxing)
- .debug_str     0x00000000000d37b0      0x270 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc.o
+ .debug_str     0x00000000000d37b2      0x270 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc.o
                                       0xc3042 (size before relaxing)
- .debug_str     0x00000000000d3a20      0x302 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc_ex.o
+ .debug_str     0x00000000000d3a22      0x302 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc_ex.o
                                       0xc3068 (size before relaxing)
- .debug_str     0x00000000000d3d22      0x3d7 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_cortex.o
+ .debug_str     0x00000000000d3d24      0x3d7 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_cortex.o
                                       0xc3367 (size before relaxing)
- .debug_str     0x00000000000d40f9      0x31d ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma.o
+ .debug_str     0x00000000000d40fb      0x31d ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma.o
                                       0xc2eba (size before relaxing)
- .debug_str     0x00000000000d4416      0x149 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio.o
+ .debug_str     0x00000000000d4418      0x149 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio.o
                                       0xc2c26 (size before relaxing)
- .debug_str     0x00000000000d455f      0x400 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_hcd.o
+ .debug_str     0x00000000000d4561      0x400 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_hcd.o
                                       0xc3141 (size before relaxing)
- .debug_str     0x00000000000d495f      0x278 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.o
+ .debug_str     0x00000000000d4961      0x278 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.o
                                       0xc2ebc (size before relaxing)
- .debug_str     0x00000000000d4bd7       0xca ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.o
+ .debug_str     0x00000000000d4bd9       0xca ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.o
                                       0xc2ba7 (size before relaxing)
- .debug_str     0x00000000000d4ca1      0x223 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc.o
+ .debug_str     0x00000000000d4ca3      0x223 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc.o
                                       0xc2eb4 (size before relaxing)
- .debug_str     0x00000000000d4ec4      0x412 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc_ex.o
+ .debug_str     0x00000000000d4ec6      0x412 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc_ex.o
                                       0xc3032 (size before relaxing)
- .debug_str     0x00000000000d52d6      0xd5a ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.o
+ .debug_str     0x00000000000d52d8      0xd5a ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.o
                                       0xc3db8 (size before relaxing)
- .debug_str     0x00000000000d6030      0x45a ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.o
+ .debug_str     0x00000000000d6032      0x45a ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.o
                                       0xc3569 (size before relaxing)
- .debug_str     0x00000000000d648a      0x643 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_usb.o
+ .debug_str     0x00000000000d648c      0x643 ./Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_usb.o
                                       0xc33b1 (size before relaxing)
- .debug_str     0x00000000000d6acd       0x2f ./FATFS/App/fatfs.o
-                                      0xcfdea (size before relaxing)
- .debug_str     0x00000000000d6afc      0x5e5 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
-                                      0xcfa8a (size before relaxing)
- .debug_str     0x00000000000d70e1      0x1a7 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
-                                      0xcfad5 (size before relaxing)
- .debug_str     0x00000000000d7288       0xe1 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
-                                      0xcf9ac (size before relaxing)
- .debug_str     0x00000000000d7369      0x4b3 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
-                                      0xcf4f7 (size before relaxing)
- .debug_str     0x00000000000d781c      0x21d ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
-                                      0xcf0e2 (size before relaxing)
- .debug_str     0x00000000000d7a39       0xfe ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
-                                      0xcef01 (size before relaxing)
- .debug_str     0x00000000000d7b37       0x97 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
-                                      0xcee86 (size before relaxing)
- .debug_str     0x00000000000d7bce       0x5e ./Middlewares/Third_Party/FatFs/src/diskio.o
-                                      0xcfcfd (size before relaxing)
- .debug_str     0x00000000000d7c2c      0xc26 ./Middlewares/Third_Party/FatFs/src/ff.o
-                                      0xd0b2f (size before relaxing)
- .debug_str     0x00000000000d8852       0xa2 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
-                                      0xcfd53 (size before relaxing)
- .debug_str     0x00000000000d88f4       0x77 ./Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.o
-                                      0xcff10 (size before relaxing)
- .debug_str     0x00000000000d896b       0xd4 ./Middlewares/Third_Party/FatFs/src/option/syscall.o
-                                      0xcfd2d (size before relaxing)
- .debug_str     0x00000000000d8a3f      0x5ea ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
-                                       0xdee2 (size before relaxing)
- .debug_str     0x00000000000d9029      0x139 ./Middlewares/Third_Party/FreeRTOS/Source/list.o
-                                       0xa81a (size before relaxing)
- .debug_str     0x00000000000d9162      0x7d3 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
-                                       0xbed2 (size before relaxing)
- .debug_str     0x00000000000d9935     0x1217 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
-                                       0xca61 (size before relaxing)
- .debug_str     0x00000000000dab4c      0x6ee ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
-                                       0x9f25 (size before relaxing)
- .debug_str     0x00000000000db23a      0x25a ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
-                                       0xaf3d (size before relaxing)
- .debug_str     0x00000000000db494       0xa8 ./USB_HOST/App/usb_host.o
-                                      0xcffe0 (size before relaxing)
- .debug_str     0x00000000000db53c      0x174 ./USB_HOST/Target/usbh_conf.o
-                                      0xcfb03 (size before relaxing)
- .debug_str     0x00000000000db6b0       0x33 ./USB_HOST/Target/usbh_platform.o
+ .debug_str     0x00000000000d6acf       0x2f ./FATFS/App/fatfs.o
+                                      0xcfdec (size before relaxing)
+ .debug_str     0x00000000000d6afe      0x5e5 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
+                                      0xcfa8c (size before relaxing)
+ .debug_str     0x00000000000d70e3      0x1a7 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
+                                      0xcfad7 (size before relaxing)
+ .debug_str     0x00000000000d728a       0xe1 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
+                                      0xcf9ae (size before relaxing)
+ .debug_str     0x00000000000d736b      0x4b3 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
+                                      0xcf4f9 (size before relaxing)
+ .debug_str     0x00000000000d781e      0x21d ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
+                                      0xcf0e4 (size before relaxing)
+ .debug_str     0x00000000000d7a3b       0xfe ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
+                                      0xcef03 (size before relaxing)
+ .debug_str     0x00000000000d7b39       0x97 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
+                                      0xcee88 (size before relaxing)
+ .debug_str     0x00000000000d7bd0       0x5e ./Middlewares/Third_Party/FatFs/src/diskio.o
+                                      0xcfcff (size before relaxing)
+ .debug_str     0x00000000000d7c2e      0xc26 ./Middlewares/Third_Party/FatFs/src/ff.o
+                                      0xd0b31 (size before relaxing)
+ .debug_str     0x00000000000d8854       0xa2 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
+                                      0xcfd55 (size before relaxing)
+ .debug_str     0x00000000000d88f6       0x77 ./Middlewares/Third_Party/FatFs/src/drivers/usbh_diskio.o
+                                      0xcff12 (size before relaxing)
+ .debug_str     0x00000000000d896d       0xd4 ./Middlewares/Third_Party/FatFs/src/option/syscall.o
+                                      0xcfd2f (size before relaxing)
+ .debug_str     0x00000000000d8a41      0x5ea ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
+                                       0xdee3 (size before relaxing)
+ .debug_str     0x00000000000d902b      0x139 ./Middlewares/Third_Party/FreeRTOS/Source/list.o
+                                       0xa81b (size before relaxing)
+ .debug_str     0x00000000000d9164      0x7d3 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
+                                       0xbed3 (size before relaxing)
+ .debug_str     0x00000000000d9937     0x1217 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+                                       0xca62 (size before relaxing)
+ .debug_str     0x00000000000dab4e      0x6ee ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.o
+                                       0x9f26 (size before relaxing)
+ .debug_str     0x00000000000db23c      0x25a ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+                                       0xaf3e (size before relaxing)
+ .debug_str     0x00000000000db496       0xa8 ./USB_HOST/App/usb_host.o
+                                      0xcffe2 (size before relaxing)
+ .debug_str     0x00000000000db53e      0x174 ./USB_HOST/Target/usbh_conf.o
+                                      0xcfb05 (size before relaxing)
+ .debug_str     0x00000000000db6b2       0x33 ./USB_HOST/Target/usbh_platform.o
                                       0xc29c2 (size before relaxing)
 
 .comment        0x0000000000000000       0x53

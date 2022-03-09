@@ -65,7 +65,7 @@ TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim12;
 
 osThreadId BalanceWaterHandle;
-uint32_t BalanceWaterBuffer[ 4096 ];
+uint32_t BalanceWaterBuffer[ 3100 ];
 osStaticThreadDef_t BalanceWaterControlBlock;
 osThreadId WaterTempControHandle;
 uint32_t WaterTempControBuffer[ 2048 ];
@@ -170,7 +170,7 @@ HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 80);
 
   /* Create the thread(s) */
   /* definition and creation of BalanceWater */
-  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 4096, BalanceWaterBuffer, &BalanceWaterControlBlock);
+  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 3100, BalanceWaterBuffer, &BalanceWaterControlBlock);
   BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
 
   /* definition and creation of WaterTempContro */
@@ -730,7 +730,7 @@ void StartBalanceWater(void const * argument)
   {
 
 	 // MX_USB_HOST_Process();
-	  systemControl();
+	systemControl();
     osDelay(1);
   }
   /* USER CODE END 5 */
