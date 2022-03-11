@@ -61,7 +61,6 @@ void step(int nutrient_steps, int ph_up_steps, int ph_down_steps)
 	if(ph_up_steps>most_steps) most_steps 	= ph_up_steps;
 	if(ph_down_steps>most_steps) most_steps = ph_down_steps;
 	enablePumps(nutrient_steps,ph_up_steps,ph_down_steps);					// enable only the pumps that are going to dose
-	//HAL_TIM_Base_Start(&htim2);
 
 	for(int i = 0; i<most_steps; i++)										// step each pump their respective number of steps.
 	{

@@ -56,55 +56,57 @@ double readWaterTemp(void)
 
 
 
-
 double DMA_TDS_sample_avg = 0;
 double DMA_pH_sample_avg = 0;
 
-#define samples  30           	// sum of sample point
-int nutrientBuffer[samples],analogBufferTemp[samples], copyIndex = 0;  // store the analog value in the array, read from ADC
-double averageVoltage = 0,tdsValue = 0,temperature = 25,compensationCoefficient = 0,compensationVolatge = 0;
+int TDS_computation_buffer[80] = {0};
+double TDS_voltage = 0,TDS_value = 0,temperature = 25,compensationCoefficient = 0,compensationVolatge = 0;
 int TDS_index = 0;
 char nutrient_buffer_ready = 'n';
 
 double readWaterTDS() // Get nutrient level
 {
-	averageVoltage = DMA_TDS_sample_avg * (double)0.000805664; 																					 // read the analog value more stable by averaging and convert to voltage value
-	compensationCoefficient=1.0+0.02*(temperature-25.0);   																								    		 //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0));
-	compensationVolatge=averageVoltage/compensationCoefficient;  																									 //temperature compensation
-	tdsValue=(133.42*compensationVolatge*compensationVolatge*compensationVolatge - 255.86*compensationVolatge*compensationVolatge + 857.39*compensationVolatge)*0.5; //convert voltage value to tds
-	return tdsValue;
+
+	TDS_voltage = getMedianNum(TDS_computation_buffer,80)*(double)0.000805664; 																					 // read the analog value more stable by averaging and convert to voltage value
+	compensationCoefficient=1.0+0.02*(water_temp-25.0);   																								    		 //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0));
+	compensationVolatge=TDS_voltage/compensationCoefficient;  																									 //temperature compensation
+	TDS_value=(133.42*compensationVolatge*compensationVolatge*compensationVolatge - 255.86*compensationVolatge*compensationVolatge + 857.39*compensationVolatge)*0.5; //convert voltage value to tds
+	return TDS_value;
 	return -10; // else if we make it here there is no new sample ready so return -10 to signify we need to check again
 
 }
-double whtvalue  = 0;
+int valid_value_pH  = 0;
+int valid_value_TDS  = 0;
+int j = 0;
 void get_nutrient_ph_value()	// gets nutrient and ph values from the ADC and places it in a buffer
 {
-	whtvalue = 0;
+	valid_value_pH = 0;
+	valid_value_TDS = 0;
 	DMA_TDS_sample_avg = 0;
 	DMA_pH_sample_avg = 0;
 	taskENTER_CRITICAL();
 	{
-		for(int j = 0; j<30; )
+		for(j = 0; j<80; j++ )
 		{
-			if(j%2 == 0 && nutrient_ph_values[j] < 80)
+			if(j%2 == 0 )//&& nutrient_ph_values[j] < 80)
 			{
+				TDS_computation_buffer[valid_value_TDS] = nutrient_ph_values[j];
 				DMA_TDS_sample_avg += nutrient_ph_values[j]; // even so get pH
-			}
-			else if(j%2 == 0)
-			{
-				whtvalue = nutrient_ph_values[j];
+				valid_value_TDS++;
 			}
 			if(j%2 != 0)
 			{
 				DMA_pH_sample_avg += nutrient_ph_values[j];
+				valid_value_pH++;
 			}
-			j++;
+
 		}
+
 	}
 	taskEXIT_CRITICAL();
 
-	DMA_pH_sample_avg = DMA_pH_sample_avg/15;
-	DMA_TDS_sample_avg =  DMA_TDS_sample_avg/15;
+	DMA_pH_sample_avg = DMA_pH_sample_avg/valid_value_pH;
+	DMA_TDS_sample_avg =  DMA_TDS_sample_avg/valid_value_TDS;
 
 	//nutrient_ph_values[0] = get_ADC_values(1);
 //	nutrient_ph_values[1] = get_ADC_values(0);
@@ -143,9 +145,9 @@ void getSensorValues(int delay_enable)
 
 	TDS = readWaterTDS();
 	pH =  readPH();
-
-
 	water_temp = readWaterTemp();
+
+
 	new_sample = 'y';
 /*
 	for(fiveSamples = 0; fiveSamples<5;)

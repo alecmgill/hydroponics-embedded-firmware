@@ -45,6 +45,6 @@ double calcNutrientDose(double pH_set_val, double TDS_set_val)
 {
 	nutrient_volume =  0;
 
-	for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += max_nutrient_dose/70;
+	for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += max_nutrient_dose/80;
 	return nutrient_volume;
 }
