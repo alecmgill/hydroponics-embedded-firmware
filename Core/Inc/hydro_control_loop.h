@@ -20,5 +20,6 @@ extern double max_pH_up_dose, max_pH_down_dose, max_nutrient_dose;
 //extern float nutrient_set_point, pH_set_point, water_temp_set_point;
 void waterTempControl();
 void systemControl();
+void resetStabilityVars();
 void writeCalibrationData();
 #endif /* INC_HYDRO_CONTROL_LOOP_H_ */
