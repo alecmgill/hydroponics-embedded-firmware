@@ -25,7 +25,7 @@ double calcPhUpDose(double pH_set_val, double TDS_set_val)      // following dos
 
 	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS < 150); d += 0.01)			     	  pH_up_volume += (double) max_pH_up_dose/1300.0;
 	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 150) && (TDS < 300); d += 0.01) 	  pH_up_volume += (double) max_pH_up_dose/600.0;
-	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 300) && (TDS < 600); d += 0.01) 	  pH_up_volume += (double) max_pH_up_dose/150.0;
+	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 300) && (TDS < 600); d += 0.01) 	  pH_up_volume += (double) max_pH_up_dose/120.0;
 	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 600); d += 0.01) 				 	  pH_up_volume += (double) max_pH_up_dose/50.0;
 	return pH_up_volume;
 }
@@ -36,7 +36,7 @@ double calcPhDownDose(double pH_set_val, double TDS_set_val)
 
 	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS < 150); d += 0.01)			      pH_down_volume += (double) max_pH_down_dose/1300.0;
 	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 150) && (TDS < 300); d += 0.01)  pH_down_volume += (double) max_pH_down_dose/600.0;
-	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 300) && (TDS < 600); d += 0.01)  pH_down_volume += (double) max_pH_down_dose/150.0;
+	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 300) && (TDS < 600); d += 0.01)  pH_down_volume += (double) max_pH_down_dose/120.0;
 	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 600); d += 0.01)		  		  pH_down_volume += (double) max_pH_down_dose/50.0;
 	return pH_down_volume;
 }
@@ -44,11 +44,9 @@ double calcPhDownDose(double pH_set_val, double TDS_set_val)
 double calcNutrientDose(double pH_set_val, double TDS_set_val)	// calculates nutrient dosage based on how far we are away from the set-point
 {
 	nutrient_volume =  0;
-	if(		(TDS_set_val - TDS)  > 30)								 for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)     nutrient_volume += (double) max_nutrient_dose/45.0;
-	else if((TDS_set_val - TDS) <= 30 && (TDS_set_val - TDS) > 15 )  for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += (double) max_nutrient_dose/50.0;
-	else if((TDS_set_val - TDS) <= 15 && (TDS_set_val - TDS) > 7.5 ) for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += (double) max_nutrient_dose/55.0;
-	else if((TDS_set_val - TDS) <= 7.5 && (TDS_set_val - TDS) > 2.5 )for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += (double) max_nutrient_dose/60.0;
-	else if((TDS_set_val - TDS) <= 2.5) 						     for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += (double) max_nutrient_dose/65.0;
+	if(		(TDS_set_val - TDS)  > 7.5)								 for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)     nutrient_volume += (double) max_nutrient_dose/40.0;
+	else if((TDS_set_val - TDS) <= 7.5 && (TDS_set_val - TDS) > 2.5 )for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += (double) max_nutrient_dose/45.0;
+	else if((TDS_set_val - TDS) <= 2.5) 						     for(int i = 0; (i < TDS_set_val - TDS) && (nutrient_volume < max_nutrient_dose); i++)	  nutrient_volume += (double) max_nutrient_dose/50.0;
 
 	return nutrient_volume;
 }

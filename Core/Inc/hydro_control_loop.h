@@ -16,10 +16,18 @@
 
 extern double water_temp, TDS, pH;
 extern double max_pH_up_dose, max_pH_down_dose, max_nutrient_dose;
-
-//extern float nutrient_set_point, pH_set_point, water_temp_set_point;
+extern double sample_array_TDS[];
+extern double sample_array_pH[];
+extern int num_sensor_samples;
+void floatToString(double FP_NUM);
+void write_balance_data_file(char buffer_full);
+void add_data_to_array();
+void appendInitialConditions();
+void balancePhAndNutrient();
+void resetStabilityVars();
+void isStabalized();
+int waitForWaterToStabilize();
 void waterTempControl();
 void systemControl();
-void resetStabilityVars();
-void writeCalibrationData();
+
 #endif /* INC_HYDRO_CONTROL_LOOP_H_ */

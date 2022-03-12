@@ -1,7 +1,7 @@
-sensors.c:25:8:readWaterTemp	8	static
-sensors.c:67:8:readWaterTDS	16	static
-sensors.c:81:6:get_nutrient_ph_value	16	static
-sensors.c:116:5:readWaterLevel	8	static
-sensors.c:120:6:calibratePhProbe	4	static
-sensors.c:125:8:readPH	8	static
-sensors.c:136:6:getSensorValues	16	static
+sensors.c:25:6:readWaterTemp	8	static
+sensors.c:51:6:readWaterTDS	16	static
+sensors.c:60:6:get_nutrient_ph_value	24	static
+sensors.c:85:5:readWaterLevel	8	static
+sensors.c:89:6:calibratePhProbe	4	static
+sensors.c:95:6:readPH	8	static
+sensors.c:102:6:getSensorValues	24	static

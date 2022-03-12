@@ -67,9 +67,6 @@ TIM_HandleTypeDef htim12;
 osThreadId BalanceWaterHandle;
 uint32_t BalanceWaterBuffer[ 3100 ];
 osStaticThreadDef_t BalanceWaterControlBlock;
-osThreadId WaterTempControHandle;
-uint32_t WaterTempControBuffer[ 2048 ];
-osStaticThreadDef_t WaterTempControControlBlock;
 /* USER CODE BEGIN PV */
 
 GPIO_InitTypeDef  GPIO_InitStruct;
@@ -91,7 +88,6 @@ static void MX_TIM12_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 void StartBalanceWater(void const * argument);
-void StartWaterTempControl(void const * argument);
 
 /* USER CODE BEGIN PFP */
 uint32_t nutrient_ph_values[85] = {0};
@@ -119,7 +115,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -172,10 +168,6 @@ HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 80);
   /* definition and creation of BalanceWater */
   osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 3100, BalanceWaterBuffer, &BalanceWaterControlBlock);
   BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
-
-  /* definition and creation of WaterTempContro */
-  osThreadStaticDef(WaterTempContro, StartWaterTempControl, osPriorityNormal, 0, 2048, WaterTempControBuffer, &WaterTempControControlBlock);
-  WaterTempControHandle = osThreadCreate(osThread(WaterTempContro), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -734,25 +726,6 @@ void StartBalanceWater(void const * argument)
     osDelay(1);
   }
   /* USER CODE END 5 */
-}
-
-/* USER CODE BEGIN Header_StartWaterTempControl */
-/**
-* @brief Function implementing the WaterTempContro thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartWaterTempControl */
-void StartWaterTempControl(void const * argument)
-{
-  /* USER CODE BEGIN StartWaterTempControl */
-  /* Infinite loop */
-  for(;;)
-  {
-	waterTempControl();
-    osDelay(1);
-  }
-  /* USER CODE END StartWaterTempControl */
 }
 
 /**
