@@ -67,6 +67,9 @@ TIM_HandleTypeDef htim12;
 osThreadId BalanceWaterHandle;
 uint32_t BalanceWaterBuffer[ 3100 ];
 osStaticThreadDef_t BalanceWaterControlBlock;
+osThreadId WebAppComHandle;
+uint32_t myTask02Buffer[ 1024 ];
+osStaticThreadDef_t myTask02ControlBlock;
 /* USER CODE BEGIN PV */
 
 GPIO_InitTypeDef  GPIO_InitStruct;
@@ -88,6 +91,7 @@ static void MX_TIM12_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 void StartBalanceWater(void const * argument);
+void StartWebAppCom(void const * argument);
 
 /* USER CODE BEGIN PFP */
 uint32_t nutrient_ph_values[85] = {0};
@@ -166,8 +170,12 @@ HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 80);
 
   /* Create the thread(s) */
   /* definition and creation of BalanceWater */
-  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityRealtime, 0, 3100, BalanceWaterBuffer, &BalanceWaterControlBlock);
+  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityNormal, 0, 3100, BalanceWaterBuffer, &BalanceWaterControlBlock);
   BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
+
+  /* definition and creation of WebAppCom */
+  osThreadStaticDef(WebAppCom, StartWebAppCom, osPriorityNormal, 0, 1024, myTask02Buffer, &myTask02ControlBlock);
+  WebAppComHandle = osThreadCreate(osThread(WebAppCom), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -723,9 +731,27 @@ void StartBalanceWater(void const * argument)
 
 	 // MX_USB_HOST_Process();
 	systemControl();
-    osDelay(1);
+    osDelay(1000);
   }
   /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_StartWebAppCom */
+/**
+* @brief Function implementing the WebAppCom thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartWebAppCom */
+void StartWebAppCom(void const * argument)
+{
+  /* USER CODE BEGIN StartWebAppCom */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartWebAppCom */
 }
 
 /**

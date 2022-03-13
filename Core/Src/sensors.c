@@ -50,7 +50,7 @@ void readWaterTemp()
 
 void readWaterTDS() // Get nutrient level
 {
-	TDS_voltage = getMedianNum(TDS_computation_buffer,80)*(double)0.000805664; 																					 // read the analog value more stable by averaging and convert to voltage value
+	TDS_voltage = getMedianNum(TDS_computation_buffer,40)*(double)0.000805664; 																					 // read the analog value more stable by averaging and convert to voltage value
 	compensationCoefficient=1.0+0.02*(water_temp-25.0);   																								    		 //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0));
 	compensationVolatge=TDS_voltage/compensationCoefficient;  																									 //temperature compensation
 	TDS =(133.42*compensationVolatge*compensationVolatge*compensationVolatge - 255.86*compensationVolatge*compensationVolatge + 857.39*compensationVolatge)*0.5; //convert voltage value to tds
