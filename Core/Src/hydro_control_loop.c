@@ -14,14 +14,14 @@
 #include "sensors.h"
 #include "main.h"
 double max_pH_up_dose = 5.0, max_pH_down_dose = 5.0, pH_up_dose = 0, pH_down_dose = 0, max_nutrient_dose = 100, nutrient_dose = 0, total_nutrient_ml = 0, total_pH_up_ml = 0, total_pH_down_ml = 0, total_nutrient_ml_per_file = 0, total_pH_up_ml_per_file = 0, total_pH_down_ml_per_file = 0,
-		nutrient_set_point = 25.0, pH_set_point = 6.0, water_temp_set_point = 21.0, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
+		nutrient_set_point = 250.0, pH_set_point = 6.0, water_temp_set_point = 21.0, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
 		start_TDS = 0, start_pH = 0, prev_smallest_ph = 0, prev_smallest_TDS = 0, historic_largest_pH[200] = {0}, historic_smallest_pH[200] = {0}, historic_largest_TDS[200] = {0}, historic_smallest_TDS[200] = {0}, historic_average_pH[200] = {0}, historic_average_TDS[200] = {0},
 		historic_average_pH_range = 0, historic_average_TDS_range = 0, historic_range_pH  = 0, historic_range_TDS = 0, average_pH = 0, average_TDS = 0,  historic_average_pH_min = 1000, historic_average_pH_max = 0, historic_average_TDS_min = 100000,  historic_average_TDS_max = 0,
 		historic_TDS_max = 0, historic_pH_max  = 0, historic_pH_min  = 0, historic_TDS_min  = 0, slope_factor_average_TDS = 0, slope_factor_average_ph = 0, sample_array_TDS[30] = {0}, sample_array_pH[30] = {0}, smallest_value_TDS = 100000, largest_value_TDS = 0, smallest_value_pH = 100,
 		largest_value_pH = 0, prev_largest_pH = 0, prev_largest_TDS = 0, TDS_range = 0,	pH_range = 0, TDS_avg_check = 0, pH_avg_check = 0, fpnumber;
 
 int balance_index = 0, i = 0, time_to_bal_nutrient = 0, time_to_bal_pH = 0, file_number = 0, file_index = 0, num_of_stable_runs = 0, num_sensor_samples = 15, data_array_length = 10000, write_times = 0, number_of_files = 1, total_runs = 0, eq_end_time_sec = 0, eq_start_time_sec = 0,
-		stability_value = 1, start_time_seconds = 0, end_time_seconds = 0, total_time_seconds = 0, sample_index1 = 0, number_of_stable_temp_runs = 0, recheck_count = 0, valid = 0, historic_sample_index = 0, number_historic_samples = 200, run_again = 1;
+		stability_value = 1, start_time_seconds = 0, end_time_seconds = 0, total_time_seconds = 0, sample_index1 = 0, recheck_count = 0, valid = 0, historic_sample_index = 0, number_historic_samples = 200, run_again = 1;
 
 char file_name[25] = "data_", extention[5] = ".csv", buffer[25] = {0}, convertedString[10] = {0}, waiting_to_write = 'n', balance_data[5000] = {0}, get_init_conditions = 'n', pH_init_title[15] = "Initial pH:", pH_set_point_title[15] = "pH set point:", TDS_init_title[15] = "Initial TDS:",
 		TDS_set_point_title[15] = "TDS set point:",	balance_header[]  = "pH_after_dose, total_pH_up_ml, pH_Up_dose_ml, total_pH_down_ml, pH_down_dose_ml, time_to_bal_pH, TDS_after_dose, total_nutrient_ml, TDS_dose_ml, time_to_bal_nutrient, error, water_temp\n", setting_pH = 'n',
@@ -623,48 +623,45 @@ void waterTempControl()
 	if((temp_up == 'y' || temp_down == 'y'))				// if we are adding pH-up/down or nutrient, signify what we are setting so we can change the accuracy range
 	{
 		setting_water_temp = 'y';
-		number_of_stable_temp_runs = 0;
 	}
 	else setting_water_temp = 'n';
 
-	if(number_of_stable_temp_runs >= 0 && number_of_stable_temp_runs <= 5) // consider changing to 10
+	if(temp_up == 'y' && heat_on == 'n')
 	{
-		if(temp_up == 'y' && heat_on == 'n')
-		{
-			heatOn();	// if we need heat the water turn on the heater
-			heat_on = 'y';
-			cool_on = 'n';
-		}
-		else if(temp_down == 'y' && cool_on == 'n')
-		{
-			coolOn();	// if we need cool the water turn on the cooler
-			cool_on = 'y';
-			heat_on = 'n';
-		}
-		number_of_stable_temp_runs++;
+		heatOn();	// if we need heat the water turn on the heater
+		setFanSpeed(3.5,3.5,3.5);
+		heat_on = 'y';
+		cool_on = 'n';
 	}
-	if(number_of_stable_temp_runs > 5)
+	else if(temp_down == 'y' && cool_on == 'n')
+	{
+		coolOn();	// if we need cool the water turn on the cooler
+		setFanSpeed(3.5,3.5,2.5);
+		cool_on = 'y';
+		heat_on = 'n';
+	}
+	else if(temp_up == 'n' && temp_down == 'n')
 	{
 		heat_on = 'n';
 		cool_on = 'n';
 		heatCoolOff();
-		number_of_stable_temp_runs = 0;
+		setFanSpeed(3.5,3.5,0);
 	}
 }
 
 void systemControl()
 {
-	getSensorValues();
+
 	if(run_once == 'n')
 	{
 		//doseWater(100,100,100);
 		run_once = 'y';
 		fanOn();
-		setFanSpeed(3.5,3.5,3.5);
+		setFanSpeed(3.5,3.5,0);
 		setTimeDate(0x01, 0x08, 0x22, 0x19, 0x09, 0x00); // MUST BE HEX BUT NOT CONVERTED i,e,(the 22 day of the month is represented as 0x22 NOT 0x16) (month, day, year, hours, min, sec)
 		setLightCyle(19, 9, 19, 10); 			   		 // MUST BE INT (start hour, start min, start sec, end hour, end min)
 	}
-
+	getSensorValues();
 	balancePhAndNutrient();
 }
 

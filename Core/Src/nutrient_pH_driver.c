@@ -24,8 +24,8 @@ double calcPhUpDose(double pH_set_val, double TDS_set_val)      // following dos
 	pH_up_volume =  0; // set dose to the minimum
 
 	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS < 150); d += 0.01)			     	  pH_up_volume += (double) max_pH_up_dose/800.0;
-	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 150) && (TDS < 300); d += 0.01) 	  pH_up_volume += (double) max_pH_up_dose/600.0;
-	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 300) && (TDS < 600); d += 0.01) 	  pH_up_volume += (double) max_pH_up_dose/120.0;
+	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 150) && (TDS < 300); d += 0.01) 	  pH_up_volume += (double) max_pH_up_dose/650.0;
+	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 300) && (TDS < 600); d += 0.01) 	  pH_up_volume += (double) max_pH_up_dose/150.0;
 	for(d = 0; (d < pH_set_val-pH) && (pH_up_volume < max_pH_up_dose) && (TDS >= 600); d += 0.01) 				 	  pH_up_volume += (double) max_pH_up_dose/50.0;
 	return pH_up_volume;
 }
@@ -35,8 +35,8 @@ double calcPhDownDose(double pH_set_val, double TDS_set_val)
 	pH_down_volume =  0;
 
 	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS < 150); d += 0.01)			      pH_down_volume += (double) max_pH_down_dose/800.0;
-	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 150) && (TDS < 300); d += 0.01)  pH_down_volume += (double) max_pH_down_dose/600.0;
-	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 300) && (TDS < 600); d += 0.01)  pH_down_volume += (double) max_pH_down_dose/120.0;
+	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 150) && (TDS < 300); d += 0.01)  pH_down_volume += (double) max_pH_down_dose/650.0;
+	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 300) && (TDS < 600); d += 0.01)  pH_down_volume += (double) max_pH_down_dose/150.0;
 	for(d = 0; (d < pH-pH_set_val) && (pH_down_volume < max_pH_down_dose) && (TDS >= 600); d += 0.01)		  		  pH_down_volume += (double) max_pH_down_dose/50.0;
 	return pH_down_volume;
 }
