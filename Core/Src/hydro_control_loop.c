@@ -14,7 +14,7 @@
 #include "sensors.h"
 #include "main.h"
 double max_pH_up_dose = 5.0, max_pH_down_dose = 5.0, pH_up_dose = 0, pH_down_dose = 0, max_nutrient_dose = 100, nutrient_dose = 0, total_nutrient_ml = 0, total_pH_up_ml = 0, total_pH_down_ml = 0, total_nutrient_ml_per_file = 0, total_pH_up_ml_per_file = 0, total_pH_down_ml_per_file = 0,
-		nutrient_set_point = 250.0, pH_set_point = 6.0, water_temp_set_point = 21.0, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
+		nutrient_set_point = 220.0, pH_set_point = 6.35, water_temp_set_point = 21.0, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
 		start_TDS = 0, start_pH = 0, prev_smallest_ph = 0, prev_smallest_TDS = 0, historic_largest_pH[200] = {0}, historic_smallest_pH[200] = {0}, historic_largest_TDS[200] = {0}, historic_smallest_TDS[200] = {0}, historic_average_pH[200] = {0}, historic_average_TDS[200] = {0},
 		historic_average_pH_range = 0, historic_average_TDS_range = 0, historic_range_pH  = 0, historic_range_TDS = 0, average_pH = 0, average_TDS = 0,  historic_average_pH_min = 1000, historic_average_pH_max = 0, historic_average_TDS_min = 100000,  historic_average_TDS_max = 0,
 		historic_TDS_max = 0, historic_pH_max  = 0, historic_pH_min  = 0, historic_TDS_min  = 0, slope_factor_average_TDS = 0, slope_factor_average_ph = 0, sample_array_TDS[30] = {0}, sample_array_pH[30] = {0}, smallest_value_TDS = 100000, largest_value_TDS = 0, smallest_value_pH = 100,
@@ -332,8 +332,16 @@ void balancePhAndNutrient()
 
 	if(setting_pH == 'n')	// if we are not changing the pH or nutrient level, check to see if we are out of bounds
 	{
-		if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)   				pH_down = 'y'; 			// if we are over our set point dose the water with pH-down
-		else if(pH  < pH_set_point 	   &&     (pH + pH_bounds_check) < pH_set_point)  				pH_up 	= 'y'; 				// if we are under our set point dose the water with pH-up
+		if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)
+		{
+			pH_down = 'y'; 			// if we are over our set point dose the water with pH-down
+			calibrateDosage('d');
+		}
+		else if(pH  < pH_set_point 	   &&     (pH + pH_bounds_check) < pH_set_point)
+		{
+			pH_up 	= 'y'; 				// if we are under our set point dose the water with pH-up
+			calibrateDosage('u');
+		}
 	}
 	else	// else we are setting the pH so reduce the pH bounds to accurately set the value
 	{
@@ -346,6 +354,7 @@ void balancePhAndNutrient()
 		else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_check) < nutrient_set_point )
 		{
 			nutrient_up = 'y';// if we checked twice and we still need to dose nutrients then go for it.
+			calibrateDosage('n');
 		}
 	}
 	else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_set) < nutrient_set_point) nutrient_up = 'y';		 // if we are under our set point dose the water with pH-down

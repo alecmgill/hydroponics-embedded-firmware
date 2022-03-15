@@ -3485,7 +3485,7 @@ static void prvCheckTasksWaitingTermination( void )
 		}
 	}
 	#endif /* INCLUDE_vTaskDelete */
-}
+ }
 /*-----------------------------------------------------------*/
 
 #if( configUSE_TRACE_FACILITY == 1 )
