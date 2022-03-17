@@ -14,7 +14,7 @@
 #include "sensors.h"
 #include "main.h"
 double max_pH_up_dose = 5.0, max_pH_down_dose = 5.0, pH_up_dose = 0, pH_down_dose = 0, max_nutrient_dose = 100, nutrient_dose = 0, total_nutrient_ml = 0, total_pH_up_ml = 0, total_pH_down_ml = 0, total_nutrient_ml_per_file = 0, total_pH_up_ml_per_file = 0, total_pH_down_ml_per_file = 0,
-		nutrient_set_point = 220.0, pH_set_point = 6.35, water_temp_set_point = 21.0, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
+		nutrient_set_point = 580.0, pH_set_point = 6.2, water_temp_set_point = 21.5, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
 		start_TDS = 0, start_pH = 0, prev_smallest_ph = 0, prev_smallest_TDS = 0, historic_largest_pH[200] = {0}, historic_smallest_pH[200] = {0}, historic_largest_TDS[200] = {0}, historic_smallest_TDS[200] = {0}, historic_average_pH[200] = {0}, historic_average_TDS[200] = {0},
 		historic_average_pH_range = 0, historic_average_TDS_range = 0, historic_range_pH  = 0, historic_range_TDS = 0, average_pH = 0, average_TDS = 0,  historic_average_pH_min = 1000, historic_average_pH_max = 0, historic_average_TDS_min = 100000,  historic_average_TDS_max = 0,
 		historic_TDS_max = 0, historic_pH_max  = 0, historic_pH_min  = 0, historic_TDS_min  = 0, slope_factor_average_TDS = 0, slope_factor_average_ph = 0, sample_array_TDS[30] = {0}, sample_array_pH[30] = {0}, smallest_value_TDS = 100000, largest_value_TDS = 0, smallest_value_pH = 100,
@@ -334,13 +334,11 @@ void balancePhAndNutrient()
 	{
 		if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)
 		{
-			pH_down = 'y'; 			// if we are over our set point dose the water with pH-down
-			calibrateDosage('d');
+			pH_down = calibrateDosage('d', pH);		// if we are over our set point dose the water with pH-down
 		}
 		else if(pH  < pH_set_point 	   &&     (pH + pH_bounds_check) < pH_set_point)
 		{
-			pH_up 	= 'y'; 				// if we are under our set point dose the water with pH-up
-			calibrateDosage('u');
+			pH_up 	= calibrateDosage('u',pH); 				// if we are under our set point dose the water with pH-up
 		}
 	}
 	else	// else we are setting the pH so reduce the pH bounds to accurately set the value
@@ -353,8 +351,7 @@ void balancePhAndNutrient()
 		if(     TDS > nutrient_set_point && (TDS - nutrient_bounds_check) > nutrient_set_point) 	error = 'y'; 				 // if we are over our TDS set point ERROR
 		else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_check) < nutrient_set_point )
 		{
-			nutrient_up = 'y';// if we checked twice and we still need to dose nutrients then go for it.
-			calibrateDosage('n');
+			nutrient_up = calibrateDosage('n',pH);// if we checked twice and we still need to dose nutrients then go for it.
 		}
 	}
 	else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_set) < nutrient_set_point) nutrient_up = 'y';		 // if we are under our set point dose the water with pH-down
@@ -394,8 +391,14 @@ void balancePhAndNutrient()
 			nutrient_up = 'n';
 			pH_down = 'n';
 			pH_up 	= 'n';
-			if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)   		pH_down = 'y';  // if we are over our set point dose the water with pH-down
-			else if(pH  < pH_set_point 	   &&     (pH + pH_bounds_check) < pH_set_point)  		pH_up   = 'y';  // if we are under our set point dose the water with pH-up
+			if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)
+			{
+				pH_down = calibrateDosage('d',pH);
+			}
+			else if(pH  < pH_set_point 	   &&     (pH + pH_bounds_check) < pH_set_point)
+			{
+				pH_up = calibrateDosage('u',pH);
+			}
 
 			if(pH_down == 'y')
 			{
@@ -576,7 +579,7 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 		historic_average_TDS_range = historic_average_TDS_max - historic_average_TDS_min;
 	}
 
-	if(run_again != 2 && ( slope_factor_average_TDS > 1.5 ||  slope_factor_average_TDS < -1.5 || slope_factor_average_ph > 0.01 || slope_factor_average_ph < -0.01 || historic_sample_index <= 20 || TDS_range > 10.5 || pH_range > 0.1 || historic_average_pH_range > 0.05 || historic_average_pH_range < -0.05  || historic_range_pH > 0.1 || historic_range_pH < -0.1 || historic_range_TDS > 25 || historic_range_TDS < -25 || historic_average_TDS_range > 4.0 || historic_average_TDS_range < -4.0))
+	if(run_again != 2 && ( slope_factor_average_TDS > 1.5 ||  slope_factor_average_TDS < -1.5 || slope_factor_average_ph > 0.04 || slope_factor_average_ph < -0.04 || historic_sample_index <= 20 || TDS_range > 10.5 || pH_range > 0.25 || historic_average_pH_range > 0.05 || historic_average_pH_range < -0.05  || historic_range_pH > 0.30 || historic_range_pH < -0.30 || historic_range_TDS > 10 || historic_range_TDS < -10 || historic_average_TDS_range > 4.0 || historic_average_TDS_range < -4.0))
 	{
  		valid = 0;
  		recheck_count++;
@@ -669,6 +672,7 @@ void systemControl()
 		setFanSpeed(3.5,3.5,0);
 		setTimeDate(0x01, 0x08, 0x22, 0x19, 0x09, 0x00); // MUST BE HEX BUT NOT CONVERTED i,e,(the 22 day of the month is represented as 0x22 NOT 0x16) (month, day, year, hours, min, sec)
 		setLightCyle(19, 9, 19, 10); 			   		 // MUST BE INT (start hour, start min, start sec, end hour, end min)
+		//doseWater(100,100,100);
 	}
 	getSensorValues();
 	balancePhAndNutrient();

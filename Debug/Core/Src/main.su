@@ -7,9 +7,9 @@ main.c:488:13:MX_TIM4_Init	32	static
 main.c:533:13:MX_TIM10_Init	40	static
 main.c:579:13:MX_TIM12_Init	24	static
 main.c:615:13:MX_DMA_Init	16	static
-main.c:633:13:MX_GPIO_Init	56	static
-main.c:708:6:HAL_ADC_ConvCpltCallback	16	static
-main.c:723:6:StartBalanceWater	16	static
-main.c:746:6:StartWebAppCom	16	static
-main.c:765:6:HAL_TIM_PeriodElapsedCallback	16	static
-main.c:782:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:633:13:MX_GPIO_Init	48	static
+main.c:707:6:HAL_ADC_ConvCpltCallback	16	static
+main.c:722:6:StartBalanceWater	16	static
+main.c:745:6:StartWebAppCom	16	static
+main.c:764:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:781:6:Error_Handler	4	static,ignoring_inline_asm

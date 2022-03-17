@@ -49,8 +49,13 @@ void readWaterTemp()
 
 
 void readWaterTDS() // Get nutrient level
-{
-	TDS_voltage = getMedianNum(TDS_computation_buffer,40)*(double)0.000805664; 																					 // read the analog value more stable by averaging and convert to voltage value
+{TDS_voltage = 0;
+	for(int j = 0; j < 38; j++)
+	{
+		TDS_voltage += TDS_computation_buffer[j];
+	}
+	TDS_voltage = TDS_voltage/38;
+	TDS_voltage = TDS_voltage*(double)0.000805664; 																					 // read the analog value more stable by averaging and convert to voltage value
 	compensationCoefficient=1.0+0.02*(water_temp-25.0);   																								    		 //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0));
 	compensationVolatge=TDS_voltage/compensationCoefficient;  																									 //temperature compensation
 	TDS =(133.42*compensationVolatge*compensationVolatge*compensationVolatge - 255.86*compensationVolatge*compensationVolatge + 857.39*compensationVolatge)*0.5; //convert voltage value to tds
@@ -64,7 +69,7 @@ void get_nutrient_ph_value()	// gets nutrient and ph values from the ADC DMA buf
 	DMA_pH_sample_avg = 0;
 	taskENTER_CRITICAL();
 	{
-		for(int j = 0; j<80; j++ )
+		for(int j = 0; j<79; j++ )
 		{
 			if(j%2 == 0 )//&& nutrient_ph_values[j] < 80)
 			{
@@ -98,10 +103,10 @@ void readPH()
 	pH = convert_ph(mili_voltage);
 }
 
-
+char micro_reset = 'y';
+int runs_after = 0;
 void getSensorValues()
 {
-
 	for(int checkSamples = 0; checkSamples<num_sensor_samples; checkSamples++)			   // sample TDS and PH every half second for 30 times
 	{
 		get_nutrient_ph_value();
@@ -112,6 +117,9 @@ void getSensorValues()
 		sample_array_pH[checkSamples] = pH;
 		osDelay(10);
 	}
+	TDS = 0;
+	pH = 0;
+
 	for(int checkSamples = 0; checkSamples<num_sensor_samples; checkSamples++)			   // sample TDS and PH every half second for 30 times
 	{
 		TDS += sample_array_TDS[checkSamples];
@@ -120,6 +128,21 @@ void getSensorValues()
 	readWaterTemp();
 	TDS = TDS/num_sensor_samples;
 	pH  = pH/num_sensor_samples;
+	runs_after = 0;
+	while(micro_reset == 'y') // if our first run check to see if the pH sensor Erroneous value if so
+	{
+		if(pH > 14 || runs_after < 3)
+		{
+			get_nutrient_ph_value(); // sample sensors before taking data. This is because the first run will sometimes give erroneous values
+			osDelay(1000);
+			readWaterTDS();
+			readPH();
+			if(pH <= 14 ) runs_after++;
+		}
+		else micro_reset ='n';
+	}
+
+
 	waterTempControl();
 }
 

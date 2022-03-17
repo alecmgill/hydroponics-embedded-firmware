@@ -15,7 +15,7 @@
 #include "TDS_driver.h"
 
 extern double water_temp, TDS, pH;
-extern double max_pH_up_dose, max_pH_down_dose, max_nutrient_dose;
+extern double max_pH_up_dose, max_pH_down_dose, max_nutrient_dose, pH_set_point, pH_set_point, nutrient_set_point;
 extern double sample_array_TDS[];
 extern double sample_array_pH[];
 extern int num_sensor_samples;

@@ -90,8 +90,8 @@ void Error_Handler(void);
 #define ph_down_enable_GPIO_Port GPIOE
 #define plant_fan_speed_Pin GPIO_PIN_6
 #define plant_fan_speed_GPIO_Port GPIOF
-#define water_temp_Pin GPIO_PIN_2
-#define water_temp_GPIO_Port GPIOB
+#define water_temp_Pin GPIO_PIN_6
+#define water_temp_GPIO_Port GPIOA
 #define nutrient_enable_Pin GPIO_PIN_7
 #define nutrient_enable_GPIO_Port GPIOE
 #define water_heat_cool_Pin GPIO_PIN_8

@@ -10,18 +10,19 @@
 #include "sensors.h"
 #include "heater_driver.h"
 void heatOn()
-{taskENTER_CRITICAL();
 {
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_RESET);			// set to heat
-	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_SET);	// enable the heater
-}taskEXIT_CRITICAL();
+	osDelay(200);
+	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_RESET);	// enable the heater
 }
 void heatCoolOff()
 {
-	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_RESET);	// disable the heater
+	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_SET);	// disable the heater
+	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_SET);			// turn off active relays so not to waste power... This also sets the heater/cooler to the cool mode however, since the heater power-supply is disabled no cooling will take place
 }
 void coolOn()
 {
 	HAL_GPIO_WritePin(GPIOE,water_heat_cool_Pin,GPIO_PIN_SET);		// set to cool
-	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_SET);	// enable the cooler
+	osDelay(200);
+	HAL_GPIO_WritePin(GPIOE,water_heat_cool_enable_Pin,GPIO_PIN_RESET);	// enable the cooler
 }
