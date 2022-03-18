@@ -148,6 +148,7 @@ int main(void)
 HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&nutrient_ph_values, 80);
 
 
+
 //HAL_DMA_Start_IT(&hdma_adc2,(uint32_t)&nutrient_ph_values,(uint32_t)&hadc2,(uint32_t)2);
 
   /* USER CODE END 2 */
@@ -723,6 +724,7 @@ void StartBalanceWater(void const * argument)
 {
   /* init code for USB_HOST */
   MX_USB_HOST_Init();
+  getSensorValues();
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   for(;;)

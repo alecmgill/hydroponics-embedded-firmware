@@ -12,11 +12,11 @@
 #include "sensors.h"
 
 void readWaterTemp(void);
-void readWaterTDS();
-void get_nutrient_ph_value();
+void convertWaterTDS();
+void get_DMA_nutrient_ph_value();
 int  readWaterLevel();
 void calibratePhProbe();
-void readPH();
+void convertPH();
 void getFiveSamples(int delay_enable);
 
 #endif /* INC_SENSORS_H_ */

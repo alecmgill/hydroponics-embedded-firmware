@@ -14,5 +14,5 @@ void doseWater(double acid_ml, double base_ml, double nutrient_ml);
 double calcPhUpDose(double pH_set_val, double TDS_set_val);      // following dose methods return a double in milliliters.
 double calcPhDownDose(double pH_set_val, double TDS_set_val);
 double calcNutrientDose(double pH_set_val, double TDS_set_val);
-char calibrateDosage(char what_to_cal, double Cal_pH);
+char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double n_bounds_set);
 #endif /* INC_NUTRIENT_PH_DRIVER_H_ */

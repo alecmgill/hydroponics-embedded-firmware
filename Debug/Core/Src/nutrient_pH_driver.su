@@ -1,5 +1,5 @@
 nutrient_pH_driver.c:13:6:doseWater	40	static
 nutrient_pH_driver.c:23:8:calcPhUpDose	24	static
-nutrient_pH_driver.c:30:8:calcPhDownDose	24	static
-nutrient_pH_driver.c:37:8:calcNutrientDose	40	static
-nutrient_pH_driver.c:47:6:calibrateDosage	32	static
+nutrient_pH_driver.c:29:8:calcPhDownDose	24	static
+nutrient_pH_driver.c:35:8:calcNutrientDose	24	static
+nutrient_pH_driver.c:46:6:calibrateDosage	40	static
