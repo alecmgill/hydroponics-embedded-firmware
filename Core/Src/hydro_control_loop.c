@@ -14,17 +14,17 @@
 #include "sensors.h"
 #include "main.h"
 double max_pH_up_dose = 5.0, max_pH_down_dose = 5.0, pH_up_dose = 0, pH_down_dose = 0, max_nutrient_dose = 100, nutrient_dose = 0, total_nutrient_ml = 0, total_pH_up_ml = 0, total_pH_down_ml = 0, total_nutrient_ml_per_file = 0, total_pH_up_ml_per_file = 0, total_pH_down_ml_per_file = 0,
-		nutrient_set_point = 580.0, pH_set_point = 6.5, water_temp_set_point = 21.5, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
+		nutrient_set_point = 250.0, pH_set_point = 6.0, water_temp_set_point = 21.5, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.08, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
 		start_TDS = 0, start_pH = 0, prev_smallest_ph = 0, prev_smallest_TDS = 0, historic_largest_pH[200] = {0}, historic_smallest_pH[200] = {0}, historic_largest_TDS[200] = {0}, historic_smallest_TDS[200] = {0}, historic_average_pH[200] = {0}, historic_average_TDS[200] = {0},
 		historic_average_pH_range = 0, historic_average_TDS_range = 0, historic_range_pH  = 0, historic_range_TDS = 0, average_pH = 0, average_TDS = 0,  historic_average_pH_min = 1000, historic_average_pH_max = 0, historic_average_TDS_min = 100000,  historic_average_TDS_max = 0,
 		historic_TDS_max = 0, historic_pH_max  = 0, historic_pH_min  = 0, historic_TDS_min  = 0, slope_factor_average_TDS = 0, slope_factor_average_ph = 0, sample_array_TDS[30] = {0}, sample_array_pH[30] = {0}, smallest_value_TDS = 100000, largest_value_TDS = 0, smallest_value_pH = 100,
-		largest_value_pH = 0, prev_largest_pH = 0, prev_largest_TDS = 0, TDS_range = 0,	pH_range = 0, TDS_avg_check = 0, pH_avg_check = 0, fpnumber;
+		largest_value_pH = 0, prev_largest_pH = 0, prev_largest_TDS = 0, TDS_range = 0,	pH_range = 0, TDS_avg_check = 0, pH_avg_check = 0, fpnumber, total_pH_up_ml_cal_step = 0, total_pH_down_ml_cal_step = 0, total_nutrient_ml_cal_step = 0;
 
 int balance_index = 0, i = 0, time_to_bal_nutrient = 0, time_to_bal_pH = 0, file_number = 0, file_index = 0, num_of_stable_runs = 0, num_sensor_samples = 15, data_array_length = 10000, write_times = 0, number_of_files = 1, total_runs = 0, eq_end_time_sec = 0, eq_start_time_sec = 0,
 		stability_value = 1, start_time_seconds = 0, end_time_seconds = 0, total_time_seconds = 0, sample_index1 = 0, recheck_count = 0, valid = 0, historic_sample_index = 0, number_historic_samples = 200, run_again = 1;
 
 char file_name[25] = "data_", extention[5] = ".csv", buffer[25] = {0}, convertedString[10] = {0}, waiting_to_write = 'n', balance_data[5000] = {0}, get_init_conditions = 'n', pH_init_title[15] = "Initial pH:", pH_set_point_title[15] = "pH set point:", TDS_init_title[15] = "Initial TDS:",
-		TDS_set_point_title[15] = "TDS set point:",	balance_header[]  = "pH_after_dose, total_pH_up_ml, pH_Up_dose_ml, total_pH_down_ml, pH_down_dose_ml, time_to_bal_pH, TDS_after_dose, total_nutrient_ml, TDS_dose_ml, time_to_bal_nutrient, error, water_temp\n", setting_pH = 'n',
+		TDS_set_point_title[15] = "TDS set point:",	balance_header[]  = "pH_after_dose, total_pH_up_ml, pH_Up_dose_ml, total_pH_down_ml, pH_down_dose_ml, time_to_bal_pH, TDS_after_dose, total_nutrient_ml, TDS_dose_ml, time_to_bal_nutrient, error, water_temp, total_pH_up_ml_cal_step, total_pH_down_ml_cal_step, total_nutrient_ml_cal_step\n", setting_pH = 'n',
 		setting_nutrient = 'n', heat_on = 'n', cool_on = 'n', setting_water_temp = 'n', run_once = 'n', error = 'n', pH_up = 'n', pH_down = 'n', nutrient_up = 'n', write_header = 'n', temp_up = 'n', temp_down = 0;
 
 long int befdec, aftdec;
@@ -248,6 +248,32 @@ void add_data_to_array()
 	}
 	balance_data[balance_index] = ',';
 	balance_index++;
+
+	floatToString((double)total_pH_up_ml_cal_step);	// convert water temp to char array and write it to the data buffer
+	for(i = 0;i < (sizeof convertedString) && convertedString[i] != '\0';i++)
+	{
+		balance_data[balance_index] = convertedString[i];
+		balance_index++;
+	}
+	balance_data[balance_index] = ',';
+	balance_index++;
+	floatToString((double)total_pH_down_ml_cal_step);	// convert water temp to char array and write it to the data buffer
+	for(i = 0;i < (sizeof convertedString) && convertedString[i] != '\0';i++)
+	{
+		balance_data[balance_index] = convertedString[i];
+		balance_index++;
+	}
+	balance_data[balance_index] = ',';
+	balance_index++;
+	floatToString((double)total_nutrient_ml_cal_step);	// convert water temp to char array and write it to the data buffer
+	for(i = 0;i < (sizeof convertedString) && convertedString[i] != '\0';i++)
+	{
+		balance_data[balance_index] = convertedString[i];
+		balance_index++;
+	}
+	balance_data[balance_index] = ',';
+	balance_index++;
+
 	balance_data[balance_index] = '\n';
 	balance_index++;
 }
@@ -330,6 +356,16 @@ void balancePhAndNutrient()
 	pH_down = 'n';
 	nutrient_up = 'n';	// check twice to see if we need to add nutrient
 
+	if(setting_nutrient == 'n')	// if we are not changing the pH or nutrient level, check to see if we are out of bounds
+	{
+		if(     TDS > nutrient_set_point && (TDS - nutrient_bounds_check) > nutrient_set_point) 	error = 'y'; 				 // if we are over our TDS set point ERROR
+		else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_check) < nutrient_set_point )
+		{
+			nutrient_up = calibrateDosage('n',pH,pH_bounds_set,nutrient_bounds_set);// if we checked twice and we still need to dose nutrients then go for it.
+		}
+	}
+	else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_set) < nutrient_set_point) nutrient_up = 'y';		 // if we are under our set point dose the water with pH-down
+
 	if(setting_pH == 'n')	// if we are not changing the pH or nutrient level, check to see if we are out of bounds
 	{
 		if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)
@@ -346,15 +382,7 @@ void balancePhAndNutrient()
 		if(     pH  > pH_set_point     &&     (pH - pH_bounds_set) > pH_set_point)   				pH_down = 'y'; 			// if we are over our set point dose the water with pH-down
 		else if(pH  < pH_set_point 	   &&     (pH + pH_bounds_set) < pH_set_point)  				pH_up 	= 'y'; 				// if we are under our set point dose the water with pH-up
 	}
-	if(setting_nutrient == 'n')	// if we are not changing the pH or nutrient level, check to see if we are out of bounds
-	{
-		if(     TDS > nutrient_set_point && (TDS - nutrient_bounds_check) > nutrient_set_point) 	error = 'y'; 				 // if we are over our TDS set point ERROR
-		else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_check) < nutrient_set_point )
-		{
-			nutrient_up = calibrateDosage('n',pH,pH_bounds_set,nutrient_bounds_set);// if we checked twice and we still need to dose nutrients then go for it.
-		}
-	}
-	else if(TDS < nutrient_set_point && (TDS + nutrient_bounds_set) < nutrient_set_point) nutrient_up = 'y';		 // if we are under our set point dose the water with pH-down
+
 
 	if(get_init_conditions == 'n') appendInitialConditions();
 
@@ -367,13 +395,16 @@ void balancePhAndNutrient()
 		else setting_pH = 'n';
 		num_of_stable_runs = 0;
 	}
-	else if(pH_down == 'n' && pH_up == 'n' && nutrient_up == 'n')				// else if we are not setting anything, signify that
+	else if(pH_down == 'n')		// else if we are not setting anything, signify that
 	{
 		setting_nutrient = 'n';
+	}
+	if(pH_up == 'n' && nutrient_up == 'n')
+	{
 		setting_pH = 'n';
 	}
 
-	if(num_of_stable_runs >= 0 && num_of_stable_runs < 7 && ((10000 - balance_index) >= 500) && waiting_to_write == 'n' ) // consider changing to 10
+	if(num_of_stable_runs >= 0 && num_of_stable_runs < 7 && ((5000 - balance_index) >= 500) && waiting_to_write == 'n' ) // consider changing to 10
 	{
 		time_to_bal_pH = 0;
 		time_to_bal_nutrient = 0;
@@ -386,9 +417,9 @@ void balancePhAndNutrient()
 			total_nutrient_ml_per_file += nutrient_dose;
 			time_to_bal_nutrient = waitForWaterToStabilize();
 
-			getSensorValues();	// after adding nutrient check the pH again to see if it needs to be adjustedgetSensorValues
+			//getSensorValues();	// after adding nutrient check the pH again to see if it needs to be adjustedgetSensorValues
 
-			nutrient_up = 'n';
+			/*nutrient_up = 'n';
 			pH_down = 'n';
 			pH_up 	= 'n';
 			if(     pH  > pH_set_point     &&     (pH - pH_bounds_check) > pH_set_point)
@@ -399,7 +430,6 @@ void balancePhAndNutrient()
 			{
 				pH_up = calibrateDosage('u',pH,pH_bounds_set,nutrient_bounds_set);
 			}
-
 			if(pH_down == 'y')
 			{
 				pH_down_dose = calcPhDownDose(pH_set_point, nutrient_set_point);
@@ -417,7 +447,7 @@ void balancePhAndNutrient()
 				total_pH_up_ml_per_file+= pH_up_dose;
 				pH_up = 'n';
 				time_to_bal_pH = waitForWaterToStabilize();
-			}
+			}*/
 		}
 		else if(pH_down == 'y')
 		{
@@ -674,6 +704,7 @@ void systemControl()
 		setLightCyle(19, 9, 19, 10); 			   		 // MUST BE INT (start hour, start min, start sec, end hour, end min)
 		//doseWater(100,100,100);
 	}
+
 	getSensorValues();
 	balancePhAndNutrient();
 }
