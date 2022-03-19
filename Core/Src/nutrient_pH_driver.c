@@ -142,7 +142,7 @@ char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double
 	else if(what_to_cal == 'n')
 	{
 		cont_cal_additions_nutrient = 'n';
-		nutrient_ml_per_val_change = (nutrient_up_cal_dosage/((TDS-Start_Nutrient)-0.5));
+		nutrient_ml_per_val_change = (nutrient_up_cal_dosage/((TDS-Start_Nutrient)));
 		calibrating = 'n';
 //		cont_additions = 3;
 		return 'y';
