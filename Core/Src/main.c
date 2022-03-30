@@ -64,6 +64,9 @@ TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim12;
 
+UART_HandleTypeDef huart3;
+DMA_HandleTypeDef hdma_usart3_rx;
+
 osThreadId BalanceWaterHandle;
 uint32_t BalanceWaterBuffer[ 3100 ];
 osStaticThreadDef_t BalanceWaterControlBlock;
@@ -90,6 +93,7 @@ static void MX_RTC_Init(void);
 static void MX_TIM12_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC3_Init(void);
+static void MX_USART3_UART_Init(void);
 void StartBalanceWater(void const * argument);
 void StartWebAppCom(void const * argument);
 
@@ -102,7 +106,7 @@ extern void MX_USB_HOST_Process(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t UART_data[8] = "Hello\n";
 
 /* USER CODE END 0 */
 
@@ -142,6 +146,7 @@ int main(void)
   MX_FATFS_Init();
   MX_DMA_Init();
   MX_ADC3_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
  // (DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength)
 //HAL_DMA_RegisterCallback(&hdma_adc2,HAL_DMA_XFER_CPLT_CB_ID,&DMATransferComplete);
@@ -188,23 +193,11 @@ HAL_ADC_Start_DMA(&hadc3, (uint32_t*)&nutrient_ph_values, 80);
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  /*GPIO_InitTypeDef GPIO_InitStruct = {0};
-  GPIO_InitStruct.Pin = GPIO_PIN_4;
-
-
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-
-
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-
-
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);*/
 
   while (1)
   {
-	  //HAL_Delay(10000);
-	  //HAL_ADC_Start(&hadc1);
-
+	  //HAL_UART_Transmit(&huart3,UART_data,8,1000);
+	  //HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -611,6 +604,39 @@ static void MX_TIM12_Init(void)
 }
 
 /**
+  * @brief USART3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART3_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART3_Init 0 */
+
+  /* USER CODE END USART3_Init 0 */
+
+  /* USER CODE BEGIN USART3_Init 1 */
+
+  /* USER CODE END USART3_Init 1 */
+  huart3.Instance = USART3;
+  huart3.Init.BaudRate = 9600;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
+  huart3.Init.StopBits = UART_STOPBITS_1;
+  huart3.Init.Parity = UART_PARITY_NONE;
+  huart3.Init.Mode = UART_MODE_TX_RX;
+  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART3_Init 2 */
+
+  /* USER CODE END USART3_Init 2 */
+
+}
+
+/**
   * Enable DMA controller clock
   */
 static void MX_DMA_Init(void)
@@ -618,8 +644,12 @@ static void MX_DMA_Init(void)
 
   /* DMA controller clock enable */
   __HAL_RCC_DMA2_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
+  /* DMA1_Stream1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
   /* DMA2_Stream0_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
@@ -641,6 +671,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, ph_up_pump_Pin|ph_down_pump_Pin|nutrient_pump_Pin|ph_up_enable_Pin

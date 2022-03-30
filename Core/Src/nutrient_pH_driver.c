@@ -46,7 +46,7 @@ double calcNutrientDose(double pH_set_val, double TDS_set_val)	// calculates nut
 
 double Start_pH = 0;
 double Start_Nutrient = 0;
-double pH_up_cal_dosage = 0.1, pH_down_cal_dosage = 0.1, nutrient_up_cal_dosage = 10;
+double pH_up_cal_dosage = 0.05, pH_down_cal_dosage = 0.05, nutrient_up_cal_dosage = 10;
 char calibrating = 'n';
 
 char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double n_bounds_set)	// goal: Calculate the pH/nutrient change given a set volume. This will allow us to reduce over/undershooting without PID
@@ -124,7 +124,7 @@ char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double
 	}
 	else if(what_to_cal == 'u')
 	{
-		pH_up_ml_per_val_change  =  (pH_up_cal_dosage/((pH-Start_pH)-0.01)); // constant is used to slightly underestimate the max amount of pH solution we dose so not to overshoot
+		pH_up_ml_per_val_change  =  (pH_up_cal_dosage/((pH-Start_pH)-0.02)); // constant is used to slightly underestimate the max amount of pH solution we dose so not to overshoot
 		cont_cal_additions_PH_up = 'n';
 		//pH_up_dose_factor    = 90/(pH-Start_pH);
 		calibrating = 'n';
@@ -134,7 +134,7 @@ char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double
 	else if(what_to_cal == 'd')
 	{
 		cont_cal_additions_PH_down = 'n';
-		pH_down_ml_per_val_change  = (pH_down_cal_dosage/((Start_pH-pH)-0.01));
+		pH_down_ml_per_val_change  = (pH_down_cal_dosage/((Start_pH-pH)-0.02));
 		calibrating = 'n';
 		//cont_additions = 3;
 		return 'y';
@@ -142,7 +142,7 @@ char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double
 	else if(what_to_cal == 'n')
 	{
 		cont_cal_additions_nutrient = 'n';
-		nutrient_ml_per_val_change = (nutrient_up_cal_dosage/((TDS-Start_Nutrient)-1.0));
+		nutrient_ml_per_val_change = (nutrient_up_cal_dosage/((TDS-Start_Nutrient)-1.1));
 		calibrating = 'n';
 //		cont_additions = 3;
 		return 'y';

@@ -33,6 +33,7 @@ Middlewares/Third_Party/FatFs/src/option/syscall.o: \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
@@ -130,6 +131,8 @@ Middlewares/Third_Party/FatFs/src/option/syscall.o: \
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h:
+
+../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h:
 

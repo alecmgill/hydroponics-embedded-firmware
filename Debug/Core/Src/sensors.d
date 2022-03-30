@@ -29,6 +29,7 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h \
  ../Core/Inc/main.h \
@@ -118,6 +119,8 @@ Core/Src/sensors.o: ../Core/Src/sensors.c ../Core/Inc/sensors.h \
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h:
+
+../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h:
 

@@ -30,6 +30,7 @@ USB_HOST/App/usb_host.o: ../USB_HOST/App/usb_host.c \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc_ex.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h \
+ ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h \
  ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h \
  ../Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.h \
@@ -128,6 +129,8 @@ USB_HOST/App/usb_host.o: ../USB_HOST/App/usb_host.c \
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h:
+
+../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h:
 
 ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.h:
 

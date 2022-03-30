@@ -164,10 +164,8 @@ char getSensorValues()
 	runs_after = 0;
 
 
-	if(water_temp > 100 || previous_temp-water_temp > 5 || water_temp-previous_temp > 5)
-	{
-		return 'n';
-	}
+	if(water_temp > 100 || previous_temp-water_temp > 3 || water_temp-previous_temp > 3) return 'n'; // handle invalid temp reading which happen from time to time
+
 	previous_temp = water_temp;
 	waterTempControl();
 	return 'y';
