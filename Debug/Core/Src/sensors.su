@@ -4,4 +4,4 @@ sensors.c:67:6:get_DMA_nutrient_ph_value	24	static
 sensors.c:93:5:readWaterLevel	8	static
 sensors.c:97:6:calibratePhProbe	4	static
 sensors.c:102:6:convertPH	8	static
-sensors.c:110:6:getSensorValues	24	static
+sensors.c:112:6:getSensorValues	24	static

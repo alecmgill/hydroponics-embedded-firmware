@@ -107,10 +107,18 @@ void convertPH()
 
 
 int runs_after = 0;
-void getSensorValues()
+double previous_temp = 0;
+char get_init_temp = 'n';
+char getSensorValues()
 {
 
+
 	readWaterTemp();
+	if(get_init_temp == 'n')
+	{
+		previous_temp = water_temp;
+		get_init_temp = 'y';
+	}
 /*	while(micro_reset == 'y') // if our first run check to see if the pH sensor Erroneous value if so
 	{
 		if(pH > 14 || runs_after < 3)
@@ -156,8 +164,13 @@ void getSensorValues()
 	runs_after = 0;
 
 
-
+	if(water_temp > 100 || previous_temp-water_temp > 5 || water_temp-previous_temp > 5)
+	{
+		return 'n';
+	}
+	previous_temp = water_temp;
 	waterTempControl();
+	return 'y';
 }
 
 

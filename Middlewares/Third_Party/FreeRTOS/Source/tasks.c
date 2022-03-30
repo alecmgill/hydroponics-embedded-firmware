@@ -2667,7 +2667,7 @@ BaseType_t xSwitchRequired = pdFALSE;
 
 					/* Place the unblocked task into the appropriate ready
 					list. */
-				prvAddTaskToReadyList( pxTCB );
+					prvAddTaskToReadyList( pxTCB );
 
 					/* A task being unblocked cannot cause an immediate
 					context switch if preemption is turned off. */

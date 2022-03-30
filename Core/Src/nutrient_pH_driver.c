@@ -114,7 +114,7 @@ char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double
 		pH_down_cal_dosage += 0.1;	// if we are close to our pH set point dose with a very small amount to not over-dose the water.
 		return 'n';
 	}
-	else if(what_to_cal == 'n' && TDS-Start_Nutrient < 5 )
+	else if(what_to_cal == 'n' && TDS-Start_Nutrient < 3 )
 	{
 		cont_cal_additions_nutrient = 'y';
 		//cont_additions = 2;
@@ -142,7 +142,7 @@ char calibrateDosage(char what_to_cal,double Cal_pH, double p_bounds_set, double
 	else if(what_to_cal == 'n')
 	{
 		cont_cal_additions_nutrient = 'n';
-		nutrient_ml_per_val_change = (nutrient_up_cal_dosage/((TDS-Start_Nutrient)));
+		nutrient_ml_per_val_change = (nutrient_up_cal_dosage/((TDS-Start_Nutrient)-1.0));
 		calibrating = 'n';
 //		cont_additions = 3;
 		return 'y';

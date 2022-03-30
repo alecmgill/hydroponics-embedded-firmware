@@ -15,7 +15,7 @@ double ph_voltage_average = 0;
 
 double value;
 double ph_voltage_buffer[30] = {0};
-double pH_low_cal = 3047.0, pH_mid_cal = 2939.0, pH_high_cal= 2852.0, low_ph_solution = 4.0, mid_ph_solution = 6.86, High_ph_solution = 9.18;
+double pH_low_cal = 2073.0, pH_mid_cal = 1577.0, pH_high_cal= 1139.0, low_ph_solution = 4.0, mid_ph_solution = 6.86, High_ph_solution = 9.18;
 double slope = 0, ph_Value_Buf = 0;
 
 double convert_ph(float voltage_mV)	// converts voltage to pH value based on three point calibration

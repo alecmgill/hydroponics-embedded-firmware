@@ -14,7 +14,7 @@
 #include "sensors.h"
 #include "main.h"
 double max_pH_up_dose = 5.0, max_pH_down_dose = 5.0, pH_up_dose = 0, pH_down_dose = 0, max_nutrient_dose = 100, nutrient_dose = 0, total_nutrient_ml = 0, total_pH_up_ml = 0, total_pH_down_ml = 0, total_nutrient_ml_per_file = 0, total_pH_up_ml_per_file = 0, total_pH_down_ml_per_file = 0,
-		nutrient_set_point = 420.0, pH_set_point = 6.1, water_temp_set_point = 21.5, water_temp_bounds_set = 0.5,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.06, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
+		nutrient_set_point = 650.0, pH_set_point = 5.8, water_temp_set_point = 20.0, water_temp_bounds_set = 0.2,  water_temp_bounds_check = 1.0, pH_bounds_check = 0.06, pH_bounds_set = 0.03, nutrient_bounds_check = 5.0, nutrient_bounds_set = 1.5, TDS = 0, pH = 0, water_temp = 0,
 		start_TDS = 0, start_pH = 0, prev_smallest_ph = 0, prev_smallest_TDS = 0, historic_largest_pH[200] = {0}, historic_smallest_pH[200] = {0}, historic_largest_TDS[200] = {0}, historic_smallest_TDS[200] = {0}, historic_average_pH[200] = {0}, historic_average_TDS[200] = {0},
 		historic_average_pH_range = 0, historic_average_TDS_range = 0, historic_range_pH  = 0, historic_range_TDS = 0, average_pH = 0, average_TDS = 0,  historic_average_pH_min = 1000, historic_average_pH_max = 0, historic_average_TDS_min = 100000,  historic_average_TDS_max = 0,
 		historic_TDS_max = 0, historic_pH_max  = 0, historic_pH_min  = 0, historic_TDS_min  = 0, slope_factor_average_TDS = 0, slope_factor_average_ph = 0, sample_array_TDS[30] = {0}, sample_array_pH[30] = {0}, smallest_value_TDS = 100000, largest_value_TDS = 0, smallest_value_pH = 100,
@@ -350,7 +350,8 @@ void balancePhAndNutrient()
 {
 	TDS_avg_check = 0;
 	pH_avg_check = 0;
-	if(waiting_to_write == 'n')	getSensorValues();
+	//if(waiting_to_write == 'n')
+	if(getSensorValues() == 'n') return;
 
 	pH_up = 'n';
 	pH_down = 'n';
@@ -526,7 +527,8 @@ void isStabalized()  // will take a few samples of the waters pH and TDS to dete
 	prev_largest_TDS = largest_value_TDS;
 	prev_largest_pH = largest_value_pH;
 
-	getSensorValues();
+	if(getSensorValues() == 'n') return;
+
 
 	smallest_value_TDS = 10000;							   // set smallest values to value much higher than expected
 	largest_value_TDS = 0;	  							   // set largest to the smallest possible value these steps ensure we catch error cases
@@ -671,7 +673,7 @@ void waterTempControl()
 	if(temp_up == 'y' && heat_on == 'n')
 	{
 		heatOn();	// if we need heat the water turn on the heater
-		setFanSpeed(3.5,3.5,3.5);
+		setFanSpeed(3.5,3.5,2.5);
 		heat_on = 'y';
 		cool_on = 'n';
 	}
@@ -696,7 +698,7 @@ void systemControl()
 
 	if(run_once == 'n')
 	{
-		//doseWater(100,100,100);
+		//doseWater(10,10,10);
 		run_once = 'y';
 		fanOn();
 		setFanSpeed(3.5,3.5,0);
@@ -705,7 +707,8 @@ void systemControl()
 		//doseWater(100,100,100);
 	}
 
-	getSensorValues();
+	if(getSensorValues() == 'n') return;
+	//heatOn();
 	balancePhAndNutrient();
 }
 

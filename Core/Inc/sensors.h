@@ -18,5 +18,5 @@ int  readWaterLevel();
 void calibratePhProbe();
 void convertPH();
 void getFiveSamples(int delay_enable);
-
+char getSensorValues();
 #endif /* INC_SENSORS_H_ */

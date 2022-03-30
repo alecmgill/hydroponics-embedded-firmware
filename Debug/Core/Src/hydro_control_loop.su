@@ -3,8 +3,8 @@ hydro_control_loop.c:106:6:write_balance_data_file	16	static
 hydro_control_loop.c:134:6:add_data_to_array	8	static
 hydro_control_loop.c:281:6:appendInitialConditions	8	static
 hydro_control_loop.c:349:6:balancePhAndNutrient	40	static
-hydro_control_loop.c:501:6:resetStabilityVars	16	static
-hydro_control_loop.c:520:6:isStabalized	24	static
-hydro_control_loop.c:628:5:waitForWaterToStabilize	8	static
-hydro_control_loop.c:649:6:waterTempControl	8	static
-hydro_control_loop.c:694:6:systemControl	16	static
+hydro_control_loop.c:502:6:resetStabilityVars	16	static
+hydro_control_loop.c:521:6:isStabalized	24	static
+hydro_control_loop.c:630:5:waitForWaterToStabilize	8	static
+hydro_control_loop.c:651:6:waterTempControl	8	static
+hydro_control_loop.c:696:6:systemControl	16	static
