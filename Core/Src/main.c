@@ -176,19 +176,19 @@ HAL_ADC_Start_DMA(&hadc3, (uint32_t*)&nutrient_ph_values, 80);
 
   /* Create the thread(s) */
   /* definition and creation of BalanceWater */
-  osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityNormal, 0, 3100, BalanceWaterBuffer, &BalanceWaterControlBlock);
-  BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
+  //osThreadStaticDef(BalanceWater, StartBalanceWater, osPriorityNormal, 0, 3100, BalanceWaterBuffer, &BalanceWaterControlBlock);
+  //BalanceWaterHandle = osThreadCreate(osThread(BalanceWater), NULL);
 
   /* definition and creation of WebAppCom */
-  osThreadStaticDef(WebAppCom, StartWebAppCom, osPriorityNormal, 0, 1024, myTask02Buffer, &myTask02ControlBlock);
-  WebAppComHandle = osThreadCreate(osThread(WebAppCom), NULL);
+  //osThreadStaticDef(WebAppCom, StartWebAppCom, osPriorityNormal, 0, 1024, myTask02Buffer, &myTask02ControlBlock);
+ // WebAppComHandle = osThreadCreate(osThread(WebAppCom), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
-  osKernelStart();
+ // osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
@@ -196,8 +196,8 @@ HAL_ADC_Start_DMA(&hadc3, (uint32_t*)&nutrient_ph_values, 80);
 
   while (1)
   {
-	  //HAL_UART_Transmit(&huart3,UART_data,8,1000);
-	  //HAL_Delay(500);
+	  HAL_UART_Transmit(&huart3,UART_data,8,1000);
+	  HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
